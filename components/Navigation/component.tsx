@@ -1,11 +1,19 @@
 import Link from "next/link"
 
+import styles from "./styles.module.scss"
+
 export default function Navigation() {
   return (
-    <nav style={{ display: "flex", gap: "1rem" }}>
-      <Link href="/about">About</Link>
-      <Link href="/contacts">Contacts</Link>
-      <Link href="/send-message">Send message</Link>
+    <nav className={styles.navigation}>
+      <Link className={styles.navigation__link} href="/about">
+        About
+      </Link>
+      <Link className={styles.navigation__link} href="/contacts">
+        Contacts
+      </Link>
+      <Link className={styles.navigation__link} href="/send-message">
+        Send message
+      </Link>
     </nav>
   )
 }
