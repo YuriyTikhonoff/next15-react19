@@ -8,9 +8,10 @@ interface MainLayoutProps {
 }
 
 const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
-  const routes = Object.values(ROUTES_MAP)
-  console.log(routes)
-  console.log(styles)
+  const routes = Object.values(ROUTES_MAP).filter(
+    (route) => route.showInNavigation
+  )
+
   return (
     <div className={styles["main-layout"]}>
       <header className={styles["main-layout__container"]}>
