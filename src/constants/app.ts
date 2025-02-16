@@ -2,6 +2,7 @@ export enum ROUTE_KEYS {
   ABOUT = "ABOUT",
   CONTACTS = "CONTACTS",
   HOME = "HOME",
+  PROJECTS = "PROJECTS",
   NOT_FOUND = "NOT_FOUND",
   SEND_MESSAGE = "SEND_MESSAGE",
 }
@@ -28,7 +29,11 @@ export const ROUTES_MAP: Record<ROUTE_KEYS, IRoute> = {
     title: "Contacts",
     showInNavigation: true,
   },
-
+  [ROUTE_KEYS.PROJECTS]: {
+    path: "/projects",
+    title: "Projects",
+    showInNavigation: true,
+  },
   [ROUTE_KEYS.NOT_FOUND]: {
     path: "/404",
     title: "Not Found",
