@@ -1,12 +1,18 @@
 import React from "react"
 
-const Project: React.FC = () => {
+interface ProjectPageProps {
+  params: Promise<{ projectName: string }>
+}
+
+const ProjectPage: React.FC<ProjectPageProps> = async ({ params }) => {
+  const projectName = (await params).projectName
+  console.log(projectName)
   return (
     <div>
-      <h1>Project</h1>
-      <p>This is a page for a specific project </p>
+      <h1>{projectName}</h1>
+      <p>This is a page for a specific project: {projectName} </p>
     </div>
   )
 }
 
-export default Project
+export default ProjectPage
