@@ -1,7 +1,13 @@
+"use client"
+
+import { DataContext } from "@/layouts/MainLayout/component"
 import Link from "next/link"
-import React from "react"
+import React, { useContext } from "react"
 
 const ProjectsPage: React.FC = () => {
+  const data = useContext(DataContext)
+  console.log("theme ", data.theme)
+
   return (
     <div>
       <h1>Projects</h1>
