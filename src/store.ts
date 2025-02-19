@@ -1,4 +1,4 @@
-import {create} from "zustand";
+import { create } from "zustand";
 
 interface AppState {
   theme: string;
@@ -7,5 +7,5 @@ interface AppState {
 
 export const useStore = create<AppState>((set) => ({
   theme: "light",
-  setTheme: (theme) => set({ theme }),
+  setTheme: () => set((state) => state.theme === "light" ? ({ theme: "dark" }) : ({ theme: "light" })),
 }));
