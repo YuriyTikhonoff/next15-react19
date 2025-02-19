@@ -1,4 +1,5 @@
 import React from "react"
+import { useStore } from "@/store"
 
 interface ProjectPageProps {
   params: Promise<{ projectName: string }>
@@ -6,11 +7,13 @@ interface ProjectPageProps {
 
 const ProjectPage: React.FC<ProjectPageProps> = async ({ params }) => {
   const projectName = (await params).projectName
+  const { theme } = useStore.getState()
   console.log(projectName)
   return (
     <div>
       <h1>{projectName}</h1>
       <p>This is a page for a specific project: {projectName} </p>
+      <div>{`The current theme is ${theme}`}</div>
     </div>
   )
 }
