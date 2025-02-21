@@ -1,9 +1,9 @@
 import React from "react"
-import { useStore } from "@/store"
+import { useThemeStore } from "@/store/themeStore"
 
 const SendMessagePage: React.FC = () => {
-  const { theme } = useStore.getState()
-  console.log("theme from store in server compnent ", theme);
+  const { theme } = useThemeStore.getState()
+  console.log("theme from store in server compnent ", theme)
   return (
     <div>
       <h1>Send Message</h1>

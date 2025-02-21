@@ -1,5 +1,5 @@
 import React from "react"
-import { useStore } from "@/store"
+import { useThemeStore } from "@/store/themeStore"
 
 interface ProjectPageProps {
   params: Promise<{ projectName: string }>
@@ -7,7 +7,7 @@ interface ProjectPageProps {
 
 const ProjectPage: React.FC<ProjectPageProps> = async ({ params }) => {
   const projectName = (await params).projectName
-  const { theme } = useStore.getState()
+  const { theme } = useThemeStore.getState()
   console.log(projectName)
   return (
     <div>
