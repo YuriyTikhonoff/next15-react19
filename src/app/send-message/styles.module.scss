@@ -1,0 +1,23 @@
+.data-modification {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+}
+
+.counter {
+  margin-top: 10px;
+  width: 100%;
+  &__controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+}
+
+.theme {
+  margin-top: 10px;
+  width: 100%;
+  &__controls {
+    margin-top: 10px;
+  }
+}
