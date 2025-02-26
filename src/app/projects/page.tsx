@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { useThemeStore } from "@/store/themeStore";
 import { useCounterStore } from "@/store/counterStore";
+import { PROJECTS_PAGE_MAP } from "@/constants/app";
 
 const ProjectsPage: React.FC = () => {
   const theme = useThemeStore((state) => state.theme);
@@ -34,12 +35,17 @@ const ProjectsPage: React.FC = () => {
       </section>
 
       <ul>
-        <li>
+        {Object.entries(PROJECTS_PAGE_MAP).map(([slug, { title }]) => (
+          <li key={slug}>
+            <Link href={`/projects/${slug}`}>{title}</Link>
+          </li>
+        ))}
+        {/* <li>
           <Link href="/projects/demo">Demo</Link>
         </li>
         <li>
           <Link href="/projects/cms">CMS</Link>
-        </li>
+        </li> */}
       </ul>
     </div>
   );
