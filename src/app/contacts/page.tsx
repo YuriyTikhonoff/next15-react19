@@ -1,5 +1,6 @@
-import { Post } from "@/types/app";
+import type { Post } from "@/types/app";
 import React from "react";
+import PostComponent from "./Post/component";
 
 const ContactsPage: React.FC = async () => {
   const data = await fetch("https://api.vercel.app/blog");
@@ -11,8 +12,8 @@ const ContactsPage: React.FC = async () => {
       <p>This is a contacts page </p>
       <div>
         {posts.map((post) => (
-          <div key={post.id} style={{}}>
-            <div>{`${post.author} - ${post.title}`}</div>
+          <div key={post.id}>
+            <PostComponent post={post} />
           </div>
         ))}
       </div>
