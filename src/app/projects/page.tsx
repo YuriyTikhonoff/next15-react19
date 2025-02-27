@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useThemeStore } from "@/store/themeStore";
 import { useCounterStore } from "@/store/counterStore";
 import { PROJECTS_PAGE_MAP } from "@/constants/app";
+import Button from "@/components/Button";
+import styles from "./styles.module.scss";
 
 const ProjectsPage: React.FC = () => {
   const theme = useThemeStore((state) => state.theme);
@@ -19,19 +21,27 @@ const ProjectsPage: React.FC = () => {
       <h1>Projects</h1>
       <p>This is a projects page</p>
 
-      <section>
+      <section className={styles["projects__counter"]}>
         <h2>Theme Store</h2>
-        <p>Current theme: {theme}</p>
-        <button onClick={() => setTheme(theme === "light" ? "dark" : "light")}>
+        <p>
+          <span>{"Current theme: "}</span>
+          <span className={styles.value}>{theme}</span>
+        </p>
+        <Button onClick={() => setTheme(theme === "light" ? "dark" : "light")}>
           Toggle Theme
-        </button>
+        </Button>
       </section>
 
       <section>
         <h2>Counter Store</h2>
-        <p>Count: {count}</p>
-        <button onClick={increment}>Increment</button>
-        <button onClick={decrement}>Decrement</button>
+        <p>
+          <span>{"Count: "}</span>
+          <span className={styles.value}>{count}</span>
+        </p>
+        <div className={styles["projects__counter__controls"]}>
+          <Button onClick={increment}>Increment</Button>
+          <Button onClick={decrement}>Decrement</Button>
+        </div>
       </section>
 
       <ul>
