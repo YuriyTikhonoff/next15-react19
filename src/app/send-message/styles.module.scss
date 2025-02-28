@@ -1,7 +1,14 @@
+@import "src/constants/theme.scss";
+
 .data-modification {
   width: 100%;
   display: flex;
   gap: 10px;
+}
+
+.value {
+  color: $turquoise;
+  font-weight: bold;
 }
 
 .counter {

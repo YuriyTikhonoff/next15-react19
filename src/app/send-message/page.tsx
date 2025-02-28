@@ -4,6 +4,7 @@ import React from "react";
 import { useThemeStore } from "@/store/themeStore";
 import { useCounterStore } from "@/store/counterStore";
 import styles from "./styles.module.scss";
+import Button from "@/components/Button";
 
 const SendMessagePage: React.FC = () => {
   const theme = useThemeStore((state) => state.theme);
@@ -23,16 +24,23 @@ const SendMessagePage: React.FC = () => {
       <p>This is the send message page.</p>
       <div className={styles["data-modification"]}>
         <div className={styles.theme}>
-          <div className={styles.theme}>{`The current theme is ${theme}`}</div>
+          <div>
+            <span>{`The current theme is `}</span>
+            <span className={styles.value}>{theme}</span>
+          </div>
+
           <div className={styles.theme__controls}>
-            <button onClick={handleChangeTheme}>Change Theme</button>
+            <Button onClick={handleChangeTheme}>Change Theme</Button>
           </div>
         </div>
         <div className={styles.counter}>
-          <div>{`The current count is ${count}`}</div>
+          <div>
+            <span>{`The current count is `}</span>
+            <span className={styles.value}>{count}</span>
+          </div>
           <div className={styles.counter__controls}>
-            <button onClick={increment}>Increment</button>
-            <button onClick={decrement}>Decrement</button>
+            <Button onClick={increment}>Increment</Button>
+            <Button onClick={decrement}>Decrement</Button>
           </div>
         </div>
       </div>

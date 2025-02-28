@@ -1,0 +1,17 @@
+@import "src/constants/theme.scss";
+
+.projects {
+  &__counter {
+    margin: 10px 0;
+    &__controls {
+      display: flex;
+      gap: 10px;
+      margin: 10px 0;
+    }
+  }
+}
+
+.value {
+  color: $turquoise;
+  font-weight: bold;
+}
