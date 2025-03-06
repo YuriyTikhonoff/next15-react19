@@ -8,8 +8,22 @@ const AddNewCard: React.FC = () => {
     <div className={styles["add-new-card"]}>
       <h3>Add New Card Component</h3>
       <div className={styles["add-new-card__form"]}>
-        <TextField label="Front side" variant="outlined" />
-        <TextField label="Rare side" variant="outlined" />
+        <div style={{ display: "flex", gap: 20, width: "100%" }}>
+          <TextField
+            sx={{ width: 300 }}
+            label="Front side"
+            variant="outlined"
+            multiline
+            rows={4}
+          />
+          <TextField
+            sx={{ width: 300 }}
+            label="Rare side"
+            variant="outlined"
+            multiline
+            rows={4}
+          />
+        </div>
         <div className={styles["add-new-card__category"]}>
           <TextField
             label="Category"
