@@ -1,9 +1,22 @@
+"use client";
+
 import { Button, MenuItem, TextField } from "@mui/material";
 
 import styles from "./styles.module.scss";
+import { useState } from "react";
+import { MemoCard } from "@/types/app";
+import { INITIAL_NEW_CARD } from "./constants";
 
-const AddNewCard: React.FC = () => {
+interface AddNewCardProps {
+  onAddNewCard: (newCard: MemoCard) => void;
+}
+
+const AddNewCard: React.FC<AddNewCardProps> = ({ onAddNewCard }) => {
   const categories = ["Category 1", "Category 2", "Category 3"];
+  const [newCard, setNewCard] = useState<MemoCard>(INITIAL_NEW_CARD);
+  const [newCategory, setNewCategory] = useState<string>("");
+  const [categoriesList, setCategoriesList] = useState<string[]>(categories);
+
   return (
     <div className={styles["add-new-card"]}>
       <h3>Add New Card Component</h3>
@@ -15,6 +28,7 @@ const AddNewCard: React.FC = () => {
             variant="outlined"
             multiline
             rows={4}
+            onChange={(e) => setNewCard({ ...newCard, front: e.target.value })}
           />
           <TextField
             sx={{ width: 300 }}
@@ -22,6 +36,7 @@ const AddNewCard: React.FC = () => {
             variant="outlined"
             multiline
             rows={4}
+            onChange={(e) => setNewCard({ ...newCard, back: e.target.value })}
           />
         </div>
         <div className={styles["add-new-card__category"]}>
@@ -30,17 +45,39 @@ const AddNewCard: React.FC = () => {
             variant="outlined"
             select
             style={{ width: 200 }}
+            onChange={(e) =>
+              setNewCard({ ...newCard, category: e.target.value })
+            }
           >
-            {categories.map((category) => (
+            {categoriesList.map((category) => (
               <MenuItem key={category} value={category}>
                 {category}
               </MenuItem>
             ))}
           </TextField>
-          <TextField label="New Category" variant="outlined" />
-          <Button variant="outlined">Add Category</Button>
+          <TextField
+            label="New Category"
+            variant="outlined"
+            value={newCategory}
+            onChange={(e) => setNewCategory(e.target.value)}
+          />
+          <Button
+            variant="outlined"
+            onClick={() => {
+              setCategoriesList([...categoriesList, newCategory]);
+              setNewCategory("");
+            }}
+          >
+            Add Category
+          </Button>
         </div>
-        <Button style={{ width: 200, height: 60 }} variant="outlined">
+        <Button
+          onClick={() => {
+            onAddNewCard(newCard);
+          }}
+          style={{ width: 200, height: 60 }}
+          variant="outlined"
+        >
           Add Card
         </Button>
       </div>

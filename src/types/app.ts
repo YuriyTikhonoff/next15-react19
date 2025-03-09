@@ -6,3 +6,11 @@ export interface Post {
   id: number;
   title: string;
 }
+
+export interface MemoCard {
+  front: string;
+  back: string;
+  category: string;
+  level: number;
+  lastPractice: string;
+}
