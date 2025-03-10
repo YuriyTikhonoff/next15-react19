@@ -1,7 +1,7 @@
 "use client";
 
-import { Button, MenuItem, TextField } from "@mui/material";
-
+import { Button, IconButton, MenuItem, TextField } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 import styles from "./styles.module.scss";
 import { useState } from "react";
 import { MemoCard } from "@/types/app";
@@ -9,9 +9,10 @@ import { INITIAL_NEW_CARD } from "./constants";
 
 interface AddNewCardProps {
   onAddNewCard: (newCard: MemoCard) => void;
+  onClose: () => void;
 }
 
-const AddNewCard: React.FC<AddNewCardProps> = ({ onAddNewCard }) => {
+const AddNewCard: React.FC<AddNewCardProps> = ({ onAddNewCard, onClose }) => {
   const categories = ["Category 1", "Category 2", "Category 3"];
   const [newCard, setNewCard] = useState<MemoCard>(INITIAL_NEW_CARD);
   const [newCategory, setNewCategory] = useState<string>("");
@@ -19,7 +20,12 @@ const AddNewCard: React.FC<AddNewCardProps> = ({ onAddNewCard }) => {
 
   return (
     <div className={styles["add-new-card"]}>
-      <h3>Add New Card Component</h3>
+      <div className={styles["add-new-card__header"]}>
+        <h3>Add New Card Component</h3>
+        <IconButton onClick={onClose}>
+          <CloseIcon />
+        </IconButton>
+      </div>
       <div className={styles["add-new-card__form"]}>
         <div style={{ display: "flex", gap: 20, width: "100%" }}>
           <TextField
