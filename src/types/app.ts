@@ -8,9 +8,10 @@ export interface Post {
 }
 
 export interface MemoCard {
+  id: string;
   front: string;
   back: string;
   category: string;
   level: number;
-  lastPractice: string;
+  lastPracticeTimestamp: string;
 }
