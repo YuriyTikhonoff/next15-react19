@@ -6,6 +6,7 @@ import styles from "./styles.module.scss";
 import { useState } from "react";
 import { MemoCard } from "@/types/app";
 import { INITIAL_NEW_CARD } from "./constants";
+import { nanoid } from "nanoid";
 
 interface AddNewCardProps {
   onAddNewCard: (newCard: MemoCard) => void;
@@ -17,6 +18,15 @@ const AddNewCard: React.FC<AddNewCardProps> = ({ onAddNewCard, onClose }) => {
   const [newCard, setNewCard] = useState<MemoCard>(INITIAL_NEW_CARD);
   const [newCategory, setNewCategory] = useState<string>("");
   const [categoriesList, setCategoriesList] = useState<string[]>(categories);
+
+  const onAddCard = () => {
+    const enrichedNewCard = {
+      ...newCard,
+      id: nanoid(),
+      lastPracticeTimestamp: new Date().toISOString(),
+    };
+    onAddNewCard(enrichedNewCard);
+  };
 
   return (
     <div className={styles["add-new-card"]}>
@@ -78,10 +88,8 @@ const AddNewCard: React.FC<AddNewCardProps> = ({ onAddNewCard, onClose }) => {
           </Button>
         </div>
         <Button
-          onClick={() => {
-            onAddNewCard(newCard);
-          }}
-          style={{ width: 200, height: 60 }}
+          onClick={onAddCard}
+          sx={{ width: 200, height: 60 }}
           variant="outlined"
         >
           Add Card
