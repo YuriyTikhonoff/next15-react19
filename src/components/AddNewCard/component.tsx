@@ -8,6 +8,7 @@ import { MemoCard } from "@/types/app";
 import { INITIAL_NEW_CARD } from "./constants";
 import { nanoid } from "nanoid";
 import CardsRepository from "@/services/CardsRepository";
+import CategoriesRepository from "@/services/CategoriesRepository";
 
 interface AddNewCardProps {
   onAddNewCard: (newCard: MemoCard) => void;
@@ -15,10 +16,11 @@ interface AddNewCardProps {
 }
 
 const AddNewCard: React.FC<AddNewCardProps> = ({ onAddNewCard, onClose }) => {
-  const categories = ["Category 1", "Category 2", "Category 3"];
   const [newCard, setNewCard] = useState<MemoCard>(INITIAL_NEW_CARD);
   const [newCategory, setNewCategory] = useState<string>("");
-  const [categoriesList, setCategoriesList] = useState<string[]>(categories);
+  const [categoriesList, setCategoriesList] = useState<string[]>(
+    CategoriesRepository.getCategories()
+  );
 
   const onAddCard = () => {
     const enrichedNewCard = {
@@ -77,12 +79,15 @@ const AddNewCard: React.FC<AddNewCardProps> = ({ onAddNewCard, onClose }) => {
             label="New Category"
             variant="outlined"
             value={newCategory}
-            onChange={(e) => setNewCategory(e.target.value)}
+            onChange={(e) => {
+              setNewCategory(e.target.value);
+            }}
           />
           <Button
             variant="outlined"
             onClick={() => {
               setCategoriesList([...categoriesList, newCategory]);
+              CategoriesRepository.addCategory(newCategory);
               setNewCategory("");
             }}
           >
