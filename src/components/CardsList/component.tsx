@@ -8,11 +8,19 @@ import { Button, IconButton } from "@mui/material";
 import AddNewCard from "../AddNewCard";
 import CardView from "../CardView";
 import CardsRepository from "@/services/CardsRepository";
+import CardsCollection from "../CardsCollection";
 
 const CardsList: React.FC = () => {
   const [cards, setCards] = useState<MemoCard[]>(CardsRepository.getCards());
   const [showAddNewCard, setShowAddNewCard] = useState<boolean>(false);
   const [activeCardIndex, setActiveCardIndex] = useState<number | null>(null);
+
+  const grouppedCards = cards.reduce((acc, card) => {
+    acc[card.category] = acc[card.category]
+      ? [...acc[card.category], card]
+      : [card];
+    return acc;
+  }, {} as Record<string, MemoCard[]>);
 
   const onAddNewCard = useCallback((newCard: MemoCard) => {
     setCards((prev) => [...prev, newCard]);
@@ -39,8 +47,8 @@ const CardsList: React.FC = () => {
         Practice Cards
       </Button>
       <ul>
-        {cards.map((card) => (
-          <li key={card.id}>{card.front}</li>
+        {Object.entries(grouppedCards).map(([category, cards]) => (
+          <CardsCollection key={category} title={category} cards={cards} />
         ))}
       </ul>
       {isPracticeCardsModeActive && (
