@@ -7,9 +7,10 @@ import AddBoxIcon from "@mui/icons-material/AddBox";
 import { Button, IconButton } from "@mui/material";
 import AddNewCard from "../AddNewCard";
 import CardView from "../CardView";
+import CardsRepository from "@/services/CardsRepository";
 
 const CardsList: React.FC = () => {
-  const [cards, setCards] = useState<MemoCard[]>([]);
+  const [cards, setCards] = useState<MemoCard[]>(CardsRepository.getCards());
   const [showAddNewCard, setShowAddNewCard] = useState<boolean>(false);
   const [activeCardIndex, setActiveCardIndex] = useState<number | null>(null);
 
