@@ -15,3 +15,8 @@ export interface MemoCard {
   level: number;
   lastPracticeTimestamp: string;
 }
+
+export enum LocalStorageFields {
+  Cards = "cards",
+  Categories = "categories",
+}
