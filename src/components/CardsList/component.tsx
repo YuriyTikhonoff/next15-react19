@@ -39,6 +39,9 @@ const CardsList: React.FC = () => {
   };
 
   const activeCard = cards[activeCardIndex ?? 0];
+  const onCloseCardPractice = useCallback(() => {
+    setActiveCardIndex(null);
+  }, []);
 
   return (
     <div>
@@ -60,10 +63,12 @@ const CardsList: React.FC = () => {
           >
             Next Card
           </Button>
-          <Button onClick={() => setActiveCardIndex(null)}>
-            Exit Practice Mode
-          </Button>
-          <CardView card={activeCard} isPrimarySideFront />
+
+          <CardView
+            card={activeCard}
+            onClose={onCloseCardPractice}
+            isPrimarySideFront
+          />
         </div>
       )}
       {showAddNewCard ? (
