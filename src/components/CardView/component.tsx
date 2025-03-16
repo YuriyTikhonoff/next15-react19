@@ -11,12 +11,14 @@ interface CardViewProps {
   card: MemoCard;
   isPrimarySideFront: boolean;
   onClose: VoidFunction;
+  onNextCard: VoidFunction;
 }
 
 const CardView: React.FC<CardViewProps> = ({
   card,
   isPrimarySideFront,
   onClose,
+  onNextCard,
 }) => {
   const [isFlipped, setIsFlipped] = useState(isPrimarySideFront);
   return (
@@ -27,12 +29,17 @@ const CardView: React.FC<CardViewProps> = ({
       <div className={styles["card__content"]}>
         {isFlipped ? card.front : card.back}
       </div>
-      <Button
-        onClick={() => setIsFlipped((isFlipped) => !isFlipped)}
-        variant="outlined"
-      >
-        Flip
-      </Button>
+      <div className={styles["card__controls"]}>
+        <Button
+          onClick={() => setIsFlipped((isFlipped) => !isFlipped)}
+          variant="outlined"
+        >
+          Flip
+        </Button>
+        <Button onClick={onNextCard} variant="outlined">
+          Next Card
+        </Button>
+      </div>
     </div>
   );
 };

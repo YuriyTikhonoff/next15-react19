@@ -4,7 +4,7 @@
   flex-direction: column;
   justify-content: space-between;
   width: 400px;
-  height: 200px;
+  height: 300px;
   padding: 1rem;
   border-radius: 0.5rem;
   border: 1px solid white;
@@ -20,5 +20,10 @@
     align-items: center;
     justify-content: center;
     height: 100%;
+  }
+  &__controls {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 }

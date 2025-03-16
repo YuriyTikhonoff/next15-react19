@@ -18,7 +18,7 @@ const CardsCollection: React.FC<CardsCollectionProps> = ({ title, cards }) => {
         <IconButton onClick={() => setIsExpanded((prev) => !prev)}>
           {isExpanded ? "-" : "+"}{" "}
         </IconButton>
-        <h2>{`${title} (${cards.length})`}</h2>
+        <h4>{`${title} (${cards.length})`}</h4>
       </div>
       {isExpanded && (
         <ul>

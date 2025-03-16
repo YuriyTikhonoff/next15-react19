@@ -25,6 +25,7 @@ const CardsList: React.FC = () => {
   const onAddNewCard = useCallback((newCard: MemoCard) => {
     setCards((prev) => [...prev, newCard]);
     setShowAddNewCard(false);
+    CardsRepository.addCard(newCard);
   }, []);
 
   const onClose = useCallback(() => {
@@ -43,12 +44,19 @@ const CardsList: React.FC = () => {
     setActiveCardIndex(null);
   }, []);
 
+  const onNextCard = useCallback(() => {
+    setActiveCardIndex((prevIndex) =>
+      prevIndex !== null ? calculateNextCardIndex(prevIndex, cards) : null
+    );
+  }, [cards]);
+
+  const onPracticeCards = () => setActiveCardIndex(cards.length > 0 ? 0 : null);
+  const onActivateAddingNewCard = () => setShowAddNewCard(true);
+
   return (
     <div>
       <h2>Cards List</h2>
-      <Button onClick={() => setActiveCardIndex(cards.length > 0 ? 0 : null)}>
-        Practice Cards
-      </Button>
+      <Button onClick={onPracticeCards}>Practice Cards</Button>
       <ul>
         {Object.entries(grouppedCards).map(([category, cards]) => (
           <CardsCollection key={category} title={category} cards={cards} />
@@ -56,17 +64,10 @@ const CardsList: React.FC = () => {
       </ul>
       {isPracticeCardsModeActive && (
         <div>
-          <Button
-            onClick={() =>
-              setActiveCardIndex(calculateNextCardIndex(activeCardIndex, cards))
-            }
-          >
-            Next Card
-          </Button>
-
           <CardView
             card={activeCard}
             onClose={onCloseCardPractice}
+            onNextCard={onNextCard}
             isPrimarySideFront
           />
         </div>
@@ -74,7 +75,7 @@ const CardsList: React.FC = () => {
       {showAddNewCard ? (
         <AddNewCard onAddNewCard={onAddNewCard} onClose={onClose} />
       ) : (
-        <IconButton onClick={() => setShowAddNewCard(true)}>
+        <IconButton onClick={onActivateAddingNewCard}>
           <AddBoxIcon />
         </IconButton>
       )}
