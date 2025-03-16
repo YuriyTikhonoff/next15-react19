@@ -7,7 +7,6 @@ import { useState } from "react";
 import { MemoCard } from "@/types/app";
 import { INITIAL_NEW_CARD } from "./constants";
 import { nanoid } from "nanoid";
-import CardsRepository from "@/services/CardsRepository";
 import CategoriesRepository from "@/services/CategoriesRepository";
 
 interface AddNewCardProps {
@@ -66,7 +65,6 @@ const AddNewCard: React.FC<AddNewCardProps> = ({ onAddNewCard, onClose }) => {
             style={{ width: 200 }}
             onChange={(e) => {
               setNewCard({ ...newCard, category: e.target.value });
-              CardsRepository.addCard(newCard);
             }}
           >
             {categoriesList.map((category) => (
