@@ -26,6 +26,7 @@ const AddNewCard: React.FC<AddNewCardProps> = ({ onAddNewCard, onClose }) => {
       ...newCard,
       id: nanoid(),
       lastPracticeTimestamp: new Date().toISOString(),
+      createdAtTimestamp: new Date().toISOString(),
     };
     onAddNewCard(enrichedNewCard);
   };
