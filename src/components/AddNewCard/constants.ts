@@ -7,4 +7,5 @@ export const INITIAL_NEW_CARD: MemoCard = {
   category: "",
   level: 1,
   lastPracticeTimestamp: "",
+  createdAtTimestamp: "",
 };
