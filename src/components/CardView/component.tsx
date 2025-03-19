@@ -12,6 +12,7 @@ interface CardViewProps {
   isPrimarySideFront: boolean;
   onClose: VoidFunction;
   onNextCard: VoidFunction;
+  onUpdateCard: (updatedCard: MemoCard) => void;
 }
 
 const CardView: React.FC<CardViewProps> = ({
@@ -19,8 +20,19 @@ const CardView: React.FC<CardViewProps> = ({
   isPrimarySideFront,
   onClose,
   onNextCard,
+  onUpdateCard,
 }) => {
   const [isFlipped, setIsFlipped] = useState(isPrimarySideFront);
+  const onIncresedCardLevel = () => {
+    const updatedCard = {
+      ...card,
+      level: card.level + 1,
+      lastPracticeTimestamp: new Date().toISOString(),
+    };
+    onUpdateCard(updatedCard);
+    onNextCard();
+  };
+
   return (
     <div className={styles.card}>
       <IconButton className={styles["card__close-btn"]} onClick={onClose}>
@@ -38,6 +50,9 @@ const CardView: React.FC<CardViewProps> = ({
         </Button>
         <Button onClick={onNextCard} variant="outlined">
           Next Card
+        </Button>
+        <Button onClick={onIncresedCardLevel} variant="outlined">
+          Increased Level
         </Button>
       </div>
     </div>

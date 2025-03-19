@@ -28,6 +28,13 @@ const CardsList: React.FC = () => {
     CardsRepository.addCard(newCard);
   }, []);
 
+  const onUpdateCard = useCallback((updatedCard: MemoCard) => {
+    setCards((prev) =>
+      prev.map((card) => (card.id === updatedCard.id ? updatedCard : card))
+    );
+    CardsRepository.updateCard(updatedCard);
+  }, []);
+
   const onClose = useCallback(() => {
     setShowAddNewCard(false);
   }, []);
@@ -67,6 +74,7 @@ const CardsList: React.FC = () => {
           <CardView
             card={activeCard}
             onClose={onCloseCardPractice}
+            onUpdateCard={onUpdateCard}
             onNextCard={onNextCard}
             isPrimarySideFront
           />

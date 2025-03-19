@@ -6,6 +6,10 @@ class CardsRepository {
 
   private constructor() {}
 
+  private saveCardsPersistently(cards: MemoCard[]): void {
+    localStorage.setItem(LocalStorageFields.Cards, JSON.stringify(cards));
+  }
+
   public static getInstance(): CardsRepository {
     if (!this.instance) {
       this.instance = new CardsRepository();
@@ -15,7 +19,14 @@ class CardsRepository {
 
   public addCard(card: MemoCard): void {
     this.cards.push(card);
-    localStorage.setItem(LocalStorageFields.Cards, JSON.stringify(this.cards));
+    this.saveCardsPersistently(this.cards);
+  }
+
+  public updateCard(card: MemoCard): void {
+    this.cards = this.cards.map((currentCard) =>
+      currentCard.id === card.id ? card : currentCard
+    );
+    this.saveCardsPersistently(this.cards);
   }
 
   public getCards(): MemoCard[] {
@@ -26,7 +37,7 @@ class CardsRepository {
 
   public removeCard(cardId: string): void {
     this.cards = this.cards.filter((card) => card.id !== cardId);
-    localStorage.setItem(LocalStorageFields.Cards, JSON.stringify(this.cards));
+    this.saveCardsPersistently(this.cards);
   }
 }
 
