@@ -15,6 +15,12 @@
     right: 0.5rem;
     cursor: pointer;
   }
+  button.card__delete-btn {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    cursor: pointer;
+  }
   &__content {
     display: flex;
     align-items: center;

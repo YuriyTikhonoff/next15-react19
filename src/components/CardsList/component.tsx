@@ -59,6 +59,10 @@ const CardsList: React.FC = () => {
 
   const onPracticeCards = () => setActiveCardIndex(cards.length > 0 ? 0 : null);
   const onActivateAddingNewCard = () => setShowAddNewCard(true);
+  const onDeleteCard = (cardId: MemoCard["id"]) => {
+    setCards((prev) => prev.filter((card) => card.id !== cardId));
+    CardsRepository.removeCard(cardId);
+  };
 
   return (
     <div>
@@ -74,6 +78,7 @@ const CardsList: React.FC = () => {
           <CardView
             card={activeCard}
             onClose={onCloseCardPractice}
+            onDeleteCard={onDeleteCard}
             onUpdateCard={onUpdateCard}
             onNextCard={onNextCard}
             isPrimarySideFront
