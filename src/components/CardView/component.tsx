@@ -6,6 +6,7 @@ import type React from "react";
 import { useState } from "react";
 import styles from "./styles.module.scss";
 import CloseIcon from "@mui/icons-material/Close";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 interface CardViewProps {
   card: MemoCard;
@@ -13,12 +14,14 @@ interface CardViewProps {
   onClose: VoidFunction;
   onNextCard: VoidFunction;
   onUpdateCard: (updatedCard: MemoCard) => void;
+  onDeleteCard: (cardId: MemoCard["id"]) => void;
 }
 
 const CardView: React.FC<CardViewProps> = ({
   card,
   isPrimarySideFront,
   onClose,
+  onDeleteCard,
   onNextCard,
   onUpdateCard,
 }) => {
@@ -32,9 +35,16 @@ const CardView: React.FC<CardViewProps> = ({
     onUpdateCard(updatedCard);
     onNextCard();
   };
+  const onDelete = () => {
+    onDeleteCard(card.id);
+    onClose();
+  };
 
   return (
     <div className={styles.card}>
+      <IconButton className={styles["card__delete-btn"]} onClick={onDelete}>
+        <DeleteOutlineIcon />
+      </IconButton>
       <IconButton className={styles["card__close-btn"]} onClick={onClose}>
         <CloseIcon />
       </IconButton>
