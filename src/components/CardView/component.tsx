@@ -1,7 +1,7 @@
 "use client";
 
 import { MemoCard } from "@/types/app";
-import { Button, IconButton } from "@mui/material";
+import { Button, IconButton, Modal } from "@mui/material";
 import type React from "react";
 import { useState } from "react";
 import styles from "./styles.module.scss";
@@ -26,6 +26,9 @@ const CardView: React.FC<CardViewProps> = ({
   onUpdateCard,
 }) => {
   const [isFlipped, setIsFlipped] = useState(isPrimarySideFront);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const onOpenModal = () => setIsModalOpen(true);
+  const onCloseModal = () => setIsModalOpen(false);
   const onIncresedCardLevel = () => {
     const updatedCard = {
       ...card,
@@ -42,9 +45,28 @@ const CardView: React.FC<CardViewProps> = ({
 
   return (
     <div className={styles.card}>
-      <IconButton className={styles["card__delete-btn"]} onClick={onDelete}>
+      <IconButton className={styles["card__delete-btn"]} onClick={onOpenModal}>
         <DeleteOutlineIcon />
       </IconButton>
+      <Modal
+        open={isModalOpen}
+        onClose={onCloseModal}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+        className={styles["card__modal-overlay"]}
+      >
+        <div className={styles["card__modal"]}>
+          <div>Are you sure you want to delete this card?</div>
+          <div className={styles["card__modal-controls"]}>
+            <Button onClick={onDelete} variant="outlined">
+              Yes
+            </Button>
+            <Button onClick={onCloseModal} variant="outlined">
+              No
+            </Button>
+          </div>
+        </div>
+      </Modal>
       <IconButton className={styles["card__close-btn"]} onClick={onClose}>
         <CloseIcon />
       </IconButton>
