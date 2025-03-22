@@ -56,6 +56,11 @@ const CardView: React.FC<CardViewProps> = ({
         className={styles["card__modal-overlay"]}
       >
         <div className={styles["card__modal"]}>
+          <div className={styles["card__modal-close-btn"]}>
+            <IconButton onClick={onCloseModal}>
+              <CloseIcon />
+            </IconButton>
+          </div>
           <div>Are you sure you want to delete this card?</div>
           <div className={styles["card__modal-controls"]}>
             <Button onClick={onDelete} variant="outlined">
