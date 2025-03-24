@@ -7,6 +7,7 @@ import { useState } from "react";
 import styles from "./styles.module.scss";
 import CloseIcon from "@mui/icons-material/Close";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import cardLevelsMap from "@/constants/cards";
 
 interface CardViewProps {
   card: MemoCard;
@@ -72,6 +73,9 @@ const CardView: React.FC<CardViewProps> = ({
           </div>
         </div>
       </Modal>
+      <div className={styles["card__level"]}>
+        {cardLevelsMap.get(card.level)?.text}
+      </div>
       <IconButton className={styles["card__close-btn"]} onClick={onClose}>
         <CloseIcon />
       </IconButton>
