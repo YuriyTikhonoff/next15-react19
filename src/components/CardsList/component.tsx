@@ -3,13 +3,11 @@
 import { MemoCard } from "@/types/app";
 import type React from "react";
 import { useCallback, useState } from "react";
-import AddBoxIcon from "@mui/icons-material/AddBox";
-import { Button, IconButton } from "@mui/material";
-import AddNewCard from "../AddNewCard";
+import { Button } from "@mui/material";
 import CardView from "../CardView";
 import CardsRepository from "@/services/CardsRepository";
 import CardsCollection from "../CardsCollection";
-import ModalComponent from "../ModalComponent";
+import AddNewCardModal from "../AddNewCardModal";
 
 const CardsList: React.FC = () => {
   const [cards, setCards] = useState<MemoCard[]>(CardsRepository.getCards());
@@ -80,17 +78,7 @@ const CardsList: React.FC = () => {
           />
         </div>
       )}
-      <ModalComponent
-        title={<h3>Add New Card Component</h3>}
-        renderTriggerredButton={(onOpenModal) => (
-          <IconButton onClick={onOpenModal}>
-            <AddBoxIcon />
-          </IconButton>
-        )}
-        renderContent={(onCloseModal) => (
-          <AddNewCard onAddNewCard={onAddNewCard} onClose={onCloseModal} />
-        )}
-      />
+      <AddNewCardModal onAddNewCard={onAddNewCard} />
     </div>
   );
 };
