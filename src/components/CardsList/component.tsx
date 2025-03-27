@@ -9,10 +9,10 @@ import AddNewCard from "../AddNewCard";
 import CardView from "../CardView";
 import CardsRepository from "@/services/CardsRepository";
 import CardsCollection from "../CardsCollection";
+import ModalComponent from "../ModalComponent";
 
 const CardsList: React.FC = () => {
   const [cards, setCards] = useState<MemoCard[]>(CardsRepository.getCards());
-  const [showAddNewCard, setShowAddNewCard] = useState<boolean>(false);
   const [activeCardIndex, setActiveCardIndex] = useState<number | null>(null);
 
   const grouppedCards = cards.reduce((acc, card) => {
@@ -24,7 +24,6 @@ const CardsList: React.FC = () => {
 
   const onAddNewCard = useCallback((newCard: MemoCard) => {
     setCards((prev) => [...prev, newCard]);
-    setShowAddNewCard(false);
     CardsRepository.addCard(newCard);
   }, []);
 
@@ -33,10 +32,6 @@ const CardsList: React.FC = () => {
       prev.map((card) => (card.id === updatedCard.id ? updatedCard : card))
     );
     CardsRepository.updateCard(updatedCard);
-  }, []);
-
-  const onClose = useCallback(() => {
-    setShowAddNewCard(false);
   }, []);
 
   const isPracticeCardsModeActive = activeCardIndex !== null;
@@ -58,7 +53,7 @@ const CardsList: React.FC = () => {
   }, [cards]);
 
   const onPracticeCards = () => setActiveCardIndex(cards.length > 0 ? 0 : null);
-  const onActivateAddingNewCard = () => setShowAddNewCard(true);
+
   const onDeleteCard = (cardId: MemoCard["id"]) => {
     setCards((prev) => prev.filter((card) => card.id !== cardId));
     CardsRepository.removeCard(cardId);
@@ -85,13 +80,17 @@ const CardsList: React.FC = () => {
           />
         </div>
       )}
-      {showAddNewCard ? (
-        <AddNewCard onAddNewCard={onAddNewCard} onClose={onClose} />
-      ) : (
-        <IconButton onClick={onActivateAddingNewCard}>
-          <AddBoxIcon />
-        </IconButton>
-      )}
+      <ModalComponent
+        title={<h3>Add New Card Component</h3>}
+        renderTriggerredButton={(onOpenModal) => (
+          <IconButton onClick={onOpenModal}>
+            <AddBoxIcon />
+          </IconButton>
+        )}
+        renderContent={(onCloseModal) => (
+          <AddNewCard onAddNewCard={onAddNewCard} onClose={onCloseModal} />
+        )}
+      />
     </div>
   );
 };

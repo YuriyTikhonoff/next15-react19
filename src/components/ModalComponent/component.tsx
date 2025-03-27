@@ -5,7 +5,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useState } from "react";
 
 interface ModalComponentProps {
-  title: React.ReactNode;
+  title?: React.ReactNode;
   renderContent: (onCloseModal: VoidFunction) => React.ReactNode;
   renderTriggerredButton?: (onOpenModal: VoidFunction) => React.ReactNode;
 }
@@ -35,7 +35,7 @@ const ModalComponent: React.FC<ModalComponentProps> = ({
               <CloseIcon />
             </IconButton>
           </div>
-          <div>{title}</div>
+          {title ? <div>{title}</div> : null}
           {renderContent(onCloseModal)}
         </div>
       </Modal>

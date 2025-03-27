@@ -1,7 +1,6 @@
 "use client";
 
-import { Button, IconButton, MenuItem, TextField } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
+import { Button, MenuItem, TextField } from "@mui/material";
 import styles from "./styles.module.scss";
 import { useState } from "react";
 import { MemoCard } from "@/types/app";
@@ -29,16 +28,12 @@ const AddNewCard: React.FC<AddNewCardProps> = ({ onAddNewCard, onClose }) => {
       createdAtTimestamp: new Date().toISOString(),
     };
     onAddNewCard(enrichedNewCard);
+    onClose();
   };
 
   return (
     <div className={styles["add-new-card"]}>
-      <div className={styles["add-new-card__header"]}>
-        <h3>Add New Card Component</h3>
-        <IconButton onClick={onClose}>
-          <CloseIcon />
-        </IconButton>
-      </div>
+      <div className={styles["add-new-card__header"]}></div>
       <div className={styles["add-new-card__form"]}>
         <div style={{ display: "flex", gap: 20, width: "100%" }}>
           <TextField
@@ -93,13 +88,22 @@ const AddNewCard: React.FC<AddNewCardProps> = ({ onAddNewCard, onClose }) => {
             Add Category
           </Button>
         </div>
-        <Button
-          onClick={onAddCard}
-          sx={{ width: 200, height: 60 }}
-          variant="outlined"
-        >
-          Add Card
-        </Button>
+        <div style={{ display: "flex", gap: 20 }}>
+          <Button
+            onClick={onAddCard}
+            sx={{ width: 200, height: 60 }}
+            variant="outlined"
+          >
+            Add Card
+          </Button>
+          <Button
+            onClick={onClose}
+            sx={{ width: 200, height: 60 }}
+            variant="outlined"
+          >
+            Cancel
+          </Button>
+        </div>
       </div>
     </div>
   );
