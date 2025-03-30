@@ -63,7 +63,12 @@ const CardsList: React.FC = () => {
       <Button onClick={onPracticeCards}>Practice Cards</Button>
       <ul>
         {Object.entries(grouppedCards).map(([category, cards]) => (
-          <CardsCollection key={category} title={category} cards={cards} />
+          <CardsCollection
+            key={category}
+            title={category}
+            cards={cards}
+            onDeleteCard={onDeleteCard}
+          />
         ))}
       </ul>
       {isPracticeCardsModeActive && (

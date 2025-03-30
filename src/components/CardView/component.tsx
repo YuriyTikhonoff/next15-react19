@@ -6,9 +6,8 @@ import type React from "react";
 import { useState } from "react";
 import styles from "./styles.module.scss";
 import CloseIcon from "@mui/icons-material/Close";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import cardLevelsMap from "@/constants/cards";
-import ModalComponent from "../ModalComponent";
+import DeleteCardModal from "../modals/DeleteCardModal";
 
 interface CardViewProps {
   card: MemoCard;
@@ -44,29 +43,9 @@ const CardView: React.FC<CardViewProps> = ({
 
   return (
     <div className={styles.card}>
-      <ModalComponent
-        title="Delete Card"
-        renderTriggerredButton={(onOpenModal) => (
-          <IconButton
-            className={styles["card__delete-btn"]}
-            onClick={onOpenModal}
-          >
-            <DeleteOutlineIcon />
-          </IconButton>
-        )}
-        renderContent={(onCloseModal) => (
-          <div>
-            <div>Are you sure you want to delete this card?</div>
-            <div className={styles["card__modal-controls"]}>
-              <Button onClick={onDelete} variant="outlined">
-                Yes
-              </Button>
-              <Button onClick={onCloseModal} variant="outlined">
-                No
-              </Button>
-            </div>
-          </div>
-        )}
+      <DeleteCardModal
+        onDeleteCard={onDelete}
+        deleteIconClassName={styles["card__delete-btn"]}
       />
       <div className={styles["card__level"]}>
         {cardLevelsMap.get(card.level)?.text}

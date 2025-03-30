@@ -7,15 +7,27 @@ import { useState } from "react";
 import styles from "./styles.module.scss";
 import cardLevelsMap from "@/constants/cards";
 import EditIcon from "@mui/icons-material/Edit";
+import DeleteCardModal from "../modals/DeleteCardModal";
 
 interface CardsCollectionProps {
   title: string;
   cards: MemoCard[];
+  onDeleteCard: (cardId: MemoCard["id"]) => void;
 }
 
-const CardsCollection: React.FC<CardsCollectionProps> = ({ title, cards }) => {
+const CardsCollection: React.FC<CardsCollectionProps> = ({
+  title,
+  cards,
+  onDeleteCard,
+}) => {
   const [isExpanded, setIsExpanded] = useState(false);
+
   const onToggleExpandCardsCollection = () => setIsExpanded((prev) => !prev);
+  const onDelete = (id: MemoCard["id"]) => () => {
+    onDeleteCard(id);
+    console.log("Delete card");
+  };
+
   return (
     <div>
       <div style={{ display: "flex", alignItems: "center" }}>
@@ -29,9 +41,13 @@ const CardsCollection: React.FC<CardsCollectionProps> = ({ title, cards }) => {
           {cards.map((card) => (
             <li key={card.id} className={styles["card-list__item"]}>
               <div>
-                <IconButton>
-                  <EditIcon sx={{ width: 15, height: 15 }} />
+                <IconButton className={styles["card__control-icon"]}>
+                  <EditIcon />
                 </IconButton>
+                <DeleteCardModal
+                  onDeleteCard={onDelete(card.id)}
+                  deleteIconClassName={styles["card__control-icon"]}
+                />
               </div>
               <div className={styles["card__name"]}>{card.front}</div>
               <div className={styles["card__level"]}>

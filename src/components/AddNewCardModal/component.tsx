@@ -1,6 +1,6 @@
 import type { MemoCard } from "@/types/app";
 import AddNewCard from "../AddNewCard";
-import ModalComponent from "../ModalComponent";
+import ModalComponent from "../modals/ModalComponent";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import { IconButton } from "@mui/material";
 import type React from "react";
