@@ -22,8 +22,7 @@ const CardsList: React.FC = () => {
   } = useContainer();
 
   return (
-    <div>
-      <h2>Cards List</h2>
+    <div className={styles["cards-list"]}>
       <div className={styles["cards-list__controls"]}>
         <Button onClick={onPracticeCards}>Practice Cards</Button>
         <AddNewCardModal onAddNewCard={onAddNewCard} />
