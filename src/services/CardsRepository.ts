@@ -23,9 +23,10 @@ class CardsRepository {
   }
 
   public updateCard(card: MemoCard): void {
-    this.cards = this.cards.map((currentCard) =>
+    const updatedCards = this.cards.map((currentCard) =>
       currentCard.id === card.id ? card : currentCard
     );
+    this.cards = updatedCards;
     this.saveCardsPersistently(this.cards);
   }
 

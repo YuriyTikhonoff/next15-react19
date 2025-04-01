@@ -34,6 +34,7 @@ const CardsList: React.FC = () => {
             title={category}
             cards={cards}
             onDeleteCard={onDeleteCard}
+            onUpdateCard={onUpdateCard}
           />
         ))}
       </ul>

@@ -27,7 +27,7 @@ const AddNewCard: React.FC<AddNewCardProps> = ({
   const onAddCard = () => {
     const enrichedNewCard = {
       ...newCard,
-      id: nanoid(),
+      //id: nanoid(),
       lastPracticeTimestamp: new Date().toISOString(),
       createdAtTimestamp: new Date().toISOString(),
     };
@@ -36,7 +36,7 @@ const AddNewCard: React.FC<AddNewCardProps> = ({
   };
 
   const initCardValuesEffect = () => {
-    setNewCard(initialCardValues);
+    setNewCard({ ...initialCardValues, id: initialCardValues.id || nanoid() });
   };
 
   useEffect(initCardValuesEffect, [initialCardValues]);

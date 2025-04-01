@@ -13,12 +13,14 @@ interface CardsCollectionProps {
   title: string;
   cards: MemoCard[];
   onDeleteCard: (cardId: MemoCard["id"]) => void;
+  onUpdateCard: (updatedCard: MemoCard) => void;
 }
 
 const CardsCollection: React.FC<CardsCollectionProps> = ({
   title,
   cards,
   onDeleteCard,
+  onUpdateCard,
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -42,7 +44,7 @@ const CardsCollection: React.FC<CardsCollectionProps> = ({
               <div>
                 <EditCardModal
                   editIconClassName={styles["card__control-icon"]}
-                  onAddNewCard={() => {}}
+                  onAddNewCard={onUpdateCard}
                   initialCardValues={{ ...card }}
                 />
                 <DeleteCardModal
