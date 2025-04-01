@@ -2,19 +2,23 @@
 
 import { Button, MenuItem, TextField } from "@mui/material";
 import styles from "./styles.module.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MemoCard } from "@/types/app";
-import { INITIAL_NEW_CARD } from "./constants";
 import { nanoid } from "nanoid";
 import CategoriesRepository from "@/services/CategoriesRepository";
 
 interface AddNewCardProps {
   onAddNewCard: (newCard: MemoCard) => void;
   onClose: () => void;
+  initialCardValues: MemoCard;
 }
 
-const AddNewCard: React.FC<AddNewCardProps> = ({ onAddNewCard, onClose }) => {
-  const [newCard, setNewCard] = useState<MemoCard>(INITIAL_NEW_CARD);
+const AddNewCard: React.FC<AddNewCardProps> = ({
+  onAddNewCard,
+  onClose,
+  initialCardValues,
+}) => {
+  const [newCard, setNewCard] = useState<MemoCard>(initialCardValues);
   const [newCategory, setNewCategory] = useState<string>("");
   const [categoriesList, setCategoriesList] = useState<string[]>(
     CategoriesRepository.getCategories()
@@ -31,6 +35,12 @@ const AddNewCard: React.FC<AddNewCardProps> = ({ onAddNewCard, onClose }) => {
     onClose();
   };
 
+  const initCardValuesEffect = () => {
+    setNewCard(initialCardValues);
+  };
+
+  useEffect(initCardValuesEffect, [initialCardValues]);
+
   return (
     <div className={styles["add-new-card"]}>
       <div className={styles["add-new-card__header"]}></div>
@@ -42,6 +52,7 @@ const AddNewCard: React.FC<AddNewCardProps> = ({ onAddNewCard, onClose }) => {
             variant="outlined"
             multiline
             rows={4}
+            value={newCard.front}
             onChange={(e) => setNewCard({ ...newCard, front: e.target.value })}
           />
           <TextField
@@ -50,6 +61,7 @@ const AddNewCard: React.FC<AddNewCardProps> = ({ onAddNewCard, onClose }) => {
             variant="outlined"
             multiline
             rows={4}
+            value={newCard.back}
             onChange={(e) => setNewCard({ ...newCard, back: e.target.value })}
           />
         </div>
@@ -59,6 +71,7 @@ const AddNewCard: React.FC<AddNewCardProps> = ({ onAddNewCard, onClose }) => {
             variant="outlined"
             select
             style={{ width: 200 }}
+            value={newCard.category}
             onChange={(e) => {
               setNewCard({ ...newCard, category: e.target.value });
             }}

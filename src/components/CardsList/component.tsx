@@ -4,7 +4,7 @@ import type React from "react";
 import { Button } from "@mui/material";
 import CardView from "../CardView";
 import CardsCollection from "../CardsCollection";
-import AddNewCardModal from "../AddNewCardModal";
+import AddNewCardModal from "../modals/AddNewCardModal";
 import styles from "./styles.module.scss";
 import useContainer from "./hook";
 

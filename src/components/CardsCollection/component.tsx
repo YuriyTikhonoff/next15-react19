@@ -6,8 +6,8 @@ import type React from "react";
 import { useState } from "react";
 import styles from "./styles.module.scss";
 import cardLevelsMap from "@/constants/cards";
-import EditIcon from "@mui/icons-material/Edit";
 import DeleteCardModal from "../modals/DeleteCardModal";
+import EditCardModal from "../modals/EditCardModal";
 
 interface CardsCollectionProps {
   title: string;
@@ -25,7 +25,6 @@ const CardsCollection: React.FC<CardsCollectionProps> = ({
   const onToggleExpandCardsCollection = () => setIsExpanded((prev) => !prev);
   const onDelete = (id: MemoCard["id"]) => () => {
     onDeleteCard(id);
-    console.log("Delete card");
   };
 
   return (
@@ -41,9 +40,11 @@ const CardsCollection: React.FC<CardsCollectionProps> = ({
           {cards.map((card) => (
             <li key={card.id} className={styles["card-list__item"]}>
               <div>
-                <IconButton className={styles["card__control-icon"]}>
-                  <EditIcon />
-                </IconButton>
+                <EditCardModal
+                  editIconClassName={styles["card__control-icon"]}
+                  onAddNewCard={() => {}}
+                  initialCardValues={{ ...card }}
+                />
                 <DeleteCardModal
                   onDeleteCard={onDelete(card.id)}
                   deleteIconClassName={styles["card__control-icon"]}
