@@ -11,12 +11,11 @@ interface NavigationProps {
 const Navigation: React.FC<NavigationProps> = ({ routes }) => {
   return (
     <nav className={styles.navigation}>
-      {routes.map((route) => (
+      {routes.map(route => (
         <Link
           key={route.path}
           className={styles.navigation__link}
-          href={route.path}
-        >
+          href={route.path}>
           {route.title}
         </Link>
       ))}

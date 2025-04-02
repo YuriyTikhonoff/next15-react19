@@ -1,19 +1,19 @@
-"use client";
+"use client"
 
-import { MemoCard } from "@/types/app";
-import { IconButton } from "@mui/material";
-import type React from "react";
-import { useState } from "react";
-import styles from "./styles.module.scss";
-import cardLevelsMap from "@/constants/cards";
-import DeleteCardModal from "../modals/DeleteCardModal";
-import EditCardModal from "../modals/EditCardModal";
+import { MemoCard } from "@/types/app"
+import { IconButton } from "@mui/material"
+import type React from "react"
+import { useState } from "react"
+import styles from "./styles.module.scss"
+import cardLevelsMap from "@/constants/cards"
+import DeleteCardModal from "../modals/DeleteCardModal"
+import EditCardModal from "../modals/EditCardModal"
 
 interface CardsCollectionProps {
-  title: string;
-  cards: MemoCard[];
-  onDeleteCard: (cardId: MemoCard["id"]) => void;
-  onUpdateCard: (updatedCard: MemoCard) => void;
+  title: string
+  cards: MemoCard[]
+  onDeleteCard: (cardId: MemoCard["id"]) => void
+  onUpdateCard: (updatedCard: MemoCard) => void
 }
 
 const CardsCollection: React.FC<CardsCollectionProps> = ({
@@ -22,12 +22,12 @@ const CardsCollection: React.FC<CardsCollectionProps> = ({
   onDeleteCard,
   onUpdateCard,
 }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false)
 
-  const onToggleExpandCardsCollection = () => setIsExpanded((prev) => !prev);
+  const onToggleExpandCardsCollection = () => setIsExpanded(prev => !prev)
   const onDelete = (id: MemoCard["id"]) => () => {
-    onDeleteCard(id);
-  };
+    onDeleteCard(id)
+  }
 
   return (
     <div>
@@ -39,7 +39,7 @@ const CardsCollection: React.FC<CardsCollectionProps> = ({
       </div>
       {isExpanded && (
         <ul>
-          {cards.map((card) => (
+          {cards.map(card => (
             <li key={card.id} className={styles["card-list__item"]}>
               <div>
                 <EditCardModal
@@ -61,7 +61,7 @@ const CardsCollection: React.FC<CardsCollectionProps> = ({
         </ul>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default CardsCollection;
+export default CardsCollection

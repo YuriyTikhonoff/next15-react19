@@ -1,4 +1,4 @@
-import { MemoCard } from "@/types/app";
+import { MemoCard } from "@/types/app"
 
 export const INITIAL_NEW_CARD: MemoCard = {
   id: "",
@@ -8,4 +8,4 @@ export const INITIAL_NEW_CARD: MemoCard = {
   level: 1,
   lastPracticeTimestamp: "",
   createdAtTimestamp: "",
-};
+}

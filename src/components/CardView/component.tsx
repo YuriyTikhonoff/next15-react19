@@ -1,21 +1,21 @@
-"use client";
+"use client"
 
-import { MemoCard } from "@/types/app";
-import { Button, IconButton } from "@mui/material";
-import type React from "react";
-import { useState } from "react";
-import styles from "./styles.module.scss";
-import CloseIcon from "@mui/icons-material/Close";
-import cardLevelsMap from "@/constants/cards";
-import DeleteCardModal from "../modals/DeleteCardModal";
+import { MemoCard } from "@/types/app"
+import { Button, IconButton } from "@mui/material"
+import type React from "react"
+import { useState } from "react"
+import styles from "./styles.module.scss"
+import CloseIcon from "@mui/icons-material/Close"
+import cardLevelsMap from "@/constants/cards"
+import DeleteCardModal from "../modals/DeleteCardModal"
 
 interface CardViewProps {
-  card: MemoCard;
-  isPrimarySideFront: boolean;
-  onClose: VoidFunction;
-  onNextCard: VoidFunction;
-  onUpdateCard: (updatedCard: MemoCard) => void;
-  onDeleteCard: (cardId: MemoCard["id"]) => void;
+  card: MemoCard
+  isPrimarySideFront: boolean
+  onClose: VoidFunction
+  onNextCard: VoidFunction
+  onUpdateCard: (updatedCard: MemoCard) => void
+  onDeleteCard: (cardId: MemoCard["id"]) => void
 }
 
 const CardView: React.FC<CardViewProps> = ({
@@ -26,20 +26,20 @@ const CardView: React.FC<CardViewProps> = ({
   onNextCard,
   onUpdateCard,
 }) => {
-  const [isFlipped, setIsFlipped] = useState(isPrimarySideFront);
+  const [isFlipped, setIsFlipped] = useState(isPrimarySideFront)
   const onIncresedCardLevel = () => {
     const updatedCard = {
       ...card,
       level: card.level + 1,
       lastPracticeTimestamp: new Date().toISOString(),
-    };
-    onUpdateCard(updatedCard);
-    onNextCard();
-  };
+    }
+    onUpdateCard(updatedCard)
+    onNextCard()
+  }
   const onDelete = () => {
-    onDeleteCard(card.id);
-    onClose();
-  };
+    onDeleteCard(card.id)
+    onClose()
+  }
 
   return (
     <div className={styles.card}>
@@ -58,9 +58,8 @@ const CardView: React.FC<CardViewProps> = ({
       </div>
       <div className={styles["card__controls"]}>
         <Button
-          onClick={() => setIsFlipped((isFlipped) => !isFlipped)}
-          variant="outlined"
-        >
+          onClick={() => setIsFlipped(isFlipped => !isFlipped)}
+          variant="outlined">
           Flip
         </Button>
         <Button onClick={onNextCard} variant="outlined">
@@ -71,7 +70,7 @@ const CardView: React.FC<CardViewProps> = ({
         </Button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CardView;
+export default CardView

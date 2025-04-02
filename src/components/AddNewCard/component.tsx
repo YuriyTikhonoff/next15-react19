@@ -1,16 +1,16 @@
-"use client";
+"use client"
 
-import { Button, MenuItem, TextField } from "@mui/material";
-import styles from "./styles.module.scss";
-import { useEffect, useState } from "react";
-import { MemoCard } from "@/types/app";
-import { nanoid } from "nanoid";
-import CategoriesRepository from "@/services/CategoriesRepository";
+import { Button, MenuItem, TextField } from "@mui/material"
+import styles from "./styles.module.scss"
+import { useEffect, useState } from "react"
+import { MemoCard } from "@/types/app"
+import { nanoid } from "nanoid"
+import CategoriesRepository from "@/services/CategoriesRepository"
 
 interface AddNewCardProps {
-  onAddNewCard: (newCard: MemoCard) => void;
-  onClose: () => void;
-  initialCardValues: MemoCard;
+  onAddNewCard: (newCard: MemoCard) => void
+  onClose: () => void
+  initialCardValues: MemoCard
 }
 
 const AddNewCard: React.FC<AddNewCardProps> = ({
@@ -18,11 +18,11 @@ const AddNewCard: React.FC<AddNewCardProps> = ({
   onClose,
   initialCardValues,
 }) => {
-  const [newCard, setNewCard] = useState<MemoCard>(initialCardValues);
-  const [newCategory, setNewCategory] = useState<string>("");
+  const [newCard, setNewCard] = useState<MemoCard>(initialCardValues)
+  const [newCategory, setNewCategory] = useState<string>("")
   const [categoriesList, setCategoriesList] = useState<string[]>(
     CategoriesRepository.getCategories()
-  );
+  )
 
   const onAddCard = () => {
     const enrichedNewCard = {
@@ -30,16 +30,16 @@ const AddNewCard: React.FC<AddNewCardProps> = ({
       //id: nanoid(),
       lastPracticeTimestamp: new Date().toISOString(),
       createdAtTimestamp: new Date().toISOString(),
-    };
-    onAddNewCard(enrichedNewCard);
-    onClose();
-  };
+    }
+    onAddNewCard(enrichedNewCard)
+    onClose()
+  }
 
   const initCardValuesEffect = () => {
-    setNewCard({ ...initialCardValues, id: initialCardValues.id || nanoid() });
-  };
+    setNewCard({ ...initialCardValues, id: initialCardValues.id || nanoid() })
+  }
 
-  useEffect(initCardValuesEffect, [initialCardValues]);
+  useEffect(initCardValuesEffect, [initialCardValues])
 
   return (
     <div className={styles["add-new-card"]}>
@@ -53,7 +53,7 @@ const AddNewCard: React.FC<AddNewCardProps> = ({
             multiline
             rows={4}
             value={newCard.front}
-            onChange={(e) => setNewCard({ ...newCard, front: e.target.value })}
+            onChange={e => setNewCard({ ...newCard, front: e.target.value })}
           />
           <TextField
             sx={{ width: 300 }}
@@ -62,7 +62,7 @@ const AddNewCard: React.FC<AddNewCardProps> = ({
             multiline
             rows={4}
             value={newCard.back}
-            onChange={(e) => setNewCard({ ...newCard, back: e.target.value })}
+            onChange={e => setNewCard({ ...newCard, back: e.target.value })}
           />
         </div>
         <div className={styles["add-new-card__category"]}>
@@ -72,11 +72,10 @@ const AddNewCard: React.FC<AddNewCardProps> = ({
             select
             style={{ width: 200 }}
             value={newCard.category}
-            onChange={(e) => {
-              setNewCard({ ...newCard, category: e.target.value });
-            }}
-          >
-            {categoriesList.map((category) => (
+            onChange={e => {
+              setNewCard({ ...newCard, category: e.target.value })
+            }}>
+            {categoriesList.map(category => (
               <MenuItem key={category} value={category}>
                 {category}
               </MenuItem>
@@ -86,18 +85,17 @@ const AddNewCard: React.FC<AddNewCardProps> = ({
             label="New Category"
             variant="outlined"
             value={newCategory}
-            onChange={(e) => {
-              setNewCategory(e.target.value);
+            onChange={e => {
+              setNewCategory(e.target.value)
             }}
           />
           <Button
             variant="outlined"
             onClick={() => {
-              setCategoriesList([...categoriesList, newCategory]);
-              CategoriesRepository.addCategory(newCategory);
-              setNewCategory("");
-            }}
-          >
+              setCategoriesList([...categoriesList, newCategory])
+              CategoriesRepository.addCategory(newCategory)
+              setNewCategory("")
+            }}>
             Add Category
           </Button>
         </div>
@@ -105,21 +103,19 @@ const AddNewCard: React.FC<AddNewCardProps> = ({
           <Button
             onClick={onAddCard}
             sx={{ width: 200, height: 60 }}
-            variant="outlined"
-          >
+            variant="outlined">
             Add Card
           </Button>
           <Button
             onClick={onClose}
             sx={{ width: 200, height: 60 }}
-            variant="outlined"
-          >
+            variant="outlined">
             Cancel
           </Button>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AddNewCard;
+export default AddNewCard
