@@ -1,13 +1,13 @@
-import type React from "react";
-import ModalComponent from "../ModalComponent";
-import { IconButton, Button } from "@mui/material";
-import styles from "./styles.module.scss";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import cn from "classnames";
+import type React from "react"
+import ModalComponent from "../ModalComponent"
+import { IconButton, Button } from "@mui/material"
+import styles from "./styles.module.scss"
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline"
+import cn from "classnames"
 
 interface DeleteCardModalProps {
-  onDeleteCard: VoidFunction;
-  deleteIconClassName?: string;
+  onDeleteCard: VoidFunction
+  deleteIconClassName?: string
 }
 
 const DeleteCardModal: React.FC<DeleteCardModalProps> = ({
@@ -17,17 +17,16 @@ const DeleteCardModal: React.FC<DeleteCardModalProps> = ({
   return (
     <ModalComponent
       title="Delete Card"
-      renderTriggerredButton={(onOpenModal) => (
+      renderTriggerredButton={onOpenModal => (
         <IconButton
           className={cn({
             [deleteIconClassName ?? ""]: Boolean(deleteIconClassName),
           })}
-          onClick={onOpenModal}
-        >
+          onClick={onOpenModal}>
           <DeleteOutlineIcon />
         </IconButton>
       )}
-      renderContent={(onCloseModal) => (
+      renderContent={onCloseModal => (
         <div>
           <div>Are you sure you want to delete this card?</div>
           <div className={styles["modal-controls"]}>
@@ -41,7 +40,7 @@ const DeleteCardModal: React.FC<DeleteCardModalProps> = ({
         </div>
       )}
     />
-  );
-};
+  )
+}
 
-export default DeleteCardModal;
+export default DeleteCardModal

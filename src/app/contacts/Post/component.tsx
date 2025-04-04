@@ -1,8 +1,8 @@
-import type { Post } from "@/types/app";
-import styles from "./styles.module.scss";
+import type { Post } from "@/types/app"
+import styles from "./styles.module.scss"
 
 interface PostProps {
-  post: Post;
+  post: Post
 }
 
 const PostComponent = ({ post }: PostProps) => {
@@ -11,7 +11,7 @@ const PostComponent = ({ post }: PostProps) => {
       <div className={styles["post__author"]}>{post.author}</div>
       <div>{post.title}</div>
     </div>
-  );
-};
+  )
+}
 
-export default PostComponent;
+export default PostComponent

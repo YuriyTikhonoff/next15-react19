@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Roboto } from "next/font/google";
 import "./globals.css";
 import MainLayout from "@/layouts/MainLayout";
 import { StoreProvider } from "@/StoreProvider";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
-import { Roboto } from "next/font/google";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../theme";
 
