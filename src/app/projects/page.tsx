@@ -1,23 +1,23 @@
-"use client";
+"use client"
 
-import React from "react";
+import React from "react"
 
-import Link from "next/link";
+import Link from "next/link"
 
-import Button from "@/components/Button";
-import { PROJECTS_PAGE_MAP } from "@/constants/app";
-import { useCounterStore } from "@/store/counterStore";
-import { useThemeStore } from "@/store/themeStore";
+import Button from "@/components/Button"
+import { PROJECTS_PAGE_MAP } from "@/constants/app"
+import { useCounterStore } from "@/store/counterStore"
+import { useThemeStore } from "@/store/themeStore"
 
-import styles from "./styles.module.scss";
+import styles from "./styles.module.scss"
 
 const ProjectsPage: React.FC = () => {
-  const theme = useThemeStore((state) => state.theme);
-  const setTheme = useThemeStore((state) => state.setTheme);
+  const theme = useThemeStore(state => state.theme)
+  const setTheme = useThemeStore(state => state.setTheme)
 
-  const count = useCounterStore((state) => state.count);
-  const increment = useCounterStore((state) => state.increment);
-  const decrement = useCounterStore((state) => state.decrement);
+  const count = useCounterStore(state => state.count)
+  const increment = useCounterStore(state => state.increment)
+  const decrement = useCounterStore(state => state.decrement)
 
   return (
     <div>
@@ -61,7 +61,7 @@ const ProjectsPage: React.FC = () => {
         </li> */}
       </ul>
     </div>
-  );
-};
+  )
+}
 
-export default ProjectsPage;
+export default ProjectsPage

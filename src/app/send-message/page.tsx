@@ -1,25 +1,24 @@
-"use client";
+"use client"
 
-import React from "react";
+import React from "react"
 
-import Button from "@/components/Button";
-import { useCounterStore } from "@/store/counterStore";
-import { useThemeStore } from "@/store/themeStore";
+import Button from "@/components/Button"
+import { useCounterStore } from "@/store/counterStore"
+import { useThemeStore } from "@/store/themeStore"
 
-import styles from "./styles.module.scss";
-
+import styles from "./styles.module.scss"
 
 const SendMessagePage: React.FC = () => {
-  const theme = useThemeStore((state) => state.theme);
-  const setTheme = useThemeStore((state) => state.setTheme);
+  const theme = useThemeStore(state => state.theme)
+  const setTheme = useThemeStore(state => state.setTheme)
 
   const handleChangeTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
-  };
+    setTheme(theme === "light" ? "dark" : "light")
+  }
 
-  const count = useCounterStore((state) => state.count);
-  const increment = useCounterStore((state) => state.increment);
-  const decrement = useCounterStore((state) => state.decrement);
+  const count = useCounterStore(state => state.count)
+  const increment = useCounterStore(state => state.increment)
+  const decrement = useCounterStore(state => state.decrement)
 
   return (
     <div>
@@ -48,7 +47,7 @@ const SendMessagePage: React.FC = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SendMessagePage;
+export default SendMessagePage
