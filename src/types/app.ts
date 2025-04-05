@@ -1,20 +1,20 @@
 export interface Post {
-  author: string;
-  category: string;
-  content: string;
-  date: string;
-  id: number;
-  title: string;
+  author: string
+  category: string
+  content: string
+  date: string
+  id: number
+  title: string
 }
 
 export interface MemoCard {
-  id: string;
-  front: string;
-  back: string;
-  category: string;
-  level: number;
-  lastPracticeTimestamp: string;
-  createdAtTimestamp: string;
+  id: string
+  front: string
+  back: string
+  category: string
+  level: number
+  lastPracticeTimestamp: string
+  createdAtTimestamp: string
 }
 
 export enum LocalStorageFields {

@@ -1,4 +1,4 @@
-import CardsList from "@/components/CardsList";
+import CardsList from "@/components/CardsList"
 
 const MemoCardsPage: React.FC = () => {
   return (
@@ -7,7 +7,7 @@ const MemoCardsPage: React.FC = () => {
       <p>This is the memo cards page.</p>
       <CardsList />
     </div>
-  );
-};
+  )
+}
 
-export default MemoCardsPage;
+export default MemoCardsPage
