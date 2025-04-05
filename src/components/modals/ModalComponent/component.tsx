@@ -1,8 +1,11 @@
 import type React from "react"
-import styles from "./styles.module.scss"
-import { IconButton, Modal } from "@mui/material"
-import CloseIcon from "@mui/icons-material/Close"
 import { useState } from "react"
+
+import CloseIcon from "@mui/icons-material/Close"
+import { IconButton, Modal } from "@mui/material"
+
+import styles from "./styles.module.scss"
+
 
 interface ModalComponentProps {
   title?: React.ReactNode

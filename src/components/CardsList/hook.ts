@@ -1,6 +1,7 @@
+import { useCallback, useState } from "react"
+
 import CardsRepository from "@/services/CardsRepository"
 import { MemoCard } from "@/types/app"
-import { useCallback, useState } from "react"
 
 const useContainer = () => {
   const [cards, setCards] = useState<MemoCard[]>(CardsRepository.getCards())

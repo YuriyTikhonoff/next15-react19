@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "eslint": "npx eslint ."
+    "eslint": "npx eslint .",
+    "eslint:fix": "npx eslint . --fix"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",

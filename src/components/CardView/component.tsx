@@ -1,13 +1,17 @@
 "use client"
 
-import { MemoCard } from "@/types/app"
-import { Button, IconButton } from "@mui/material"
 import type React from "react"
 import { useState } from "react"
-import styles from "./styles.module.scss"
+
 import CloseIcon from "@mui/icons-material/Close"
+import { Button, IconButton } from "@mui/material"
+
 import cardLevelsMap from "@/constants/cards"
+import { MemoCard } from "@/types/app"
+
 import DeleteCardModal from "../modals/DeleteCardModal"
+
+import styles from "./styles.module.scss"
 
 interface CardViewProps {
   card: MemoCard

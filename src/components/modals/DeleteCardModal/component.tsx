@@ -1,9 +1,13 @@
 import type React from "react"
-import ModalComponent from "../ModalComponent"
-import { IconButton, Button } from "@mui/material"
-import styles from "./styles.module.scss"
+
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline"
+import { IconButton, Button } from "@mui/material"
 import cn from "classnames"
+
+import ModalComponent from "../ModalComponent"
+
+import styles from "./styles.module.scss"
+
 
 interface DeleteCardModalProps {
   onDeleteCard: VoidFunction

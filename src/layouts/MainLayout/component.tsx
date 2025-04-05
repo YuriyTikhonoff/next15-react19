@@ -1,10 +1,15 @@
 "use client"
 
-import Navigation from "../../components/Navigation"
 import type React from "react"
-import styles from "./styles.module.scss"
-import { ROUTES_MAP } from "@/constants/app"
 import { useMemo, useState, createContext } from "react"
+
+import { ROUTES_MAP } from "@/constants/app"
+
+import Navigation from "../../components/Navigation"
+
+import styles from "./styles.module.scss"
+
+
 
 interface MainLayoutProps {
   children: React.ReactNode

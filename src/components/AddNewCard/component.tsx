@@ -1,11 +1,14 @@
 "use client"
 
-import { Button, MenuItem, TextField } from "@mui/material"
-import styles from "./styles.module.scss"
 import { useEffect, useState } from "react"
-import { MemoCard } from "@/types/app"
+
+import { Button, MenuItem, TextField } from "@mui/material"
 import { nanoid } from "nanoid"
+
 import CategoriesRepository from "@/services/CategoriesRepository"
+import { MemoCard } from "@/types/app"
+
+import styles from "./styles.module.scss"
 
 interface AddNewCardProps {
   onAddNewCard: (newCard: MemoCard) => void

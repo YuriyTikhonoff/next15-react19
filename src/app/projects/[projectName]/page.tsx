@@ -1,6 +1,7 @@
 import React from "react";
-import { useThemeStore } from "@/store/themeStore";
+
 import { PROJECTS_PAGE_SLUGS } from "@/constants/app";
+import { useThemeStore } from "@/store/themeStore";
 
 interface ProjectPageProps {
   params: Promise<{ projectName: string }>;

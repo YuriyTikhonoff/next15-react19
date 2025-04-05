@@ -1,10 +1,15 @@
-import type { MemoCard } from "@/types/app"
-import AddNewCard from "../../AddNewCard"
-import ModalComponent from "../ModalComponent"
+import type React from "react"
+
 import AddBoxIcon from "@mui/icons-material/AddBox"
 import { IconButton } from "@mui/material"
-import type React from "react"
+
 import { INITIAL_NEW_CARD } from "@/components/AddNewCard/constants"
+import type { MemoCard } from "@/types/app"
+
+import AddNewCard from "../../AddNewCard"
+import ModalComponent from "../ModalComponent"
+
+
 
 interface AddNewCardModalProps {
   onAddNewCard: (newCard: MemoCard) => void
