@@ -1,8 +1,10 @@
-import Link from "next/link"
 import type React from "react"
 
-import styles from "./styles.module.scss"
+import Link from "next/link"
+
 import { IRoute } from "@/constants/app"
+
+import styles from "./styles.module.scss"
 
 interface NavigationProps {
   routes: IRoute[]

@@ -1,13 +1,18 @@
 "use client"
 
-import { MemoCard } from "@/types/app"
-import { IconButton } from "@mui/material"
 import type React from "react"
 import { useState } from "react"
-import styles from "./styles.module.scss"
+
+import { IconButton } from "@mui/material"
+
+
 import cardLevelsMap from "@/constants/cards"
+import { MemoCard } from "@/types/app"
+
 import DeleteCardModal from "../modals/DeleteCardModal"
 import EditCardModal from "../modals/EditCardModal"
+
+import styles from "./styles.module.scss"
 
 interface CardsCollectionProps {
   title: string

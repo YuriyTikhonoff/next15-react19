@@ -1,5 +1,7 @@
-import type { Post } from "@/types/app"
 import React from "react"
+
+import type { Post } from "@/types/app"
+
 import PostComponent from "./Post/component"
 
 const ContactsPage: React.FC = async () => {

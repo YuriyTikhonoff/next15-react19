@@ -1,10 +1,13 @@
 "use client";
 
 import React from "react";
-import { useThemeStore } from "@/store/themeStore";
-import { useCounterStore } from "@/store/counterStore";
-import styles from "./styles.module.scss";
+
 import Button from "@/components/Button";
+import { useCounterStore } from "@/store/counterStore";
+import { useThemeStore } from "@/store/themeStore";
+
+import styles from "./styles.module.scss";
+
 
 const SendMessagePage: React.FC = () => {
   const theme = useThemeStore((state) => state.theme);

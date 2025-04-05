@@ -1,4 +1,5 @@
 import type { Post } from "@/types/app"
+
 import styles from "./styles.module.scss"
 
 interface PostProps {

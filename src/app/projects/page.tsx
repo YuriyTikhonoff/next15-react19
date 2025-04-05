@@ -1,11 +1,14 @@
 "use client";
 
 import React from "react";
+
 import Link from "next/link";
-import { useThemeStore } from "@/store/themeStore";
-import { useCounterStore } from "@/store/counterStore";
-import { PROJECTS_PAGE_MAP } from "@/constants/app";
+
 import Button from "@/components/Button";
+import { PROJECTS_PAGE_MAP } from "@/constants/app";
+import { useCounterStore } from "@/store/counterStore";
+import { useThemeStore } from "@/store/themeStore";
+
 import styles from "./styles.module.scss";
 
 const ProjectsPage: React.FC = () => {
