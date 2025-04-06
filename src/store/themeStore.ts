@@ -1,11 +1,11 @@
-import { create } from "zustand";
+import { create } from "zustand"
 
 interface ThemeState {
-  theme: string;
-  setTheme: (theme: string) => void;
+  theme: string
+  setTheme: (theme: string) => void
 }
 
-export const useThemeStore = create<ThemeState>((set) => ({
+export const useThemeStore = create<ThemeState>(set => ({
   theme: "light",
-  setTheme: (theme) => set({ theme }),
-}));
+  setTheme: theme => set({ theme }),
+}))
