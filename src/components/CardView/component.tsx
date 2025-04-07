@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-import { useState } from "react"
 
 import CloseIcon from "@mui/icons-material/Close"
 import { Button, IconButton } from "@mui/material"
@@ -11,9 +10,10 @@ import { MemoCard } from "@/types/app"
 
 import DeleteCardModal from "../modals/DeleteCardModal"
 
+import useContainer from "./hook"
 import styles from "./styles.module.scss"
 
-interface CardViewProps {
+export interface CardViewProps {
   card: MemoCard
   isPrimarySideFront: boolean
   onClose: VoidFunction
@@ -30,20 +30,15 @@ const CardView: React.FC<CardViewProps> = ({
   onNextCard,
   onUpdateCard,
 }) => {
-  const [isFlipped, setIsFlipped] = useState(isPrimarySideFront)
-  const onIncresedCardLevel = () => {
-    const updatedCard = {
-      ...card,
-      level: card.level + 1,
-      lastPracticeTimestamp: new Date().toISOString(),
-    }
-    onUpdateCard(updatedCard)
-    onNextCard()
-  }
-  const onDelete = () => {
-    onDeleteCard(card.id)
-    onClose()
-  }
+  const { isFlipped, setIsFlipped, onIncresedCardLevel, onDelete } =
+    useContainer({
+      card,
+      isPrimarySideFront,
+      onClose,
+      onDeleteCard,
+      onNextCard,
+      onUpdateCard,
+    })
 
   return (
     <div className={styles.card}>

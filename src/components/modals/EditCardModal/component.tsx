@@ -9,8 +9,6 @@ import type { MemoCard } from "@/types/app"
 import AddNewCard from "../../AddNewCard"
 import ModalComponent from "../ModalComponent"
 
-
-
 interface EditCardModalProps {
   onAddNewCard: (newCard: MemoCard) => void
   editIconClassName?: string

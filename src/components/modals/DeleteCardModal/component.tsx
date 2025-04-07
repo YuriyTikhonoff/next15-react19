@@ -8,7 +8,6 @@ import ModalComponent from "../ModalComponent"
 
 import styles from "./styles.module.scss"
 
-
 interface DeleteCardModalProps {
   onDeleteCard: VoidFunction
   deleteIconClassName?: string
@@ -32,7 +31,9 @@ const DeleteCardModal: React.FC<DeleteCardModalProps> = ({
       )}
       renderContent={onCloseModal => (
         <div>
-          <div>Are you sure you want to delete this card?</div>
+          <div className={styles["modal__text"]}>
+            Are you sure you want to delete this card?
+          </div>
           <div className={styles["modal-controls"]}>
             <Button onClick={onDeleteCard} variant="outlined">
               Yes

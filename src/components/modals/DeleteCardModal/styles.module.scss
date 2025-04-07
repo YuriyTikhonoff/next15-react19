@@ -8,6 +8,9 @@
   padding: 2rem 3rem;
   border-radius: 0.5rem;
   text-align: center;
+  &__text {
+    margin-top: 1rem;
+  }
   &-controls {
     display: flex;
     gap: 1rem;
