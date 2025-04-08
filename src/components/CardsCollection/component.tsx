@@ -1,10 +1,8 @@
 "use client"
 
 import type React from "react"
-import { useState } from "react"
 
 import { IconButton } from "@mui/material"
-
 
 import cardLevelsMap from "@/constants/cards"
 import { MemoCard } from "@/types/app"
@@ -12,6 +10,7 @@ import { MemoCard } from "@/types/app"
 import DeleteCardModal from "../modals/DeleteCardModal"
 import EditCardModal from "../modals/EditCardModal"
 
+import useContainer from "./hook"
 import styles from "./styles.module.scss"
 
 interface CardsCollectionProps {
@@ -27,12 +26,9 @@ const CardsCollection: React.FC<CardsCollectionProps> = ({
   onDeleteCard,
   onUpdateCard,
 }) => {
-  const [isExpanded, setIsExpanded] = useState(false)
-
-  const onToggleExpandCardsCollection = () => setIsExpanded(prev => !prev)
-  const onDelete = (id: MemoCard["id"]) => () => {
-    onDeleteCard(id)
-  }
+  const { isExpanded, onToggleExpandCardsCollection, onDelete } = useContainer({
+    onDeleteCard,
+  })
 
   return (
     <div>
