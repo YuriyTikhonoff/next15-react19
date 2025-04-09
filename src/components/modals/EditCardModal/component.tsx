@@ -10,19 +10,25 @@ import AddNewCard from "../../AddNewCard"
 import ModalComponent from "../ModalComponent"
 
 interface EditCardModalProps {
-  onAddNewCard: (newCard: MemoCard) => void
   editIconClassName?: string
   initialCardValues: MemoCard
+  onAddNewCard: (newCard: MemoCard) => void
 }
 
 const EditCardModal: React.FC<EditCardModalProps> = ({
-  onAddNewCard,
   editIconClassName,
   initialCardValues,
+  onAddNewCard,
 }) => {
   return (
     <ModalComponent
-      title={<h3>Edit Card Component</h3>}
+      renderContent={onCloseModal => (
+        <AddNewCard
+          initialCardValues={initialCardValues}
+          onAddNewCard={onAddNewCard}
+          onClose={onCloseModal}
+        />
+      )}
       renderTriggerredButton={onOpenModal => (
         <IconButton
           className={cn({
@@ -32,13 +38,7 @@ const EditCardModal: React.FC<EditCardModalProps> = ({
           <EditIcon />
         </IconButton>
       )}
-      renderContent={onCloseModal => (
-        <AddNewCard
-          onAddNewCard={onAddNewCard}
-          onClose={onCloseModal}
-          initialCardValues={initialCardValues}
-        />
-      )}
+      title={<h3>Edit Card Component</h3>}
     />
   )
 }

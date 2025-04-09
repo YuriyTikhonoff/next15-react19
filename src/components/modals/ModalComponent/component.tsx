@@ -1,11 +1,10 @@
 import type React from "react"
-import { useState } from "react"
 
 import CloseIcon from "@mui/icons-material/Close"
 import { IconButton, Modal } from "@mui/material"
 
+import useContainer from "./hook"
 import styles from "./styles.module.scss"
-
 
 interface ModalComponentProps {
   title?: React.ReactNode
@@ -18,9 +17,7 @@ const ModalComponent: React.FC<ModalComponentProps> = ({
   renderContent,
   renderTriggerredButton,
 }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const onOpenModal = () => setIsModalOpen(true)
-  const onCloseModal = () => setIsModalOpen(false)
+  const { isModalOpen, onOpenModal, onCloseModal } = useContainer()
 
   return (
     <>
