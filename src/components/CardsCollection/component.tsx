@@ -14,10 +14,10 @@ import useContainer from "./hook"
 import styles from "./styles.module.scss"
 
 interface CardsCollectionProps {
-  title: string
   cards: MemoCard[]
   onDeleteCard: (cardId: MemoCard["id"]) => void
   onUpdateCard: (updatedCard: MemoCard) => void
+  title: string
 }
 
 const CardsCollection: React.FC<CardsCollectionProps> = ({
