@@ -31,9 +31,9 @@ const useContainer = ({
 
   return {
     isFlipped,
-    setIsFlipped,
-    onIncresedCardLevel,
     onDelete,
+    onIncresedCardLevel,
+    setIsFlipped,
   }
 }
 
