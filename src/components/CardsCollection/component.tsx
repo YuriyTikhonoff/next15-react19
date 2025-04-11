@@ -3,6 +3,7 @@
 import type React from "react"
 
 import { IconButton } from "@mui/material"
+import cn from "classnames"
 
 import cardLevelsMap from "@/constants/cards"
 import { MemoCard } from "@/types/app"
@@ -33,8 +34,10 @@ const CardsCollection: React.FC<CardsCollectionProps> = ({
   return (
     <div>
       <div style={{ display: "flex", alignItems: "center" }}>
-        <IconButton onClick={onToggleExpandCardsCollection}>
-          {isExpanded ? "-" : "+"}{" "}
+        <IconButton
+          onClick={onToggleExpandCardsCollection}
+          style={{ width: 50 }}>
+          {isExpanded ? "-" : "+"}
         </IconButton>
         <h4>{`${title} (${cards.length})`}</h4>
       </div>
@@ -44,7 +47,10 @@ const CardsCollection: React.FC<CardsCollectionProps> = ({
             <li key={card.id} className={styles["card-list__item"]}>
               <div>
                 <EditCardModal
-                  editIconClassName={styles["card__control-icon"]}
+                  editIconClassName={cn(
+                    styles["card__control-icon"],
+                    styles["edit-icon"]
+                  )}
                   onAddNewCard={onUpdateCard}
                   initialCardValues={{ ...card }}
                 />
