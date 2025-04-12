@@ -33,6 +33,7 @@ const AddNewCard: React.FC<AddNewCardProps> = ({
       //id: nanoid(),
       lastPracticeTimestamp: new Date().toISOString(),
       createdAtTimestamp: new Date().toISOString(),
+      title: newCard.title || newCard.front,
     }
     onAddNewCard(enrichedNewCard)
     onClose()
@@ -48,6 +49,31 @@ const AddNewCard: React.FC<AddNewCardProps> = ({
     <div className={styles["add-new-card"]}>
       <div className={styles["add-new-card__header"]}></div>
       <div className={styles["add-new-card__form"]}>
+        <div style={{ display: "flex", gap: 20, width: "100%" }}>
+          <TextField
+            sx={{ width: 300 }}
+            label="Title"
+            variant="outlined"
+            multiline
+            value={newCard.title}
+            onChange={e => setNewCard({ ...newCard, title: e.target.value })}
+          />
+          <TextField
+            label="Category"
+            variant="outlined"
+            select
+            style={{ width: 300 }}
+            value={newCard.category}
+            onChange={e => {
+              setNewCard({ ...newCard, category: e.target.value })
+            }}>
+            {categoriesList.map(category => (
+              <MenuItem key={category} value={category}>
+                {category}
+              </MenuItem>
+            ))}
+          </TextField>
+        </div>
         <div style={{ display: "flex", gap: 20, width: "100%" }}>
           <TextField
             sx={{ width: 300 }}
@@ -70,21 +96,7 @@ const AddNewCard: React.FC<AddNewCardProps> = ({
         </div>
         <div className={styles["add-new-card__category"]}>
           <TextField
-            label="Category"
-            variant="outlined"
-            select
-            style={{ width: 200 }}
-            value={newCard.category}
-            onChange={e => {
-              setNewCard({ ...newCard, category: e.target.value })
-            }}>
-            {categoriesList.map(category => (
-              <MenuItem key={category} value={category}>
-                {category}
-              </MenuItem>
-            ))}
-          </TextField>
-          <TextField
+            sx={{ width: 300 }}
             label="New Category"
             variant="outlined"
             value={newCategory}
@@ -93,6 +105,7 @@ const AddNewCard: React.FC<AddNewCardProps> = ({
             }}
           />
           <Button
+            sx={{ width: 300 }}
             variant="outlined"
             onClick={() => {
               setCategoriesList([...categoriesList, newCategory])
@@ -102,16 +115,16 @@ const AddNewCard: React.FC<AddNewCardProps> = ({
             Add Category
           </Button>
         </div>
-        <div style={{ display: "flex", gap: 20 }}>
+        <div style={{ display: "flex", gap: 20, marginTop: 20 }}>
           <Button
             onClick={onAddCard}
-            sx={{ width: 200, height: 60 }}
+            sx={{ width: 300, height: 60 }}
             variant="outlined">
             Add Card
           </Button>
           <Button
             onClick={onClose}
-            sx={{ width: 200, height: 60 }}
+            sx={{ width: 300, height: 60 }}
             variant="outlined">
             Cancel
           </Button>
