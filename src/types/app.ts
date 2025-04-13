@@ -9,6 +9,7 @@ export interface Post {
 
 export interface MemoCard {
   id: string
+  title: string
   front: string
   back: string
   category: string
