@@ -1,13 +1,11 @@
 "use client"
 
-import { useEffect, useState } from "react"
-
 import { Button, MenuItem, TextField } from "@mui/material"
-import { nanoid } from "nanoid"
 
 import CategoriesRepository from "@/services/CategoriesRepository"
 import { MemoCard } from "@/types/app"
 
+import useContainer from "./hook"
 import styles from "./styles.module.scss"
 
 interface AddNewCardProps {
@@ -21,29 +19,19 @@ const AddNewCard: React.FC<AddNewCardProps> = ({
   onClose,
   initialCardValues,
 }) => {
-  const [newCard, setNewCard] = useState<MemoCard>(initialCardValues)
-  const [newCategory, setNewCategory] = useState<string>("")
-  const [categoriesList, setCategoriesList] = useState<string[]>(
-    CategoriesRepository.getCategories()
-  )
-
-  const onAddCard = () => {
-    const enrichedNewCard = {
-      ...newCard,
-      //id: nanoid(),
-      lastPracticeTimestamp: new Date().toISOString(),
-      createdAtTimestamp: new Date().toISOString(),
-      title: newCard.title || newCard.front,
-    }
-    onAddNewCard(enrichedNewCard)
-    onClose()
-  }
-
-  const initCardValuesEffect = () => {
-    setNewCard({ ...initialCardValues, id: initialCardValues.id || nanoid() })
-  }
-
-  useEffect(initCardValuesEffect, [initialCardValues])
+  const {
+    onAddCard,
+    newCard,
+    categoriesList,
+    newCategory,
+    setCategoriesList,
+    setNewCard,
+    setNewCategory,
+  } = useContainer({
+    initialCardValues,
+    onAddNewCard,
+    onClose,
+  })
 
   return (
     <div className={styles["add-new-card"]}>
