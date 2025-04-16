@@ -20,10 +20,10 @@ const AddNewCard: React.FC<AddNewCardProps> = ({
   initialCardValues,
 }) => {
   const {
-    onAddCard,
-    newCard,
     categoriesList,
+    newCard,
     newCategory,
+    onAddCard,
     setCategoriesList,
     setNewCard,
     setNewCategory,
