@@ -38,14 +38,15 @@ const useContainer = ({
   }
 
   useEffect(initCardValuesEffect, [initialCardValues])
+
   return {
-    onAddCard,
-    newCard,
-    setNewCard,
-    newCategory,
-    setNewCategory,
     categoriesList,
+    newCard,
+    newCategory,
+    onAddCard,
     setCategoriesList,
+    setNewCard,
+    setNewCategory,
   }
 }
 
