@@ -33,6 +33,15 @@ const useContainer = ({
     onClose()
   }
 
+  const handleCategoryInput = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setNewCategory(e.target.value)
+
+  const handleAddingCategory = () => {
+    setCategoriesList([...categoriesList, newCategory])
+    CategoriesRepository.addCategory(newCategory)
+    setNewCategory("")
+  }
+
   const initCardValuesEffect = () => {
     setNewCard({ ...initialCardValues, id: initialCardValues.id || nanoid() })
   }
@@ -41,6 +50,8 @@ const useContainer = ({
 
   return {
     categoriesList,
+    handleAddingCategory,
+    handleCategoryInput,
     newCard,
     newCategory,
     onAddCard,
