@@ -2,7 +2,6 @@
 
 import { Button, MenuItem, TextField } from "@mui/material"
 
-import CategoriesRepository from "@/services/CategoriesRepository"
 import { MemoCard } from "@/types/app"
 
 import useContainer from "./hook"
@@ -21,12 +20,12 @@ const AddNewCard: React.FC<AddNewCardProps> = ({
 }) => {
   const {
     categoriesList,
+    handleAddingCategory,
+    handleCategoryInput,
     newCard,
     newCategory,
     onAddCard,
-    setCategoriesList,
     setNewCard,
-    setNewCategory,
   } = useContainer({
     initialCardValues,
     onAddNewCard,
@@ -88,18 +87,12 @@ const AddNewCard: React.FC<AddNewCardProps> = ({
             label="New Category"
             variant="outlined"
             value={newCategory}
-            onChange={e => {
-              setNewCategory(e.target.value)
-            }}
+            onChange={handleCategoryInput}
           />
           <Button
             sx={{ width: 300 }}
             variant="outlined"
-            onClick={() => {
-              setCategoriesList([...categoriesList, newCategory])
-              CategoriesRepository.addCategory(newCategory)
-              setNewCategory("")
-            }}>
+            onClick={handleAddingCategory}>
             Add Category
           </Button>
         </div>
