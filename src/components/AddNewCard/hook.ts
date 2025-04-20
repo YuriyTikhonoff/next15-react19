@@ -42,6 +42,14 @@ const useContainer = ({
     setNewCategory("")
   }
 
+  const hadleAddingTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNewCard({ ...newCard, title: e.target.value })
+  }
+
+  const handleSelctiingCategory = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNewCard({ ...newCard, category: e.target.value })
+  }
+
   const initCardValuesEffect = () => {
     setNewCard({ ...initialCardValues, id: initialCardValues.id || nanoid() })
   }
@@ -51,7 +59,9 @@ const useContainer = ({
   return {
     categoriesList,
     handleAddingCategory,
+    hadleAddingTitle,
     handleCategoryInput,
+    handleSelctiingCategory,
     newCard,
     newCategory,
     onAddCard,
