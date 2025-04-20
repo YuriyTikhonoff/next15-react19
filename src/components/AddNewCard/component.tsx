@@ -22,12 +22,13 @@ const AddNewCard: React.FC<AddNewCardProps> = ({
     categoriesList,
     handleAddingCategory,
     hadleAddingTitle,
+    handleAddingFront,
+    handleAddingBack,
     handleCategoryInput,
     handleSelctiingCategory,
     newCard,
     newCategory,
     onAddCard,
-    setNewCard,
   } = useContainer({
     initialCardValues,
     onAddNewCard,
@@ -69,7 +70,7 @@ const AddNewCard: React.FC<AddNewCardProps> = ({
             multiline
             rows={4}
             value={newCard.front}
-            onChange={e => setNewCard({ ...newCard, front: e.target.value })}
+            onChange={handleAddingFront}
           />
           <TextField
             sx={{ width: 300 }}
@@ -78,7 +79,7 @@ const AddNewCard: React.FC<AddNewCardProps> = ({
             multiline
             rows={4}
             value={newCard.back}
-            onChange={e => setNewCard({ ...newCard, back: e.target.value })}
+            onChange={handleAddingBack}
           />
         </div>
         <div className={styles["add-new-card__category"]}>
