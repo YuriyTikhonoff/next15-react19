@@ -21,7 +21,9 @@ const AddNewCard: React.FC<AddNewCardProps> = ({
   const {
     categoriesList,
     handleAddingCategory,
+    hadleAddingTitle,
     handleCategoryInput,
+    handleSelctiingCategory,
     newCard,
     newCategory,
     onAddCard,
@@ -43,7 +45,7 @@ const AddNewCard: React.FC<AddNewCardProps> = ({
             variant="outlined"
             multiline
             value={newCard.title}
-            onChange={e => setNewCard({ ...newCard, title: e.target.value })}
+            onChange={hadleAddingTitle}
           />
           <TextField
             label="Category"
@@ -51,9 +53,7 @@ const AddNewCard: React.FC<AddNewCardProps> = ({
             select
             style={{ width: 300 }}
             value={newCard.category}
-            onChange={e => {
-              setNewCard({ ...newCard, category: e.target.value })
-            }}>
+            onChange={handleSelctiingCategory}>
             {categoriesList.map(category => (
               <MenuItem key={category} value={category}>
                 {category}
