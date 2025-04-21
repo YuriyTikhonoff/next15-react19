@@ -46,6 +46,13 @@ const useContainer = ({
     setNewCard({ ...newCard, title: e.target.value })
   }
 
+  const handleAddingFront = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNewCard({ ...newCard, front: e.target.value })
+  }
+  const handleAddingBack = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNewCard({ ...newCard, back: e.target.value })
+  }
+
   const handleSelctiingCategory = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewCard({ ...newCard, category: e.target.value })
   }
@@ -59,6 +66,8 @@ const useContainer = ({
   return {
     categoriesList,
     handleAddingCategory,
+    handleAddingFront,
+    handleAddingBack,
     hadleAddingTitle,
     handleCategoryInput,
     handleSelctiingCategory,
@@ -66,7 +75,6 @@ const useContainer = ({
     newCategory,
     onAddCard,
     setCategoriesList,
-    setNewCard,
     setNewCategory,
   }
 }
