@@ -39,7 +39,7 @@ const AddNewCard: React.FC<AddNewCardProps> = ({
     <div className={styles["add-new-card"]}>
       <div className={styles["add-new-card__header"]}></div>
       <div className={styles["add-new-card__form"]}>
-        <div style={{ display: "flex", gap: 20, width: "100%" }}>
+        <div className={styles["add-new-card__form__section"]}>
           <TextField
             sx={{ width: 300 }}
             label="Title"
@@ -62,7 +62,7 @@ const AddNewCard: React.FC<AddNewCardProps> = ({
             ))}
           </TextField>
         </div>
-        <div style={{ display: "flex", gap: 20, width: "100%" }}>
+        <div className={styles["add-new-card__form__section"]}>
           <TextField
             sx={{ width: 300 }}
             label="Front side"
