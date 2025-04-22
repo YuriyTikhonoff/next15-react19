@@ -17,9 +17,9 @@ export interface CardViewProps {
   card: MemoCard
   isPrimarySideFront: boolean
   onClose: VoidFunction
+  onDeleteCard: (cardId: MemoCard["id"]) => void
   onNextCard: VoidFunction
   onUpdateCard: (updatedCard: MemoCard) => void
-  onDeleteCard: (cardId: MemoCard["id"]) => void
 }
 
 const CardView: React.FC<CardViewProps> = ({

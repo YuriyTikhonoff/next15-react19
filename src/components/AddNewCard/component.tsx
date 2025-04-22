@@ -9,7 +9,7 @@ import styles from "./styles.module.scss"
 
 interface AddNewCardProps {
   onAddNewCard: (newCard: MemoCard) => void
-  onClose: () => void
+  onClose: VoidFunction
   initialCardValues: MemoCard
 }
 
