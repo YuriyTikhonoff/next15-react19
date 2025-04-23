@@ -14,7 +14,7 @@ const useContainer = ({
 }: UseContainerParams) => {
   const [isFlipped, setIsFlipped] = useState(isPrimarySideFront)
 
-  const onIncresedCardLevel = () => {
+  const handleIncreseCardLevel = () => {
     const updatedCard = {
       ...card,
       level: card.level + 1,
@@ -24,16 +24,20 @@ const useContainer = ({
     onNextCard()
   }
 
-  const onDelete = () => {
+  const handleDeleteCard = () => {
     onDeleteCard(card.id)
     onClose()
   }
 
+  const handleFlipCard = () => {
+    setIsFlipped(isFlipped => !isFlipped)
+  }
+
   return {
     isFlipped,
-    onDelete,
-    onIncresedCardLevel,
-    setIsFlipped,
+    handleFlipCard,
+    handleDeleteCard,
+    handleIncreseCardLevel,
   }
 }
 
