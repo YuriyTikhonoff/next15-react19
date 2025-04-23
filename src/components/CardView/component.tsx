@@ -30,20 +30,24 @@ const CardView: React.FC<CardViewProps> = ({
   onNextCard,
   onUpdateCard,
 }) => {
-  const { isFlipped, setIsFlipped, onIncresedCardLevel, onDelete } =
-    useContainer({
-      card,
-      isPrimarySideFront,
-      onClose,
-      onDeleteCard,
-      onNextCard,
-      onUpdateCard,
-    })
+  const {
+    isFlipped,
+    handleFlipCard,
+    handleDeleteCard,
+    handleIncreseCardLevel,
+  } = useContainer({
+    card,
+    isPrimarySideFront,
+    onClose,
+    onDeleteCard,
+    onNextCard,
+    onUpdateCard,
+  })
 
   return (
     <div className={styles.card}>
       <DeleteCardModal
-        onDeleteCard={onDelete}
+        onDeleteCard={handleDeleteCard}
         deleteIconClassName={styles["card__delete-btn"]}
       />
       <div className={styles["card__level"]}>
@@ -56,15 +60,13 @@ const CardView: React.FC<CardViewProps> = ({
         {isFlipped ? card.front : card.back}
       </div>
       <div className={styles["card__controls"]}>
-        <Button
-          onClick={() => setIsFlipped(isFlipped => !isFlipped)}
-          variant="outlined">
+        <Button onClick={handleFlipCard} variant="outlined">
           Flip
         </Button>
         <Button onClick={onNextCard} variant="outlined">
           Next Card
         </Button>
-        <Button onClick={onIncresedCardLevel} variant="outlined">
+        <Button onClick={handleIncreseCardLevel} variant="outlined">
           Increased Level
         </Button>
       </div>
