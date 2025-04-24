@@ -14,12 +14,12 @@ const useContainer = () => {
     return acc
   }, {} as Record<string, MemoCard[]>)
 
-  const onAddNewCard = useCallback((newCard: MemoCard) => {
+  const handleAddNewCard = useCallback((newCard: MemoCard) => {
     setCards(prev => [...prev, newCard])
     CardsRepository.addCard(newCard)
   }, [])
 
-  const onUpdateCard = useCallback((updatedCard: MemoCard) => {
+  const handleUpdateCard = useCallback((updatedCard: MemoCard) => {
     setCards(prev =>
       prev.map(card => (card.id === updatedCard.id ? updatedCard : card))
     )
@@ -35,19 +35,20 @@ const useContainer = () => {
 
   const activeCard = cards[activeCardIndex ?? 0]
 
-  const onCloseCardPractice = useCallback(() => {
+  const handleCloseCardPractice = useCallback(() => {
     setActiveCardIndex(null)
   }, [])
 
-  const onNextCard = useCallback(() => {
+  const handleMoveToNextCard = useCallback(() => {
     setActiveCardIndex(prevIndex =>
       prevIndex !== null ? calculateNextCardIndex(prevIndex, cards) : null
     )
   }, [cards])
 
-  const onPracticeCards = () => setActiveCardIndex(cards.length > 0 ? 0 : null)
+  const handlePracticeCards = () =>
+    setActiveCardIndex(cards.length > 0 ? 0 : null)
 
-  const onDeleteCard = useCallback((cardId: MemoCard["id"]) => {
+  const handleDeleteCard = useCallback((cardId: MemoCard["id"]) => {
     setCards(prev => prev.filter(card => card.id !== cardId))
     CardsRepository.removeCard(cardId)
   }, [])
@@ -56,12 +57,12 @@ const useContainer = () => {
     activeCard,
     grouppedCards,
     isPracticeCardsModeActive,
-    onAddNewCard,
-    onCloseCardPractice,
-    onDeleteCard,
-    onNextCard,
-    onPracticeCards,
-    onUpdateCard,
+    handleAddNewCard,
+    handleCloseCardPractice,
+    handleDeleteCard,
+    handleMoveToNextCard,
+    handlePracticeCards,
+    handleUpdateCard,
   }
 }
 

@@ -16,19 +16,19 @@ const CardsList: React.FC = () => {
     activeCard,
     grouppedCards,
     isPracticeCardsModeActive,
-    onAddNewCard,
-    onCloseCardPractice,
-    onDeleteCard,
-    onNextCard,
-    onPracticeCards,
-    onUpdateCard,
+    handleAddNewCard,
+    handleCloseCardPractice,
+    handleDeleteCard,
+    handleMoveToNextCard,
+    handlePracticeCards,
+    handleUpdateCard,
   } = useContainer()
 
   return (
     <div className={styles["cards-list"]}>
       <div className={styles["cards-list__controls"]}>
-        <Button onClick={onPracticeCards}>Practice Cards</Button>
-        <AddNewCardModal onAddNewCard={onAddNewCard} />
+        <Button onClick={handlePracticeCards}>Practice Cards</Button>
+        <AddNewCardModal onAddNewCard={handleAddNewCard} />
       </div>
       <ul>
         {Object.entries(grouppedCards).map(([category, cards]) => (
@@ -36,8 +36,8 @@ const CardsList: React.FC = () => {
             key={category}
             title={category}
             cards={cards}
-            onDeleteCard={onDeleteCard}
-            onUpdateCard={onUpdateCard}
+            onDeleteCard={handleDeleteCard}
+            onUpdateCard={handleAddNewCard}
           />
         ))}
       </ul>
@@ -45,10 +45,10 @@ const CardsList: React.FC = () => {
         <div>
           <CardView
             card={activeCard}
-            onClose={onCloseCardPractice}
-            onDeleteCard={onDeleteCard}
-            onUpdateCard={onUpdateCard}
-            onNextCard={onNextCard}
+            onClose={handleCloseCardPractice}
+            onDeleteCard={handleDeleteCard}
+            onUpdateCard={handleUpdateCard}
+            onNextCard={handleMoveToNextCard}
             isPrimarySideFront
           />
         </div>
