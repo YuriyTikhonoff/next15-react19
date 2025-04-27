@@ -27,15 +27,16 @@ const CardsCollection: React.FC<CardsCollectionProps> = ({
   onDeleteCard,
   onUpdateCard,
 }) => {
-  const { isExpanded, onToggleExpandCardsCollection, onDelete } = useContainer({
-    onDeleteCard,
-  })
+  const { isExpanded, handleDeleteCard, handleToggleExpandCardsCollection } =
+    useContainer({
+      onDeleteCard,
+    })
 
   return (
     <div>
       <div style={{ display: "flex", alignItems: "center" }}>
         <IconButton
-          onClick={onToggleExpandCardsCollection}
+          onClick={handleToggleExpandCardsCollection}
           style={{ width: 50 }}>
           {isExpanded ? "-" : "+"}
         </IconButton>
@@ -55,7 +56,7 @@ const CardsCollection: React.FC<CardsCollectionProps> = ({
                   initialCardValues={{ ...card }}
                 />
                 <DeleteCardModal
-                  onDeleteCard={onDelete(card.id)}
+                  onDeleteCard={handleDeleteCard(card.id)}
                   deleteIconClassName={styles["card__control-icon"]}
                 />
               </div>
