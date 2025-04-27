@@ -9,15 +9,16 @@ interface UseContainerParams {
 const useContainer = ({ onDeleteCard }: UseContainerParams) => {
   const [isExpanded, setIsExpanded] = useState(false)
 
-  const onToggleExpandCardsCollection = () => setIsExpanded(prev => !prev)
+  const handleToggleExpandCardsCollection = () => setIsExpanded(prev => !prev)
 
-  const onDelete = (id: MemoCard["id"]) => () => {
+  const handleDeleteCard = (id: MemoCard["id"]) => () => {
     onDeleteCard(id)
   }
+
   return {
     isExpanded,
-    onToggleExpandCardsCollection,
-    onDelete,
+    handleDeleteCard,
+    handleToggleExpandCardsCollection,
   }
 }
 
