@@ -34,10 +34,10 @@ const CardsCollection: React.FC<CardsCollectionProps> = ({
 
   return (
     <div>
-      <div style={{ display: "flex", alignItems: "center" }}>
+      <div className={styles["card-list__title"]}>
         <IconButton
           onClick={handleToggleExpandCardsCollection}
-          style={{ width: 50 }}>
+          className={styles["card-list__title__icon-btn"]}>
           {isExpanded ? "-" : "+"}
         </IconButton>
         <h4>{`${title} (${cards.length})`}</h4>
