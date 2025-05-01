@@ -41,7 +41,7 @@ const AddNewCard: React.FC<AddNewCardProps> = ({
       <div className={styles["add-new-card__form"]}>
         <div className={styles["add-new-card__form__section"]}>
           <TextField
-            sx={{ width: 300 }}
+            className={styles["add-new-card__form__input"]}
             label="Title"
             variant="outlined"
             multiline
@@ -52,7 +52,7 @@ const AddNewCard: React.FC<AddNewCardProps> = ({
             label="Category"
             variant="outlined"
             select
-            style={{ width: 300 }}
+            className={styles["add-new-card__form__input"]}
             value={newCard.category}
             onChange={handleSelctiingCategory}>
             {categoriesList.map(category => (
@@ -64,7 +64,7 @@ const AddNewCard: React.FC<AddNewCardProps> = ({
         </div>
         <div className={styles["add-new-card__form__section"]}>
           <TextField
-            sx={{ width: 300 }}
+            className={styles["add-new-card__form__input"]}
             label="Front side"
             variant="outlined"
             multiline
@@ -73,7 +73,7 @@ const AddNewCard: React.FC<AddNewCardProps> = ({
             onChange={handleAddingFront}
           />
           <TextField
-            sx={{ width: 300 }}
+            className={styles["add-new-card__form__input"]}
             label="Rare side"
             variant="outlined"
             multiline
@@ -84,29 +84,29 @@ const AddNewCard: React.FC<AddNewCardProps> = ({
         </div>
         <div className={styles["add-new-card__category"]}>
           <TextField
-            sx={{ width: 300 }}
+            className={styles["add-new-card__form__btn"]}
             label="New Category"
             variant="outlined"
             value={newCategory}
             onChange={handleCategoryInput}
           />
           <Button
-            sx={{ width: 300 }}
+            className={styles["add-new-card__form__btn"]}
             variant="outlined"
             onClick={handleAddingCategory}>
             Add Category
           </Button>
         </div>
-        <div style={{ display: "flex", gap: 20, marginTop: 20 }}>
+        <div className={styles["add-new-card__form__controls__wrapper"]}>
           <Button
             onClick={onAddCard}
-            sx={{ width: 300, height: 60 }}
+            className={styles["add-new-card__form__controls__btn"]}
             variant="outlined">
             Add Card
           </Button>
           <Button
             onClick={onClose}
-            sx={{ width: 300, height: 60 }}
+            className={styles["add-new-card__form__controls__btn"]}
             variant="outlined">
             Cancel
           </Button>
