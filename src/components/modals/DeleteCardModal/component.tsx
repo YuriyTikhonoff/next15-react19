@@ -35,11 +35,17 @@ const DeleteCardModal: React.FC<DeleteCardModalProps> = ({
             Are you sure you want to delete this card?
           </div>
           <div className={styles["modal-controls"]}>
-            <Button onClick={onDeleteCard} variant="outlined">
+            <Button
+              className={styles["modal__btn"]}
+              onClick={onDeleteCard}
+              variant="outlined">
               Yes
             </Button>
-            <Button onClick={onCloseModal} variant="outlined">
-              No
+            <Button
+              className={styles["modal__btn"]}
+              onClick={onCloseModal}
+              variant="outlined">
+              Cancel
             </Button>
           </div>
         </div>
