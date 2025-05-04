@@ -5,6 +5,7 @@ import { MemoCard } from "@/types/app"
 
 const useContainer = () => {
   const [cards, setCards] = useState<MemoCard[]>(CardsRepository.getCards())
+  const [activeCardGroup, setActiveCardGroup] = useState<MemoCard[]>([])
   const [activeCardIndex, setActiveCardIndex] = useState<number | null>(null)
 
   const grouppedCards = cards.reduce((acc, card) => {
@@ -48,6 +49,22 @@ const useContainer = () => {
   const handlePracticeCards = () =>
     setActiveCardIndex(cards.length > 0 ? 0 : null)
 
+  const handlePracticeCardGroup = useCallback(
+    (cardGroup: MemoCard[]) => () => {
+      setActiveCardGroup(cardGroup)
+      setActiveCardIndex(0)
+    },
+    []
+  )
+
+  const handlePracticeCardGroupNext = () => {
+    setActiveCardIndex(prevIndex =>
+      prevIndex !== null
+        ? calculateNextCardIndex(prevIndex, activeCardGroup)
+        : null
+    )
+  }
+
   const handleDeleteCard = useCallback((cardId: MemoCard["id"]) => {
     setCards(prev => prev.filter(card => card.id !== cardId))
     CardsRepository.removeCard(cardId)
@@ -63,6 +80,8 @@ const useContainer = () => {
     handleMoveToNextCard,
     handlePracticeCards,
     handleUpdateCard,
+    handlePracticeCardGroup,
+    handlePracticeCardGroupNext,
   }
 }
 

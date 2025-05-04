@@ -2,6 +2,7 @@
 
 import type React from "react"
 
+import ModelTrainingIcon from "@mui/icons-material/ModelTraining"
 import { IconButton } from "@mui/material"
 import cn from "classnames"
 
@@ -18,6 +19,7 @@ interface CardsCollectionProps {
   cards: MemoCard[]
   onDeleteCard: (cardId: MemoCard["id"]) => void
   onUpdateCard: (updatedCard: MemoCard) => void
+  onPracticeCardGroup: VoidFunction
   title: string
 }
 
@@ -26,6 +28,7 @@ const CardsCollection: React.FC<CardsCollectionProps> = ({
   cards,
   onDeleteCard,
   onUpdateCard,
+  onPracticeCardGroup,
 }) => {
   const { isExpanded, handleDeleteCard, handleToggleExpandCardsCollection } =
     useContainer({
@@ -41,6 +44,11 @@ const CardsCollection: React.FC<CardsCollectionProps> = ({
           {isExpanded ? "-" : "+"}
         </IconButton>
         <h4>{`${title} (${cards.length})`}</h4>
+        <IconButton
+          className={cn(styles["card__control-icon"], styles["practice-icon"])}
+          onClick={onPracticeCardGroup}>
+          <ModelTrainingIcon />
+        </IconButton>
       </div>
       {isExpanded && (
         <ul>

@@ -22,6 +22,7 @@ const CardsList: React.FC = () => {
     handleMoveToNextCard,
     handlePracticeCards,
     handleUpdateCard,
+    handlePracticeCardGroup,
   } = useContainer()
 
   return (
@@ -38,6 +39,7 @@ const CardsList: React.FC = () => {
             cards={cards}
             onDeleteCard={handleDeleteCard}
             onUpdateCard={handleAddNewCard}
+            onPracticeCardGroup={handlePracticeCardGroup(cards)}
           />
         ))}
       </ul>
