@@ -34,7 +34,7 @@ const useContainer = () => {
     return prevIndex === maxIndex ? 0 : prevIndex + 1
   }
 
-  const activeCard = cards[activeCardIndex ?? 0]
+  const activeCard = activeCardGroup[activeCardIndex ?? 0]
 
   const handleCloseCardPractice = useCallback(() => {
     setActiveCardIndex(null)
@@ -42,12 +42,16 @@ const useContainer = () => {
 
   const handleMoveToNextCard = useCallback(() => {
     setActiveCardIndex(prevIndex =>
-      prevIndex !== null ? calculateNextCardIndex(prevIndex, cards) : null
+      prevIndex !== null
+        ? calculateNextCardIndex(prevIndex, activeCardGroup)
+        : null
     )
-  }, [cards])
+  }, [activeCardGroup])
 
-  const handlePracticeCards = () =>
+  const handlePracticeCards = () => {
     setActiveCardIndex(cards.length > 0 ? 0 : null)
+    setActiveCardGroup(cards)
+  }
 
   const handlePracticeCardGroup = useCallback(
     (cardGroup: MemoCard[]) => () => {
@@ -56,14 +60,6 @@ const useContainer = () => {
     },
     []
   )
-
-  const handlePracticeCardGroupNext = () => {
-    setActiveCardIndex(prevIndex =>
-      prevIndex !== null
-        ? calculateNextCardIndex(prevIndex, activeCardGroup)
-        : null
-    )
-  }
 
   const handleDeleteCard = useCallback((cardId: MemoCard["id"]) => {
     setCards(prev => prev.filter(card => card.id !== cardId))
@@ -81,7 +77,6 @@ const useContainer = () => {
     handlePracticeCards,
     handleUpdateCard,
     handlePracticeCardGroup,
-    handlePracticeCardGroupNext,
   }
 }
 
