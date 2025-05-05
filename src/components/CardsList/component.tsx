@@ -20,7 +20,7 @@ const CardsList: React.FC = () => {
     handleCloseCardPractice,
     handleDeleteCard,
     handleMoveToNextCard,
-    handlePracticeCards,
+    handlePracticeAllCards,
     handleUpdateCard,
     handlePracticeCardGroup,
   } = useContainer()
@@ -28,7 +28,7 @@ const CardsList: React.FC = () => {
   return (
     <div className={styles["cards-list"]}>
       <div className={styles["cards-list__controls"]}>
-        <Button onClick={handlePracticeCards}>Practice Cards</Button>
+        <Button onClick={handlePracticeAllCards}>Practice Cards</Button>
         <AddNewCardModal onAddNewCard={handleAddNewCard} />
       </div>
       <ul>
