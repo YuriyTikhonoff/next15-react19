@@ -48,7 +48,7 @@ const useContainer = () => {
     )
   }, [activeCardGroup])
 
-  const handlePracticeCards = () => {
+  const handlePracticeAllCards = () => {
     setActiveCardIndex(cards.length > 0 ? 0 : null)
     setActiveCardGroup(cards)
   }
@@ -74,7 +74,7 @@ const useContainer = () => {
     handleCloseCardPractice,
     handleDeleteCard,
     handleMoveToNextCard,
-    handlePracticeCards,
+    handlePracticeAllCards,
     handleUpdateCard,
     handlePracticeCardGroup,
   }
