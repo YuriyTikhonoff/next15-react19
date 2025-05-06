@@ -48,10 +48,10 @@ const useContainer = () => {
     )
   }, [activeCardGroup])
 
-  const handlePracticeAllCards = () => {
+  const handlePracticeAllCards = useCallback(() => {
     setActiveCardIndex(cards.length > 0 ? 0 : null)
     setActiveCardGroup(cards)
-  }
+  }, [cards])
 
   const handlePracticeCardGroup = useCallback(
     (cardGroup: MemoCard[]) => () => {
@@ -69,14 +69,14 @@ const useContainer = () => {
   return {
     activeCard,
     grouppedCards,
-    isPracticeCardsModeActive,
     handleAddNewCard,
     handleCloseCardPractice,
     handleDeleteCard,
     handleMoveToNextCard,
     handlePracticeAllCards,
-    handleUpdateCard,
     handlePracticeCardGroup,
+    handleUpdateCard,
+    isPracticeCardsModeActive,
   }
 }
 
