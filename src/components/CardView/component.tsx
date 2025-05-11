@@ -13,6 +13,9 @@ import DeleteCardModal from "../modals/DeleteCardModal"
 import useContainer from "./hook"
 import styles from "./styles.module.scss"
 
+import dayjs from "dayjs"
+import relativeTime from "dayjs/plugin/relativeTime"
+
 export interface CardViewProps {
   card: MemoCard
   isPrimarySideFront: boolean
@@ -44,6 +47,8 @@ const CardView: React.FC<CardViewProps> = ({
     onUpdateCard,
   })
 
+  dayjs.extend(relativeTime)
+
   return (
     <div className={styles.card}>
       <DeleteCardModal
@@ -59,6 +64,7 @@ const CardView: React.FC<CardViewProps> = ({
       <div className={styles["card__content"]}>
         {isFlipped ? card.front : card.back}
       </div>
+      <div>{dayjs(card.lastPracticeTimestamp).fromNow()}</div>
       <div className={styles["card__controls"]}>
         <Button onClick={handleFlipCard} variant="outlined">
           Flip
