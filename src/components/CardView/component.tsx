@@ -4,18 +4,19 @@ import type React from "react"
 
 import CloseIcon from "@mui/icons-material/Close"
 import { Button, IconButton } from "@mui/material"
+import dayjs from "dayjs"
+import relativeTime from "dayjs/plugin/relativeTime"
 
 import cardLevelsMap from "@/constants/cards"
 import { MemoCard } from "@/types/app"
+import { getTimeAgoValue } from "@/utils/getTimeAgoValue"
 
 import DeleteCardModal from "../modals/DeleteCardModal"
 
 import useContainer from "./hook"
 import styles from "./styles.module.scss"
 
-import dayjs from "dayjs"
-import relativeTime from "dayjs/plugin/relativeTime"
-import { getTimeAgoValue } from "@/utils/getTimeAgoValue"
+
 
 export interface CardViewProps {
   card: MemoCard
