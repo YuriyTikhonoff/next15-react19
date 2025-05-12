@@ -15,6 +15,7 @@ import styles from "./styles.module.scss"
 
 import dayjs from "dayjs"
 import relativeTime from "dayjs/plugin/relativeTime"
+import { getTimeAgoValue } from "@/utils/getTimeAgoValue"
 
 export interface CardViewProps {
   card: MemoCard
@@ -64,7 +65,7 @@ const CardView: React.FC<CardViewProps> = ({
       <div className={styles["card__content"]}>
         {isFlipped ? card.front : card.back}
       </div>
-      <div>{dayjs(card.lastPracticeTimestamp).fromNow()}</div>
+      <div>{getTimeAgoValue(card.lastPracticeTimestamp)}</div>
       <div className={styles["card__controls"]}>
         <Button onClick={handleFlipCard} variant="outlined">
           Flip
