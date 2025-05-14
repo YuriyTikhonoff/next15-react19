@@ -14,6 +14,7 @@ import EditCardModal from "../modals/EditCardModal"
 
 import useContainer from "./hook"
 import styles from "./styles.module.scss"
+import { getTimeAgoValue } from "@/utils/getTimeAgoValue"
 
 interface CardsCollectionProps {
   cards: MemoCard[]
@@ -72,6 +73,7 @@ const CardsCollection: React.FC<CardsCollectionProps> = ({
               <div className={styles["card__level"]}>
                 {cardLevelsMap.get(card.level)?.text}
               </div>
+              <div>{getTimeAgoValue(card.lastPracticeTimestamp)}</div>
             </li>
           ))}
         </ul>
