@@ -16,8 +16,6 @@ import DeleteCardModal from "../modals/DeleteCardModal"
 import useContainer from "./hook"
 import styles from "./styles.module.scss"
 
-
-
 export interface CardViewProps {
   card: MemoCard
   isPrimarySideFront: boolean
@@ -66,7 +64,9 @@ const CardView: React.FC<CardViewProps> = ({
       <div className={styles["card__content"]}>
         {isFlipped ? card.front : card.back}
       </div>
-      <div>{getTimeAgoValue(card.lastPracticeTimestamp)}</div>
+      <div className={styles["card__content"]}>
+        {getTimeAgoValue(card.lastPracticeTimestamp)}
+      </div>
       <div className={styles["card__controls"]}>
         <Button onClick={handleFlipCard} variant="outlined">
           Flip
