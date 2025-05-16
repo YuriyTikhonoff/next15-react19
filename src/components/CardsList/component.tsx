@@ -47,11 +47,11 @@ const CardsList: React.FC = () => {
         <div>
           <CardView
             card={activeCard}
+            isPrimarySideFront
             onClose={handleCloseCardPractice}
             onDeleteCard={handleDeleteCard}
             onUpdateCard={handleUpdateCard}
             onNextCard={handleMoveToNextCard}
-            isPrimarySideFront
           />
         </div>
       )}

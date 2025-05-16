@@ -15,6 +15,15 @@ const useContainer = () => {
     return acc
   }, {} as Record<string, MemoCard[]>)
 
+  const isPracticeCardsModeActive = activeCardIndex !== null
+
+  const calculateNextCardIndex = (prevIndex: number, cards: MemoCard[]) => {
+    const maxIndex = cards.length - 1
+    return prevIndex === maxIndex ? 0 : prevIndex + 1
+  }
+
+  const activeCard = activeCardGroup[activeCardIndex ?? 0]
+
   const handleAddNewCard = useCallback((newCard: MemoCard) => {
     setCards(prev => [...prev, newCard])
     CardsRepository.addCard(newCard)
@@ -26,15 +35,6 @@ const useContainer = () => {
     )
     CardsRepository.updateCard(updatedCard)
   }, [])
-
-  const isPracticeCardsModeActive = activeCardIndex !== null
-
-  const calculateNextCardIndex = (prevIndex: number, cards: MemoCard[]) => {
-    const maxIndex = cards.length - 1
-    return prevIndex === maxIndex ? 0 : prevIndex + 1
-  }
-
-  const activeCard = activeCardGroup[activeCardIndex ?? 0]
 
   const handleCloseCardPractice = useCallback(() => {
     setActiveCardIndex(null)
