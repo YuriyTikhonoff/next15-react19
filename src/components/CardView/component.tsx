@@ -38,6 +38,7 @@ const CardView: React.FC<CardViewProps> = ({
     handleFlipCard,
     handleDeleteCard,
     handleIncreseCardLevel,
+    handleMoveToNextCard,
   } = useContainer({
     card,
     isPrimarySideFront,
@@ -71,7 +72,7 @@ const CardView: React.FC<CardViewProps> = ({
         <Button onClick={handleFlipCard} variant="outlined">
           Flip
         </Button>
-        <Button onClick={onNextCard} variant="outlined">
+        <Button onClick={handleMoveToNextCard} variant="outlined">
           Next Card
         </Button>
         <Button onClick={handleIncreseCardLevel} variant="outlined">

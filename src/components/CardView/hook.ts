@@ -24,6 +24,15 @@ const useContainer = ({
     onNextCard()
   }
 
+  const handleMoveToNextCard = () => {
+    const updatedCard = {
+      ...card,
+      lastPracticeTimestamp: new Date().toISOString(),
+    }
+    onUpdateCard(updatedCard)
+    onNextCard()
+  }
+
   const handleDeleteCard = () => {
     onDeleteCard(card.id)
     onClose()
@@ -38,6 +47,7 @@ const useContainer = ({
     handleFlipCard,
     handleDeleteCard,
     handleIncreseCardLevel,
+    handleMoveToNextCard,
   }
 }
 
