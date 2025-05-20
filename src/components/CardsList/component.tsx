@@ -23,6 +23,7 @@ const CardsList: React.FC = () => {
     handlePracticeCardGroup,
     handleUpdateCard,
     isPracticeCardsModeActive,
+    setActiveCardGroup,
   } = useContainer()
 
   return (
@@ -52,6 +53,7 @@ const CardsList: React.FC = () => {
             onDeleteCard={handleDeleteCard}
             onUpdateCard={handleUpdateCard}
             onNextCard={handleMoveToNextCard}
+            onSetActiveCardGroup={setActiveCardGroup}
           />
         </div>
       )}
