@@ -66,6 +66,8 @@ const useContainer = () => {
     CardsRepository.removeCard(cardId)
   }, [])
 
+  const handleSetActiveCardGroup = setActiveCardGroup
+
   return {
     activeCard,
     grouppedCards,
@@ -77,7 +79,7 @@ const useContainer = () => {
     handlePracticeCardGroup,
     handleUpdateCard,
     isPracticeCardsModeActive,
-    setActiveCardGroup,
+    handleSetActiveCardGroup,
   }
 }
 

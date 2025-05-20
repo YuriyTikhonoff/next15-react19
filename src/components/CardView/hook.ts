@@ -33,7 +33,7 @@ const useContainer = ({
       lastPracticeTimestamp: new Date().toISOString(),
     }
     onUpdateCard(updatedCard)
-    onSetActiveCardGroup(prev =>
+    onSetActiveCardGroup((prev: MemoCard[]) =>
       prev.map((card: MemoCard) =>
         card.id === updatedCard.id ? updatedCard : card
       )
