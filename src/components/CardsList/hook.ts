@@ -77,6 +77,7 @@ const useContainer = () => {
     handlePracticeCardGroup,
     handleUpdateCard,
     isPracticeCardsModeActive,
+    setActiveCardGroup,
   }
 }
 

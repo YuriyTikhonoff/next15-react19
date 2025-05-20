@@ -1,5 +1,7 @@
 import { useState } from "react"
 
+import { MemoCard } from "@/types/app"
+
 import { CardViewProps } from "./component"
 
 type UseContainerParams = CardViewProps
@@ -10,12 +12,13 @@ const useContainer = ({
   onClose,
   onDeleteCard,
   onNextCard,
+  onSetActiveCardGroup,
   onUpdateCard,
 }: UseContainerParams) => {
   const [isFlipped, setIsFlipped] = useState(isPrimarySideFront)
 
   const handleIncreseCardLevel = () => {
-    const updatedCard = {
+    const updatedCard: MemoCard = {
       ...card,
       level: card.level + 1,
       lastPracticeTimestamp: new Date().toISOString(),
@@ -25,11 +28,16 @@ const useContainer = ({
   }
 
   const handleMoveToNextCard = () => {
-    const updatedCard = {
+    const updatedCard: MemoCard = {
       ...card,
       lastPracticeTimestamp: new Date().toISOString(),
     }
     onUpdateCard(updatedCard)
+    onSetActiveCardGroup(prev =>
+      prev.map((card: MemoCard) =>
+        card.id === updatedCard.id ? updatedCard : card
+      )
+    )
     onNextCard()
   }
 

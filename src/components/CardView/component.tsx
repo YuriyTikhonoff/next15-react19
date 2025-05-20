@@ -1,6 +1,7 @@
 "use client"
 
 import type React from "react"
+import { Dispatch, SetStateAction } from "react"
 
 import CloseIcon from "@mui/icons-material/Close"
 import { Button, IconButton } from "@mui/material"
@@ -22,6 +23,7 @@ export interface CardViewProps {
   onClose: VoidFunction
   onDeleteCard: (cardId: MemoCard["id"]) => void
   onNextCard: VoidFunction
+  onSetActiveCardGroup: Dispatch<SetStateAction<MemoCard[]>>
   onUpdateCard: (updatedCard: MemoCard) => void
 }
 
@@ -31,6 +33,7 @@ const CardView: React.FC<CardViewProps> = ({
   onClose,
   onDeleteCard,
   onNextCard,
+  onSetActiveCardGroup,
   onUpdateCard,
 }) => {
   const {
@@ -45,6 +48,7 @@ const CardView: React.FC<CardViewProps> = ({
     onClose,
     onDeleteCard,
     onNextCard,
+    onSetActiveCardGroup,
     onUpdateCard,
   })
 

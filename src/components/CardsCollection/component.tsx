@@ -8,13 +8,13 @@ import cn from "classnames"
 
 import cardLevelsMap from "@/constants/cards"
 import { MemoCard } from "@/types/app"
+import { getTimeAgoValue } from "@/utils/getTimeAgoValue"
 
 import DeleteCardModal from "../modals/DeleteCardModal"
 import EditCardModal from "../modals/EditCardModal"
 
 import useContainer from "./hook"
 import styles from "./styles.module.scss"
-import { getTimeAgoValue } from "@/utils/getTimeAgoValue"
 
 interface CardsCollectionProps {
   cards: MemoCard[]
