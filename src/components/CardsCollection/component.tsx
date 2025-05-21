@@ -15,6 +15,7 @@ import EditCardModal from "../modals/EditCardModal"
 
 import useContainer from "./hook"
 import styles from "./styles.module.scss"
+import dayjs from "dayjs"
 
 interface CardsCollectionProps {
   cards: MemoCard[]
@@ -74,6 +75,12 @@ const CardsCollection: React.FC<CardsCollectionProps> = ({
                 {cardLevelsMap.get(card.level)?.text}
               </div>
               <div>{getTimeAgoValue(card.lastPracticeTimestamp)}</div>
+              <div style={{ marginLeft: 20 }}>
+                {dayjs(Date.now()).diff(card.lastPracticeTimestamp, "day") >=
+                Number(cardLevelsMap.get(card.level)?.daysToRest)
+                  ? "Ready for review"
+                  : "Not ready for review"}
+              </div>
             </li>
           ))}
         </ul>
