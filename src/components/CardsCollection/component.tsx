@@ -15,7 +15,6 @@ import EditCardModal from "../modals/EditCardModal"
 
 import useContainer from "./hook"
 import styles from "./styles.module.scss"
-import dayjs from "dayjs"
 
 interface CardsCollectionProps {
   cards: MemoCard[]
@@ -32,10 +31,14 @@ const CardsCollection: React.FC<CardsCollectionProps> = ({
   onUpdateCard,
   onPracticeCardGroup,
 }) => {
-  const { isExpanded, handleDeleteCard, handleToggleExpandCardsCollection } =
-    useContainer({
-      onDeleteCard,
-    })
+  const {
+    isExpanded,
+    handleDeleteCard,
+    handleToggleExpandCardsCollection,
+    handleCardPracticeRediness,
+  } = useContainer({
+    onDeleteCard,
+  })
 
   return (
     <div>
@@ -76,10 +79,10 @@ const CardsCollection: React.FC<CardsCollectionProps> = ({
               </div>
               <div>{getTimeAgoValue(card.lastPracticeTimestamp)}</div>
               <div style={{ marginLeft: 20 }}>
-                {dayjs(Date.now()).diff(card.lastPracticeTimestamp, "day") >=
-                Number(cardLevelsMap.get(card.level)?.daysToRest)
-                  ? "Ready for review"
-                  : "Not ready for review"}
+                {handleCardPracticeRediness(
+                  card.lastPracticeTimestamp,
+                  card.level
+                )}
               </div>
             </li>
           ))}
