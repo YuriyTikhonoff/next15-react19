@@ -1,7 +1,9 @@
 import { useState } from "react"
 
-import { MemoCard } from "@/types/app"
+import dayjs from "dayjs"
 
+import cardLevelsMap from "@/constants/cards"
+import { MemoCard } from "@/types/app"
 interface UseContainerParams {
   onDeleteCard: (cardId: MemoCard["id"]) => void
 }
@@ -14,11 +16,20 @@ const useContainer = ({ onDeleteCard }: UseContainerParams) => {
   const handleDeleteCard = (id: MemoCard["id"]) => () => {
     onDeleteCard(id)
   }
+  const handleCardPracticeRediness = (
+    lastPracticeTimestamp: MemoCard["lastPracticeTimestamp"],
+    level: MemoCard["level"]
+  ) =>
+    dayjs(Date.now()).diff(lastPracticeTimestamp, "day") >=
+    Number(cardLevelsMap.get(level)?.daysToRest)
+      ? "Ready for review"
+      : "Should wait"
 
   return {
     isExpanded,
     handleDeleteCard,
     handleToggleExpandCardsCollection,
+    handleCardPracticeRediness,
   }
 }
 
