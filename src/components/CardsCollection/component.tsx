@@ -32,10 +32,10 @@ const CardsCollection: React.FC<CardsCollectionProps> = ({
   onPracticeCardGroup,
 }) => {
   const {
-    isExpanded,
+    handleCardPracticeRediness,
     handleDeleteCard,
     handleToggleExpandCardsCollection,
-    handleCardPracticeRediness,
+    isExpanded,
   } = useContainer({
     onDeleteCard,
   })
