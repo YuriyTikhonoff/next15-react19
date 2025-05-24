@@ -26,10 +26,10 @@ const useContainer = ({ onDeleteCard }: UseContainerParams) => {
       : "Should wait"
 
   return {
-    isExpanded,
+    handleCardPracticeRediness,
     handleDeleteCard,
     handleToggleExpandCardsCollection,
-    handleCardPracticeRediness,
+    isExpanded,
   }
 }
 
