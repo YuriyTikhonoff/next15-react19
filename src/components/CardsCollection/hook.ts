@@ -11,11 +11,6 @@ interface UseContainerParams {
 const useContainer = ({ onDeleteCard }: UseContainerParams) => {
   const [isExpanded, setIsExpanded] = useState(false)
 
-  const handleToggleExpandCardsCollection = () => setIsExpanded(prev => !prev)
-
-  const handleDeleteCard = (id: MemoCard["id"]) => () => {
-    onDeleteCard(id)
-  }
   const handleCardPracticeRediness = (
     lastPracticeTimestamp: MemoCard["lastPracticeTimestamp"],
     level: MemoCard["level"]
@@ -24,6 +19,11 @@ const useContainer = ({ onDeleteCard }: UseContainerParams) => {
     Number(cardLevelsMap.get(level)?.daysToRest)
       ? "Ready for review"
       : "Should wait"
+
+  const handleDeleteCard = (id: MemoCard["id"]) => () => {
+    onDeleteCard(id)
+  }
+  const handleToggleExpandCardsCollection = () => setIsExpanded(prev => !prev)
 
   return {
     handleCardPracticeRediness,
