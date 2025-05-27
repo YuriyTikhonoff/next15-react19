@@ -62,6 +62,21 @@ const AddNewCard: React.FC<AddNewCardProps> = ({
             ))}
           </TextField>
         </div>
+        <div className={styles["add-new-card__category"]}>
+          <TextField
+            className={styles["add-new-card__form__btn"]}
+            label="New Category"
+            variant="outlined"
+            value={newCategory}
+            onChange={handleCategoryInput}
+          />
+          <Button
+            className={styles["add-new-card__form__btn"]}
+            variant="outlined"
+            onClick={handleAddingCategory}>
+            Add Category
+          </Button>
+        </div>
         <div className={styles["add-new-card__form__section"]}>
           <TextField
             className={styles["add-new-card__form__input"]}
@@ -82,21 +97,7 @@ const AddNewCard: React.FC<AddNewCardProps> = ({
             onChange={handleAddingBack}
           />
         </div>
-        <div className={styles["add-new-card__category"]}>
-          <TextField
-            className={styles["add-new-card__form__btn"]}
-            label="New Category"
-            variant="outlined"
-            value={newCategory}
-            onChange={handleCategoryInput}
-          />
-          <Button
-            className={styles["add-new-card__form__btn"]}
-            variant="outlined"
-            onClick={handleAddingCategory}>
-            Add Category
-          </Button>
-        </div>
+
         <div className={styles["add-new-card__form__controls__wrapper"]}>
           <Button
             onClick={onAddCard}
