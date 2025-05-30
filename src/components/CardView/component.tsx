@@ -73,12 +73,21 @@ const CardView: React.FC<CardViewProps> = ({
         {getTimeAgoValue(card.lastPracticeTimestamp)}
       </div>
       <div className={styles["card__controls"]}>
-        <Button onClick={handleFlipCard} variant="outlined">
-          Flip
-        </Button>
-        <Button onClick={handleMoveToNextCard} variant="outlined">
-          Next Card
-        </Button>
+        <div style={{ display: "flex", gap: "10px" }}>
+          <Button
+            style={{ width: "100%" }}
+            onClick={handleFlipCard}
+            variant="outlined">
+            Flip
+          </Button>
+          <Button
+            style={{ width: "100%" }}
+            onClick={handleMoveToNextCard}
+            variant="outlined">
+            Next Card
+          </Button>
+        </div>
+
         <Button onClick={handleIncreseCardLevel} variant="outlined">
           Increased Level
         </Button>
