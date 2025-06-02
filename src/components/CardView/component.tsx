@@ -12,7 +12,7 @@ import cardLevelsMap from "@/constants/cards"
 import { MemoCard } from "@/types/app"
 import { getTimeAgoValue } from "@/utils/getTimeAgoValue"
 
-import DeleteCardModal from "../modals/DeleteCardModal"
+import CardMenu from "../CardMenu"
 
 import useContainer from "./hook"
 import styles from "./styles.module.scss"
@@ -56,10 +56,11 @@ const CardView: React.FC<CardViewProps> = ({
 
   return (
     <div className={styles.card}>
-      <DeleteCardModal
+      {/* <DeleteCardModal
         onDeleteCard={handleDeleteCard}
         deleteIconClassName={styles["card__delete-btn"]}
-      />
+      /> */}
+      <CardMenu onDeleteCard={handleDeleteCard} />
       <div className={styles["card__level"]}>
         {cardLevelsMap.get(card.level)?.text}
       </div>
