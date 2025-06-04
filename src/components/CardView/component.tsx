@@ -56,11 +56,10 @@ const CardView: React.FC<CardViewProps> = ({
 
   return (
     <div className={styles.card}>
-      {/* <DeleteCardModal
+      <CardMenu
         onDeleteCard={handleDeleteCard}
-        deleteIconClassName={styles["card__delete-btn"]}
-      /> */}
-      <CardMenu onDeleteCard={handleDeleteCard} />
+        onIncreaseCardLevel={handleIncreseCardLevel}
+      />
       <div className={styles["card__level"]}>
         {cardLevelsMap.get(card.level)?.text}
       </div>
