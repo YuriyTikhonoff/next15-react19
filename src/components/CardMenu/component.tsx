@@ -49,7 +49,7 @@ const CardMenu: React.FC<CardMenuProps> = ({
         }}>
         <MenuItem onClick={onIncreaseCardLevel}>Increase Level</MenuItem>
         <MenuItem>
-          <DeleteCardModal onDeleteCard={onDeleteCard} />
+          <DeleteCardModal isWording onDeleteCard={onDeleteCard} />
         </MenuItem>
       </Menu>
     </div>
