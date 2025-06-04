@@ -11,24 +11,30 @@ import styles from "./styles.module.scss"
 interface DeleteCardModalProps {
   onDeleteCard: VoidFunction
   deleteIconClassName?: string
+  isWording?: boolean
 }
 
 const DeleteCardModal: React.FC<DeleteCardModalProps> = ({
   onDeleteCard,
   deleteIconClassName,
+  isWording,
 }) => {
   return (
     <ModalComponent
       title="Delete Card"
-      renderTriggerredButton={onOpenModal => (
-        <IconButton
-          className={cn({
-            [deleteIconClassName ?? ""]: Boolean(deleteIconClassName),
-          })}
-          onClick={onOpenModal}>
-          <DeleteOutlineIcon />
-        </IconButton>
-      )}
+      renderTriggerredButton={onOpenModal =>
+        isWording ? (
+          <Button onClick={onOpenModal}>Delete</Button>
+        ) : (
+          <IconButton
+            className={cn({
+              [deleteIconClassName ?? ""]: Boolean(deleteIconClassName),
+            })}
+            onClick={onOpenModal}>
+            <DeleteOutlineIcon />
+          </IconButton>
+        )
+      }
       renderContent={onCloseModal => (
         <div>
           <div className={styles["modal__text"]}>
