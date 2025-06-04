@@ -81,10 +81,6 @@ const CardView: React.FC<CardViewProps> = ({
             Next Card
           </Button>
         </div>
-
-        <Button onClick={handleIncreseCardLevel} variant="outlined">
-          Increased Level
-        </Button>
       </div>
     </div>
   )
