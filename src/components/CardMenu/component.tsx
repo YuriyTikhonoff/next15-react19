@@ -11,9 +11,13 @@ import DeleteCardModal from "../modals/DeleteCardModal"
 
 interface CardMenuProps {
   onDeleteCard: VoidFunction
+  onIncreaseCardLevel: VoidFunction
 }
 
-const CardMenu: React.FC<CardMenuProps> = ({ onDeleteCard }) => {
+const CardMenu: React.FC<CardMenuProps> = ({
+  onDeleteCard,
+  onIncreaseCardLevel,
+}) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -43,9 +47,7 @@ const CardMenu: React.FC<CardMenuProps> = ({ onDeleteCard }) => {
             "aria-labelledby": "basic-button",
           },
         }}>
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem onClick={onIncreaseCardLevel}>Increase Level</MenuItem>
         <MenuItem>
           <DeleteCardModal onDeleteCard={onDeleteCard} />
         </MenuItem>
