@@ -9,6 +9,7 @@ import MenuItem from "@mui/material/MenuItem"
 
 import DeleteCardModal from "../modals/DeleteCardModal"
 
+import styles from "./styles.module.scss"
 interface CardMenuProps {
   onDeleteCard: VoidFunction
   onIncreaseCardLevel: VoidFunction
@@ -49,7 +50,11 @@ const CardMenu: React.FC<CardMenuProps> = ({
         }}>
         <MenuItem onClick={onIncreaseCardLevel}>Increase Level</MenuItem>
         <MenuItem>
-          <DeleteCardModal isWording onDeleteCard={onDeleteCard} />
+          <DeleteCardModal
+            btnClassName={styles["card-menu__delete-btn"]}
+            isWording
+            onDeleteCard={onDeleteCard}
+          />
         </MenuItem>
       </Menu>
     </div>

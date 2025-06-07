@@ -12,19 +12,25 @@ interface DeleteCardModalProps {
   onDeleteCard: VoidFunction
   deleteIconClassName?: string
   isWording?: boolean
+  btnClassName?: string
 }
 
 const DeleteCardModal: React.FC<DeleteCardModalProps> = ({
   onDeleteCard,
   deleteIconClassName,
   isWording,
+  btnClassName = "",
 }) => {
   return (
     <ModalComponent
       title="Delete Card"
       renderTriggerredButton={onOpenModal =>
         isWording ? (
-          <Button onClick={onOpenModal}>Delete</Button>
+          <button
+            className={cn("button-regular-text", btnClassName)}
+            onClick={onOpenModal}>
+            Delete
+          </button>
         ) : (
           <IconButton
             className={cn({
