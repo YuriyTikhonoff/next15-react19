@@ -9,7 +9,9 @@ import MenuItem from "@mui/material/MenuItem"
 
 import DeleteCardModal from "../modals/DeleteCardModal"
 
+import useContainer from "./hook"
 import styles from "./styles.module.scss"
+
 interface CardMenuProps {
   onDeleteCard: VoidFunction
   onIncreaseCardLevel: VoidFunction
@@ -19,29 +21,22 @@ const CardMenu: React.FC<CardMenuProps> = ({
   onDeleteCard,
   onIncreaseCardLevel,
 }) => {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
-  const open = Boolean(anchorEl)
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget)
-  }
-  const handleClose = () => {
-    setAnchorEl(null)
-  }
+  const { isOpen, anchorEl, handleOpenMenu, handleClose } = useContainer()
 
   return (
     <div>
       <IconButton
         id="basic-button"
-        aria-controls={open ? "basic-menu" : undefined}
+        aria-controls={isOpen ? "basic-menu" : undefined}
         aria-haspopup="true"
-        aria-expanded={open ? "true" : undefined}
-        onClick={handleClick}>
+        aria-expanded={isOpen ? "true" : undefined}
+        onClick={handleOpenMenu}>
         <MenuIcon />
       </IconButton>
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}
-        open={open}
+        open={isOpen}
         onClose={handleClose}
         slotProps={{
           list: {
