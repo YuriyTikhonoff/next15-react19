@@ -100,16 +100,16 @@ const AddNewCard: React.FC<AddNewCardProps> = ({
 
         <div className={styles["add-new-card__form__controls__wrapper"]}>
           <Button
-            onClick={onAddCard}
-            className={styles["add-new-card__form__controls__btn"]}
-            variant="outlined">
-            Add Card
-          </Button>
-          <Button
             onClick={onClose}
             className={styles["add-new-card__form__controls__btn"]}
             variant="outlined">
             Cancel
+          </Button>
+          <Button
+            onClick={onAddCard}
+            className={styles["add-new-card__form__controls__btn"]}
+            variant="outlined">
+            Save
           </Button>
         </div>
       </div>
