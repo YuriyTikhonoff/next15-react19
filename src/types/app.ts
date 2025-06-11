@@ -16,6 +16,7 @@ export interface MemoCard {
   level: number
   lastPracticeTimestamp: string
   createdAtTimestamp: string
+  useReversedDefaultView?: boolean
 }
 
 export enum LocalStorageFields {
