@@ -9,4 +9,5 @@ export const INITIAL_NEW_CARD: MemoCard = {
   lastPracticeTimestamp: "",
   level: 1,
   title: "",
+  useReversedDefaultView: false,
 }
