@@ -4,6 +4,7 @@ import type React from "react"
 import { Dispatch, SetStateAction } from "react"
 
 import CloseIcon from "@mui/icons-material/Close"
+import SettingsBackupRestoreIcon from "@mui/icons-material/SettingsBackupRestore"
 import { Button, IconButton } from "@mui/material"
 import dayjs from "dayjs"
 import relativeTime from "dayjs/plugin/relativeTime"
@@ -66,6 +67,11 @@ const CardView: React.FC<CardViewProps> = ({
       <IconButton className={styles["card__close-btn"]} onClick={onClose}>
         <CloseIcon />
       </IconButton>
+      {!card.useReversedDefaultView && (
+        <div style={{ marginLeft: 8 }} title="Reversed Default View">
+          <SettingsBackupRestoreIcon style={{ color: "#90caf9" }} />
+        </div>
+      )}
       <div className={styles["card__content"]}>
         {isFlipped ? card.front : card.back}
       </div>
