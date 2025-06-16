@@ -51,6 +51,8 @@ const CardMenu: React.FC<CardMenuProps> = ({
             onDeleteCard={onDeleteCard}
           />
         </MenuItem>
+        <MenuItem
+          onClick={onIncreaseCardLevel}>{`Make as default side`}</MenuItem>
       </Menu>
     </div>
   )
