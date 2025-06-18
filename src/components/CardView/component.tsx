@@ -58,6 +58,7 @@ const CardView: React.FC<CardViewProps> = ({
   return (
     <div className={styles.card}>
       <CardMenu
+        card={card}
         onDeleteCard={handleDeleteCard}
         onIncreaseCardLevel={handleIncreseCardLevel}
       />
