@@ -11,8 +11,10 @@ import DeleteCardModal from "../modals/DeleteCardModal"
 
 import useContainer from "./hook"
 import styles from "./styles.module.scss"
+import { MemoCard } from "@/types/app"
 
 interface CardMenuProps {
+  card: MemoCard
   onDeleteCard: VoidFunction
   onIncreaseCardLevel: VoidFunction
 }
@@ -20,6 +22,7 @@ interface CardMenuProps {
 const CardMenu: React.FC<CardMenuProps> = ({
   onDeleteCard,
   onIncreaseCardLevel,
+  card,
 }) => {
   const { isOpen, anchorEl, handleOpenMenu, handleClose } = useContainer()
 
@@ -51,8 +54,9 @@ const CardMenu: React.FC<CardMenuProps> = ({
             onDeleteCard={onDeleteCard}
           />
         </MenuItem>
-        <MenuItem
-          onClick={onIncreaseCardLevel}>{`Make as default side`}</MenuItem>
+        <MenuItem onClick={onIncreaseCardLevel}>{`Make ${
+          card.useReversedDefaultView ? "front" : "back"
+        } as default side`}</MenuItem>
       </Menu>
     </div>
   )
