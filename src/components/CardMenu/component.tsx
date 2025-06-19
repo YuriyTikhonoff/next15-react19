@@ -7,11 +7,12 @@ import { IconButton } from "@mui/material"
 import Menu from "@mui/material/Menu"
 import MenuItem from "@mui/material/MenuItem"
 
+import { MemoCard } from "@/types/app"
+
 import DeleteCardModal from "../modals/DeleteCardModal"
 
 import useContainer from "./hook"
 import styles from "./styles.module.scss"
-import { MemoCard } from "@/types/app"
 
 interface CardMenuProps {
   card: MemoCard
