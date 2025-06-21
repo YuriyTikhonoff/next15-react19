@@ -4,7 +4,7 @@ import type React from "react"
 import { Dispatch, SetStateAction } from "react"
 
 import CloseIcon from "@mui/icons-material/Close"
-import SettingsBackupRestoreIcon from "@mui/icons-material/SettingsBackupRestore"
+import BackSideAsDefault from "@mui/icons-material/SettingsBackupRestore"
 import { Button, IconButton } from "@mui/material"
 import dayjs from "dayjs"
 import relativeTime from "dayjs/plugin/relativeTime"
@@ -61,6 +61,7 @@ const CardView: React.FC<CardViewProps> = ({
         card={card}
         onDeleteCard={handleDeleteCard}
         onIncreaseCardLevel={handleIncreseCardLevel}
+        onUpdateCard={onUpdateCard}
       />
       <div className={styles["card__level"]}>
         {cardLevelsMap.get(card.level)?.text}
@@ -70,7 +71,7 @@ const CardView: React.FC<CardViewProps> = ({
       </IconButton>
       {!card.useReversedDefaultView && (
         <div style={{ marginLeft: 8 }} title="Reversed Default View">
-          <SettingsBackupRestoreIcon style={{ color: "#90caf9" }} />
+          <BackSideAsDefault style={{ color: "#90caf9" }} />
         </div>
       )}
       <div className={styles["card__content"]}>

@@ -18,11 +18,13 @@ interface CardMenuProps {
   card: MemoCard
   onDeleteCard: VoidFunction
   onIncreaseCardLevel: VoidFunction
+  onUpdateCard: (updatedCard: MemoCard) => void
 }
 
 const CardMenu: React.FC<CardMenuProps> = ({
   onDeleteCard,
   onIncreaseCardLevel,
+  onUpdateCard,
   card,
 }) => {
   const { isOpen, anchorEl, handleOpenMenu, handleClose } = useContainer()
