@@ -1,6 +1,12 @@
+import { MemoCard } from "@/types/app"
 import React from "react"
 
-const useContainer = () => {
+interface UseContainerProps {
+  onUpdateCard: (updatedCard: MemoCard) => void
+  card: MemoCard
+}
+
+const useContainer = ({ onUpdateCard, card }: UseContainerProps) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
 
   const isOpen = Boolean(anchorEl)
@@ -11,11 +17,21 @@ const useContainer = () => {
     setAnchorEl(null)
   }
 
+  const handleToggleDefaultBackSide = () => {
+    const updatedCard = {
+      ...card,
+      useReversedDefaultView: !card.useReversedDefaultView,
+    }
+    onUpdateCard(updatedCard)
+    handleClose()
+  }
+
   return {
     isOpen,
     anchorEl,
     handleOpenMenu,
     handleClose,
+    handleToggleDefaultBackSide,
   }
 }
 
