@@ -7,6 +7,7 @@ const useContainer = () => {
   const [cards, setCards] = useState<MemoCard[]>(CardsRepository.getCards())
   const [activeCardGroup, setActiveCardGroup] = useState<MemoCard[]>([])
   const [activeCardIndex, setActiveCardIndex] = useState<number | null>(null)
+  console.log("qqq--------cards", cards)
 
   const grouppedCards = cards.reduce((acc, card) => {
     acc[card.category] = acc[card.category]

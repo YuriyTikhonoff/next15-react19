@@ -13,7 +13,6 @@ import DeleteCardModal from "../modals/DeleteCardModal"
 
 import useContainer from "./hook"
 import styles from "./styles.module.scss"
-import { on } from "events"
 
 interface CardMenuProps {
   card: MemoCard

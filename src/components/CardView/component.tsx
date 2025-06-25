@@ -54,6 +54,8 @@ const CardView: React.FC<CardViewProps> = ({
   })
 
   dayjs.extend(relativeTime)
+  const frontSide = card.useReversedDefaultView ? card.back : card.front
+  const backSide = card.useReversedDefaultView ? card.front : card.back
 
   return (
     <div className={styles.card}>
@@ -69,13 +71,13 @@ const CardView: React.FC<CardViewProps> = ({
       <IconButton className={styles["card__close-btn"]} onClick={onClose}>
         <CloseIcon />
       </IconButton>
-      {!card.useReversedDefaultView && (
+      {card.useReversedDefaultView && (
         <div style={{ marginLeft: 8 }} title="Reversed Default View">
           <BackSideAsDefault style={{ color: "#90caf9" }} />
         </div>
       )}
       <div className={styles["card__content"]}>
-        {isFlipped ? card.front : card.back}
+        {isFlipped ? frontSide : backSide}
       </div>
       <div className={styles["card__content"]}>
         {getTimeAgoValue(card.lastPracticeTimestamp)}
