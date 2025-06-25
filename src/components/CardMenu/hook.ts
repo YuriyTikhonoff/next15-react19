@@ -1,5 +1,6 @@
-import { MemoCard } from "@/types/app"
 import React from "react"
+
+import { MemoCard } from "@/types/app"
 
 interface UseContainerProps {
   onUpdateCard: (updatedCard: MemoCard) => void
@@ -8,6 +9,7 @@ interface UseContainerProps {
 
 const useContainer = ({ onUpdateCard, card }: UseContainerProps) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+  console.log("qqq----------useContainer card", card)
 
   const isOpen = Boolean(anchorEl)
   const handleOpenMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
