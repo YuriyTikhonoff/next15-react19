@@ -56,4 +56,15 @@ export const spanishCards: MemoCard[] = [
     createdAtTimestamp: "",
     useReversedDefaultView: false,
   },
+  {
+    id: "6",
+    title: "Entender",
+    front: "Entender Yo entiendo Tú entiendes",
+    back: "To understand, I understand, you understand.",
+    category: "Español",
+    level: 0,
+    lastPracticeTimestamp: "",
+    createdAtTimestamp: "",
+    useReversedDefaultView: false,
+  },
 ]
