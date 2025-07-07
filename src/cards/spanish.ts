@@ -100,4 +100,15 @@ export const spanishCards: MemoCard[] = [
     createdAtTimestamp: "",
     useReversedDefaultView: false,
   },
+  {
+    id: "10",
+    title: "Volver",
+    front: "Volver Yo vuelvo Tú vuelves",
+    back: "To return, I return, you return.",
+    category: "Español",
+    level: 0,
+    lastPracticeTimestamp: "",
+    createdAtTimestamp: "",
+    useReversedDefaultView: false,
+  },
 ]
