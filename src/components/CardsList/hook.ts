@@ -1,5 +1,6 @@
-import { useCallback, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 
+import { spanishCards } from "@/cards/spanish"
 import CardsRepository from "@/services/CardsRepository"
 import { MemoCard } from "@/types/app"
 
@@ -7,7 +8,6 @@ const useContainer = () => {
   const [cards, setCards] = useState<MemoCard[]>(CardsRepository.getCards())
   const [activeCardGroup, setActiveCardGroup] = useState<MemoCard[]>([])
   const [activeCardIndex, setActiveCardIndex] = useState<number | null>(null)
-  console.log("qqq--------cards", cards)
 
   const grouppedCards = cards.reduce((acc, card) => {
     acc[card.category] = acc[card.category]
@@ -68,6 +68,13 @@ const useContainer = () => {
   }, [])
 
   const handleSetActiveCardGroup = setActiveCardGroup
+
+  useEffect(() => {
+    const initialCards = CardsRepository.getCards()
+    const cards = [...initialCards, ...spanishCards]
+    CardsRepository.saveCardsPersistently(cards)
+    setCards(cards)
+  }, [])
 
   return {
     activeCard,

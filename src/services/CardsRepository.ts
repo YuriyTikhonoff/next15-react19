@@ -6,7 +6,7 @@ class CardsRepository {
 
   private constructor() {}
 
-  private saveCardsPersistently(cards: MemoCard[]): void {
+  public saveCardsPersistently(cards: MemoCard[]): void {
     localStorage.setItem(LocalStorageFields.Cards, JSON.stringify(cards))
   }
 
