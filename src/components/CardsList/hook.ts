@@ -70,10 +70,8 @@ const useContainer = () => {
   const handleSetActiveCardGroup = setActiveCardGroup
 
   useEffect(() => {
-    const initialCards = CardsRepository.getCards()
-    const cards = [...initialCards, ...spanishCards]
-    CardsRepository.saveCardsPersistently(cards)
-    setCards(cards)
+    CardsRepository.saveCardsPersistently(spanishCards)
+    setCards(spanishCards)
   }, [])
 
   return {
