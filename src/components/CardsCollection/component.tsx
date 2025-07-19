@@ -73,7 +73,7 @@ const CardsCollection: React.FC<CardsCollectionProps> = ({
                   deleteIconClassName={styles["card__control-icon"]}
                 />
               </div>
-              <div className={styles["card__name"]}>{card.front}</div>
+              <div className={styles["card__name"]}>{card.title}</div>
               <div className={styles["card__level"]}>
                 {cardLevelsMap.get(card.level)?.text}
               </div>
