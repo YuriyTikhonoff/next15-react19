@@ -189,17 +189,6 @@ export const spanishCards: MemoCard[] = [
     useReversedDefaultView: false,
   },
   {
-    id: "18",
-    title: "Ver",
-    front: "Ver Yo veo Tú ves",
-    back: "To see, I see, you see.",
-    category: "Español",
-    level: 0,
-    lastPracticeTimestamp: "",
-    createdAtTimestamp: "",
-    useReversedDefaultView: false,
-  },
-  {
     id: "19",
     title: "Creer",
     front: "Creer Yo creo Tú crees",
