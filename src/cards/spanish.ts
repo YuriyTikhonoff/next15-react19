@@ -254,4 +254,15 @@ export const spanishCards: MemoCard[] = [
     createdAtTimestamp: "",
     useReversedDefaultView: false,
   },
+  {
+    id: "25",
+    title: "Manejar",
+    front: "Manejar Yo manejo Tú manejas",
+    back: "To drive, I drive, you drive.",
+    category: "Español",
+    level: 0,
+    lastPracticeTimestamp: "",
+    createdAtTimestamp: "",
+    useReversedDefaultView: false,
+  },
 ]
