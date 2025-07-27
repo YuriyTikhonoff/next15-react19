@@ -265,4 +265,15 @@ export const spanishCards: MemoCard[] = [
     createdAtTimestamp: "",
     useReversedDefaultView: false,
   },
+  {
+    id: "26",
+    title: "Conocer",
+    front: "Conocer Yo conozco Tú conoces",
+    back: "To know (people), I know, you know.",
+    category: "Español",
+    level: 0,
+    lastPracticeTimestamp: "",
+    createdAtTimestamp: "",
+    useReversedDefaultView: false,
+  },
 ]
