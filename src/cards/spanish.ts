@@ -276,4 +276,15 @@ export const spanishCards: MemoCard[] = [
     createdAtTimestamp: "",
     useReversedDefaultView: false,
   },
+  {
+    id: "27",
+    title: "Cantar",
+    front: "Cantar Yo canto Tú cantas",
+    back: "To sing, I sing, you sing.",
+    category: "Español",
+    level: 0,
+    lastPracticeTimestamp: "",
+    createdAtTimestamp: "",
+    useReversedDefaultView: false,
+  },
 ]
