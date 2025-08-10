@@ -375,4 +375,15 @@ export const spanishCards: MemoCard[] = [
     createdAtTimestamp: "",
     useReversedDefaultView: false,
   },
+  {
+    id: "36",
+    title: "Llegar",
+    front: "Llegar Yo llego Tú llegas",
+    back: "To arrive, I arrive, you arrive.",
+    category: "Español",
+    level: 0,
+    lastPracticeTimestamp: "",
+    createdAtTimestamp: "",
+    useReversedDefaultView: false,
+  },
 ]
