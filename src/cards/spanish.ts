@@ -452,4 +452,15 @@ export const spanishCards: MemoCard[] = [
     createdAtTimestamp: "",
     useReversedDefaultView: false,
   },
+  {
+    id: "43",
+    title: "Llevar",
+    front: "Llevar Yo llevo Tú llevas",
+    back: "To carry, I carry, you carry.",
+    category: "Español",
+    level: 0,
+    lastPracticeTimestamp: "",
+    createdAtTimestamp: "",
+    useReversedDefaultView: false,
+  },
 ]
