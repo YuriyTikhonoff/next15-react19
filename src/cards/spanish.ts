@@ -463,4 +463,15 @@ export const spanishCards: MemoCard[] = [
     createdAtTimestamp: "",
     useReversedDefaultView: false,
   },
+  {
+    id: "44",
+    title: "Lavar",
+    front: "Lavar Yo lavo Tú lavas",
+    back: "To wash, I wash, you wash.",
+    category: "Español",
+    level: 0,
+    lastPracticeTimestamp: "",
+    createdAtTimestamp: "",
+    useReversedDefaultView: false,
+  },
 ]
