@@ -485,4 +485,15 @@ export const spanishCards: MemoCard[] = [
     createdAtTimestamp: "",
     useReversedDefaultView: false,
   },
+  {
+    id: "46",
+    title: "Papa",
+    front: "Papa",
+    back: "Potato",
+    category: "Español",
+    level: 0,
+    lastPracticeTimestamp: "",
+    createdAtTimestamp: "",
+    useReversedDefaultView: false,
+  },
 ]
