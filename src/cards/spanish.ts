@@ -727,4 +727,15 @@ export const spanishCards: MemoCard[] = [
     createdAtTimestamp: "",
     useReversedDefaultView: false,
   },
+  {
+    id: "68",
+    title: "Luna",
+    front: "Luna",
+    back: "Moon",
+    category: "Español",
+    level: 0,
+    lastPracticeTimestamp: "",
+    createdAtTimestamp: "",
+    useReversedDefaultView: false,
+  },
 ]
