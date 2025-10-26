@@ -903,4 +903,15 @@ export const spanishCards: MemoCard[] = [
     createdAtTimestamp: "",
     useReversedDefaultView: false,
   },
+  {
+    id: "84",
+    title: "Esperanza",
+    front: "Esperanza",
+    back: "Hope",
+    category: "Español",
+    level: 0,
+    lastPracticeTimestamp: "",
+    createdAtTimestamp: "",
+    useReversedDefaultView: false,
+  },
 ]
