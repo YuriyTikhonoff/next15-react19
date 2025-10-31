@@ -1,4 +1,4 @@
-import { LocalStorageFields, MemoCard } from "@/types/app"
+import { MemoCard } from "@/types/app"
 
 class CardsRepository {
   private static instance: CardsRepository
@@ -7,7 +7,10 @@ class CardsRepository {
   private constructor() {}
 
   public saveCardsPersistently(cards: MemoCard[]): void {
-    localStorage.setItem(LocalStorageFields.Cards, JSON.stringify(cards))
+    console.log("Saving cards persistently:", cards)
+    console.log("Hello")
+    // if (localStorage)
+    //   localStorage.setItem(LocalStorageFields.Cards, JSON.stringify(cards))
   }
 
   public static getInstance(): CardsRepository {
@@ -31,7 +34,10 @@ class CardsRepository {
   }
 
   public getCards(): MemoCard[] {
-    const cards = localStorage.getItem(LocalStorageFields.Cards)
+    // const cards = localStorage
+    //   ? localStorage.getItem(LocalStorageFields.Cards)
+    //   : null
+    const cards = null
     this.cards = cards ? JSON.parse(cards) : []
     return this.cards
   }
