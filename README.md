@@ -20,6 +20,16 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Run with Docker
+
+// Run relying on Dockerfile
+docker build -t spanish-cards-app .
+docker run -p 3000:3000 spanish-cards-app
+
+// Run development to stage all changes and hot reload
+docker build -f Dockerfile.dev -t spanish-cards-dev .
+docker run -p 3000:3000 -v $(pwd):/app -v /app/node_modules spanish-cards-dev
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
