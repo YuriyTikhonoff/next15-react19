@@ -7,7 +7,6 @@ import PostComponent from "./Post/component"
 const ContactsPage: React.FC = async () => {
   const data = await fetch("https://api.vercel.app/blog")
   const posts: Post[] = await data.json()
-  console.log(posts)
   return (
     <div>
       <h1>Contacts</h1>

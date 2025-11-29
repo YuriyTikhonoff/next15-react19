@@ -4,6 +4,8 @@ import type React from "react"
 
 import { Button } from "@mui/material"
 
+import { MemoCard } from "@/types/app"
+
 import CardsCollection from "../CardsCollection"
 import CardView from "../CardView"
 import AddNewCardModal from "../modals/AddNewCardModal"
@@ -11,7 +13,11 @@ import AddNewCardModal from "../modals/AddNewCardModal"
 import useContainer from "./hook"
 import styles from "./styles.module.scss"
 
-const CardsList: React.FC = () => {
+interface CardsListProps {
+  cards: MemoCard[]
+}
+
+const CardsList: React.FC<CardsListProps> = ({ cards }) => {
   const {
     activeCard,
     grouppedCards,
@@ -24,7 +30,7 @@ const CardsList: React.FC = () => {
     handleUpdateCard,
     isPracticeCardsModeActive,
     handleSetActiveCardGroup,
-  } = useContainer()
+  } = useContainer(cards)
 
   return (
     <div className={styles["cards-list"]}>
