@@ -1,5 +1,5 @@
 import CardsList from "@/components/CardsList"
-import { MemoCard } from "@/types/app"
+import type { MemoCard } from "@/types/app"
 
 const MemoCardsPage: React.FC = async () => {
   const apiBaseUrl = process.env.API_BASE_URL || ""
