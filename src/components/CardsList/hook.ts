@@ -4,12 +4,14 @@ import { spanishCards } from "@/cards/spanish"
 import CardsRepository from "@/services/CardsRepository"
 import { MemoCard } from "@/types/app"
 
-const useContainer = () => {
-  const [cards, setCards] = useState<MemoCard[]>(CardsRepository.getCards())
+const useContainer = (fetchedCards: MemoCard[]) => {
+  const [cards, setCards] = useState<MemoCard[]>(
+    fetchedCards.length > 0 ? fetchedCards : CardsRepository.getCards()
+  )
   const [activeCardGroup, setActiveCardGroup] = useState<MemoCard[]>([])
   const [activeCardIndex, setActiveCardIndex] = useState<number | null>(null)
 
-  const grouppedCards = cards.reduce((acc, card) => {
+  const grouppedCards = fetchedCards.reduce((acc, card) => {
     acc[card.category] = acc[card.category]
       ? [...acc[card.category], card]
       : [card]
