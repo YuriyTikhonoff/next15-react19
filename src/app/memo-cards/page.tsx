@@ -1,4 +1,3 @@
-"use server"
 import CardsList from "@/components/CardsList"
 
 const MemoCardsPage: React.FC = async () => {
