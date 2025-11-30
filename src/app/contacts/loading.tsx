@@ -1,18 +1,7 @@
-import CircularProgress from "@mui/material/CircularProgress"
+import LoadingSpinner from "@/components/LoadingSpinner"
 
 const Loading = () => {
-  return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100%",
-        minHeight: 200,
-      }}>
-      <CircularProgress />
-    </div>
-  )
+  return <LoadingSpinner />
 }
 
 export default Loading
