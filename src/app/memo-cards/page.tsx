@@ -1,8 +1,9 @@
 import CardsList from "@/components/CardsList"
+import type { MemoCard } from "@/types/app"
 
 const MemoCardsPage: React.FC = async () => {
   const apiBaseUrl = process.env.API_BASE_URL || ""
-  let cards = []
+  let cards: MemoCard[] = []
   let error: string | null = null
 
   try {
@@ -14,7 +15,7 @@ const MemoCardsPage: React.FC = async () => {
       throw new Error(`Failed to fetch: ${fetchedCards.status}`)
     }
 
-    cards = await fetchedCards.json()
+    cards = (await fetchedCards.json()) as MemoCard[]
     console.log("fetched cards ", cards)
   } catch (err) {
     error =
