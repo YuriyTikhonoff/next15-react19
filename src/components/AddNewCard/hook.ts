@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { use, useEffect, useState } from "react"
 
 import { nanoid } from "nanoid"
 
@@ -76,12 +76,17 @@ const useContainer = ({
     }
   }
 
+  const fetchCategoriesEffect = () => {
+    fetchCategories()
+  }
+
   const initCardValuesEffect = () => {
     setNewCard({ ...initialCardValues, id: initialCardValues.id || nanoid() })
     fetchCategories()
   }
 
   useEffect(initCardValuesEffect, [initialCardValues])
+  useEffect(fetchCategoriesEffect, [])
 
   return {
     categoriesList,
