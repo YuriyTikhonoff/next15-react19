@@ -9,9 +9,9 @@ export enum ROUTE_KEYS {
 }
 
 export interface IRoute {
-  path: string;
-  title: string;
-  showInNavigation?: boolean;
+  path: string
+  title: string
+  showInNavigation?: boolean
 }
 
 export const ROUTES_MAP: Record<ROUTE_KEYS, IRoute> = {
@@ -50,7 +50,7 @@ export const ROUTES_MAP: Record<ROUTE_KEYS, IRoute> = {
     title: "Send Message",
     showInNavigation: true,
   },
-};
+}
 
 export enum PROJECTS_PAGE_SLUGS {
   DEMO = "demo",
@@ -61,4 +61,7 @@ export const PROJECTS_PAGE_MAP: Record<PROJECTS_PAGE_SLUGS, { title: string }> =
   {
     [PROJECTS_PAGE_SLUGS.DEMO]: { title: "Demo" },
     [PROJECTS_PAGE_SLUGS.CMS]: { title: "CMS" },
-  };
+  }
+
+export const apiBaseUrl = process.env.API_BASE_URL || ""
+export const clientApiBaseUrl = "http://localhost:5001"

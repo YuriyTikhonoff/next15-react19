@@ -55,9 +55,9 @@ const AddNewCard: React.FC<AddNewCardProps> = ({
             className={styles["add-new-card__form__input"]}
             value={newCard.category}
             onChange={handleSelctiingCategory}>
-            {categoriesList.map(category => (
-              <MenuItem key={category} value={category}>
-                {category}
+            {categoriesList.map((category, idx) => (
+              <MenuItem key={idx} value={category?.id ?? ""}>
+                {category?.name ?? "Unnamed Category"}
               </MenuItem>
             ))}
           </TextField>

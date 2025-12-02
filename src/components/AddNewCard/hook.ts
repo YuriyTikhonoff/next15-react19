@@ -18,9 +18,10 @@ const useContainer = ({
 }: UseContainerParams) => {
   const [newCard, setNewCard] = useState<MemoCard>(initialCardValues)
   const [newCategory, setNewCategory] = useState<string>("")
-  const [categoriesList, setCategoriesList] = useState<string[]>(
-    CategoriesRepository.getCategories()
-  )
+  const [categoriesList, setCategoriesList] = useState<
+    Array<{ id: string; name: string }>
+  >([])
+  // CategoriesRepository.getCategories()
 
   const onAddCard = () => {
     const enrichedNewCard = {
@@ -37,7 +38,7 @@ const useContainer = ({
     setNewCategory(e.target.value)
 
   const handleAddingCategory = () => {
-    setCategoriesList([...categoriesList, newCategory])
+    setCategoriesList([...categoriesList, { id: nanoid(), name: newCategory }])
     CategoriesRepository.addCategory(newCategory)
     setNewCategory("")
   }
@@ -57,8 +58,27 @@ const useContainer = ({
     setNewCard({ ...newCard, category: e.target.value })
   }
 
+  const fetchCategories = async () => {
+    // console.log("apiBaseUrl", clientApiBaseUrl)
+    const response = await fetch(`/api/endpoint/v1/hello-world`, {
+      cache: "reload",
+    })
+
+    if (response.ok) {
+      const categories = (await response.json()) as Array<{
+        id: string
+        name: string
+      }>
+      console.log("Fetched categories:", categories)
+      setCategoriesList(categories)
+    } else {
+      console.error("Failed to fetch categories:", response.status)
+    }
+  }
+
   const initCardValuesEffect = () => {
     setNewCard({ ...initialCardValues, id: initialCardValues.id || nanoid() })
+    fetchCategories()
   }
 
   useEffect(initCardValuesEffect, [initialCardValues])
