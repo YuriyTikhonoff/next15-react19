@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server"
 
-import { clientApiBaseUrl } from "@/constants/app"
+import { apiBaseUrl } from "@/constants/app"
 
 export async function GET() {
   try {
-    const response = await fetch(clientApiBaseUrl + "/categories", {
+    const response = await fetch(apiBaseUrl + "/categories", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
