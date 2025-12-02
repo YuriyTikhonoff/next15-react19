@@ -1,8 +1,8 @@
 import CardsList from "@/components/CardsList"
+import { apiBaseUrl } from "@/constants/app"
 import type { MemoCard } from "@/types/app"
 
 const MemoCardsPage: React.FC = async () => {
-  const apiBaseUrl = process.env.API_BASE_URL || ""
   let cards: MemoCard[] = []
   let error: string | null = null
 
