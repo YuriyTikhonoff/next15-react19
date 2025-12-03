@@ -15,7 +15,15 @@ class CategoriesRepository {
     return this.instance
   }
 
-  public addCategory(category: Category): void {
+  public async addCategory(category: Category): Promise<void> {
+    const response = await fetch(`/api/endpoint/v1/categories`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: category }),
+    })
+    if (!response.ok) {
+      throw new Error("Failed to add category")
+    }
     this.categories.push(category)
     localStorage.setItem(
       LocalStorageFields.Categories,

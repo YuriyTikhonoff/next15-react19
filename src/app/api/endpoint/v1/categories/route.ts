@@ -16,3 +16,25 @@ export async function GET() {
     return NextResponse.error()
   }
 }
+
+export async function POST(req: Request) {
+  const payload = await req.json()
+  try {
+    const response = await fetch(apiBaseUrl + "/categories", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    })
+    if (!response.ok) {
+      console.error("Failed to add category:", response.statusText)
+      return NextResponse.json(
+        { error: response.statusText },
+        { status: response.status }
+      )
+    }
+    return NextResponse.json(await response.json())
+  } catch (error) {
+    console.error("Error posting category:", error)
+    return NextResponse.error()
+  }
+}
