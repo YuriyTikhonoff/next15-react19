@@ -19,16 +19,18 @@ export async function GET() {
 
 export async function POST(req: Request) {
   const payload = await req.json()
-  console.log("Received payload in POST:", payload)
   try {
     const response = await fetch(apiBaseUrl + "/categories", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
     })
-    console.log("Response from POST:", response)
     if (!response.ok) {
       console.error("Failed to add category:", response.statusText)
+      return NextResponse.json(
+        { error: response.statusText },
+        { status: response.status }
+      )
     }
     return NextResponse.json(await response.json())
   } catch (error) {
