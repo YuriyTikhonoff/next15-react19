@@ -59,7 +59,7 @@ const useContainer = ({
   }
 
   const fetchCategories = async () => {
-    const response = await fetch(`/api/endpoint/v1/categories`, {
+    const response = await fetch(`/api/categories`, {
       cache: "reload",
     })
 
