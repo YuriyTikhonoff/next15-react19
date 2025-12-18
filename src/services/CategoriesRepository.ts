@@ -16,7 +16,7 @@ class CategoriesRepository {
   }
 
   public async addCategory(category: Category): Promise<void> {
-    const response = await fetch(`/api/endpoint/v1/categories`, {
+    const response = await fetch(`/api/categories`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name: category }),
