@@ -1,4 +1,5 @@
 import { MemoCard } from "@/types/app"
+import { title } from "process"
 
 class CardsRepository {
   private static instance: CardsRepository
@@ -9,6 +10,7 @@ class CardsRepository {
   public saveCardsPersistently(cards: MemoCard[]): void {
     console.log("Saving cards persistently:", cards)
     console.log("Hello")
+
     // if (localStorage)
     //   localStorage.setItem(LocalStorageFields.Cards, JSON.stringify(cards))
   }
@@ -20,7 +22,26 @@ class CardsRepository {
     return this.instance
   }
 
-  public addCard(card: MemoCard): void {
+  public async addCard(card: MemoCard): Promise<void> {
+    console.log("Adding card:", card)
+    const cardPayload = {
+      title: card.title,
+      front: card.front,
+      back: card.back,
+      category: card.category,
+    }
+    console.log("Card payload:", cardPayload)
+    try {
+      await fetch(`/api/memo-cards`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(cardPayload),
+      })
+    } catch (error) {
+      console.error("Error adding card to backend:", error)
+    }
     this.cards.push(card)
     this.saveCardsPersistently(this.cards)
   }
