@@ -26,8 +26,8 @@ const useContainer = ({
   const onAddCard = () => {
     const enrichedNewCard = {
       ...newCard,
-      lastPracticeTimestamp: new Date().toISOString(),
-      createdAtTimestamp: new Date().toISOString(),
+      // lastPracticeTimestamp: new Date().toISOString(),
+      // createdAtTimestamp: new Date().toISOString(),
       title: newCard.title || newCard.front,
     }
     onAddNewCard(enrichedNewCard)
