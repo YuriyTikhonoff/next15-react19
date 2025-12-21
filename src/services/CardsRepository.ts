@@ -24,7 +24,7 @@ class CardsRepository {
       title: card.title,
       front: card.front,
       back: card.back,
-      category: card.category,
+      categoryId: card.category,
     }
     console.log("Card payload:", cardPayload)
     try {
