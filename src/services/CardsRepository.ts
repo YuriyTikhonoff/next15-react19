@@ -19,14 +19,12 @@ class CardsRepository {
   }
 
   public async addCard(card: MemoCard): Promise<void> {
-    console.log("Adding card:", card)
     const cardPayload = {
       title: card.title,
       front: card.front,
       back: card.back,
       categoryId: card.category,
     }
-    console.log("Card payload:", cardPayload)
     try {
       const response = await fetch(`/api/memo-cards`, {
         method: "POST",
