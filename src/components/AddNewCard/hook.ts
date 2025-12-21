@@ -54,8 +54,8 @@ const useContainer = ({
     setNewCard({ ...newCard, back: e.target.value })
   }
 
-  const handleSelctiingCategory = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewCard({ ...newCard, category: e.target.value })
+  const handleSelectingCategory = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNewCard({ ...newCard, category: { id: e.target.value, name: "" } })
   }
 
   const fetchCategories = async () => {
@@ -94,7 +94,7 @@ const useContainer = ({
     handleAddingBack,
     hadleAddingTitle,
     handleCategoryInput,
-    handleSelctiingCategory,
+    handleSelectingCategory,
     newCard,
     newCategory,
     onAddCard,
