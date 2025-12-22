@@ -53,7 +53,7 @@ const AddNewCard: React.FC<AddNewCardProps> = ({
             variant="outlined"
             select
             className={styles["add-new-card__form__input"]}
-            value={newCard.category}
+            value={newCard.category?.id}
             onChange={handleSelectingCategory}>
             {categoriesList.filter(Boolean).map(category => (
               <MenuItem key={category.id} value={category.id}>

@@ -55,7 +55,10 @@ const useContainer = ({
   }
 
   const handleSelectingCategory = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewCard({ ...newCard, category: { id: e.target.value, name: "" } })
+    const categoryId = e.target.value
+    const selectedCategory = categoriesList.find(cat => cat.id === categoryId)
+
+    setNewCard({ ...newCard, category: selectedCategory || null })
   }
 
   const fetchCategories = async () => {
