@@ -10,7 +10,6 @@ const useContainer = (fetchedCards: MemoCard[]) => {
   )
   const [activeCardGroup, setActiveCardGroup] = useState<MemoCard[]>([])
   const [activeCardIndex, setActiveCardIndex] = useState<number | null>(null)
-  console.log("Fetched Cards in Hook:", fetchedCards)
 
   const grouppedCards = fetchedCards.reduce((acc, card) => {
     const categoryName = card.category?.name || "Uncategorized"
