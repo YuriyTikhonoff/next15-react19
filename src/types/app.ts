@@ -7,12 +7,17 @@ export interface Post {
   title: string
 }
 
+export interface Category {
+  id: string
+  name: string
+}
+
 export interface MemoCard {
   id: string
   title: string
   front: string
   back: string
-  category: string
+  category?: Category | null
   level: number
   lastPracticeTimestamp: string
   createdAtTimestamp: string

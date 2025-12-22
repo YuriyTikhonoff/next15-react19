@@ -25,7 +25,7 @@ const AddNewCard: React.FC<AddNewCardProps> = ({
     handleAddingFront,
     handleAddingBack,
     handleCategoryInput,
-    handleSelctiingCategory,
+    handleSelectingCategory,
     newCard,
     newCategory,
     onAddCard,
@@ -53,8 +53,8 @@ const AddNewCard: React.FC<AddNewCardProps> = ({
             variant="outlined"
             select
             className={styles["add-new-card__form__input"]}
-            value={newCard.category}
-            onChange={handleSelctiingCategory}>
+            value={newCard.category?.id}
+            onChange={handleSelectingCategory}>
             {categoriesList.filter(Boolean).map(category => (
               <MenuItem key={category.id} value={category.id}>
                 {category.name}
