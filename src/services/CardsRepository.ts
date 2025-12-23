@@ -8,7 +8,6 @@ class CardsRepository {
 
   public saveCardsPersistently(cards: MemoCard[]): void {
     console.log("Saving cards persistently:", cards)
-    console.log("Hello")
   }
 
   public static getInstance(): CardsRepository {
