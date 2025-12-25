@@ -45,7 +45,7 @@ const CardsList: React.FC<CardsListProps> = ({ cards }) => {
             title={category}
             cards={cards}
             onDeleteCard={handleDeleteCard}
-            onUpdateCard={handleAddNewCard}
+            onUpdateCard={handleUpdateCard}
             onPracticeCardGroup={handlePracticeCardGroup(cards)}
           />
         ))}

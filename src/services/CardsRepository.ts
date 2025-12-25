@@ -43,6 +43,7 @@ class CardsRepository {
   }
 
   public updateCard(card: MemoCard): void {
+    console.log("Updating card:", card)
     const updatedCards = this.cards.map(currentCard =>
       currentCard.id === card.id ? card : currentCard
     )
