@@ -42,7 +42,27 @@ class CardsRepository {
     this.saveCardsPersistently(this.cards)
   }
 
-  public updateCard(card: MemoCard): void {
+  public async updateCard(card: MemoCard): Promise<void> {
+    const cardPayload = {
+      title: card.title,
+      front: card.front,
+      back: card.back,
+      categoryId: card.category?.id,
+    }
+    try {
+      const response = await fetch(`/api/memo-cards/${card.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(cardPayload),
+      })
+      if (!response.ok) {
+        throw new Error(`Failed to update card: ${response.status}`)
+      }
+    } catch (error) {
+      console.error("Error updating card to backend:", error)
+    }
     const updatedCards = this.cards.map(currentCard =>
       currentCard.id === card.id ? card : currentCard
     )

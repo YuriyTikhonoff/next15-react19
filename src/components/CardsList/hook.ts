@@ -34,6 +34,7 @@ const useContainer = (fetchedCards: MemoCard[]) => {
   }, [])
 
   const handleUpdateCard = useCallback((updatedCard: MemoCard) => {
+    console.log("handleUpdateCard called with:", updatedCard)
     setCards(prev =>
       prev.map(card => (card.id === updatedCard.id ? updatedCard : card))
     )
