@@ -26,7 +26,7 @@ export async function fetcher<T = unknown>(
   }
 
   const contentType = res.headers.get("content-type") ?? ""
-  if (!contentType.includes("application/json")) {
+  if (!contentType.toLowerCase().includes("json")) {
     throw new Error(
       `Expected JSON response but got content-type: ${contentType || "none"}`
     )
