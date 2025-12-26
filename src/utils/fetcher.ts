@@ -26,12 +26,13 @@ export async function fetcher<T = unknown>(
   }
 
   const contentType = res.headers.get("content-type") ?? ""
-  if (contentType.includes("application/json")) {
-    return res.json() as Promise<T>
+  if (!contentType.includes("application/json")) {
+    throw new Error(
+      `Expected JSON response but got content-type: ${contentType || "none"}`
+    )
   }
 
-  const text = await res.text()
-  return text as unknown as T
+  return res.json() as Promise<T>
 }
 
 export default fetcher
