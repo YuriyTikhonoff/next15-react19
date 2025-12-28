@@ -1,3 +1,5 @@
+import validateJsonFormat from "./validateJsonFormat"
+
 async function fetcher<T = unknown>(
   input: RequestInfo,
   init?: RequestInit
@@ -26,7 +28,7 @@ async function fetcher<T = unknown>(
   }
 
   const contentType = res.headers.get("content-type") ?? ""
-  const isJson = /^application\/(?:[\w-]+\+)?json/i.test(contentType)
+  const isJson = validateJsonFormat(contentType)
   if (!isJson) {
     throw new Error(
       `Expected JSON response but got content-type: ${contentType || "none"}`
