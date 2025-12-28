@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react"
 
 import { nanoid } from "nanoid"
+import useSWR from "swr"
 
+import { Endpoints } from "@/constants/endpoints"
 import CategoriesRepository from "@/services/CategoriesRepository"
 import { MemoCard } from "@/types/app"
+import fetcher from "@/utils/fetcher"
 
 interface UseContainerParams {
   initialCardValues: MemoCard
@@ -60,6 +63,9 @@ const useContainer = ({
 
     setNewCard({ ...newCard, category: selectedCategory || null })
   }
+
+  const { data, error, isLoading } = useSWR(Endpoints.Categories, fetcher)
+  console.log("SWR data:", data, "error:", error, "isLoading:", isLoading)
 
   const fetchCategories = async () => {
     const response = await fetch(`/api/categories`, {

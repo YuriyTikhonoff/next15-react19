@@ -1,4 +1,4 @@
-export async function fetcher<T = unknown>(
+async function fetcher<T = unknown>(
   input: RequestInfo,
   init?: RequestInit
 ): Promise<T> {
