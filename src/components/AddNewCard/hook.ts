@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
 
 import { nanoid } from "nanoid"
+import useSWR from "swr"
 
+import { Endpoints } from "@/constants/endpoints"
 import CategoriesRepository from "@/services/CategoriesRepository"
 import { MemoCard } from "@/types/app"
-import useSWR from "swr"
 import fetcher from "@/utils/fetcher"
-import { Endpoints } from "@/constants/endpoints"
 
 interface UseContainerParams {
   initialCardValues: MemoCard
