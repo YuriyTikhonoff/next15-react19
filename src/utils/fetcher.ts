@@ -1,9 +1,9 @@
 import validateJsonFormat from "./validateJsonFormat"
 
-async function fetcher<T = unknown>(
+const fetcher = async <T = unknown>(
   input: RequestInfo,
   init?: RequestInit
-): Promise<T> {
+): Promise<T> => {
   const res = await fetch(input, {
     ...init,
     headers: {
