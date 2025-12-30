@@ -1,41 +1,35 @@
+import axios from "axios"
+
 import validateJsonFormat from "./validateJsonFormat"
 
 const fetcher = async <T = unknown>(
   input: RequestInfo,
   init?: RequestInit
 ): Promise<T> => {
-  const res = await fetch(input, {
-    ...init,
-    headers: {
-      Accept: "application/json",
-      ...(init?.headers ?? {}),
-    },
+  const normalizedHeaders = init?.headers
+    ? init.headers instanceof Headers
+      ? Object.fromEntries(init.headers.entries())
+      : Array.isArray(init.headers)
+      ? Object.fromEntries(init.headers)
+      : init.headers
+    : undefined
+
+  const response = await axios.request<T>({
+    url: typeof input === "string" ? input : input.url,
+    method: init?.method || "GET",
+    headers: normalizedHeaders,
+    data: init?.body,
+    responseType: "json",
   })
 
-  if (!res.ok) {
-    let body: unknown
-    try {
-      body = await res.json()
-    } catch {
-      body = await res.text()
-    }
-    const err: Error & { status?: number; info?: unknown } = new Error(
-      `Request failed with status ${res.status}`
-    )
-    err.status = res.status
-    err.info = body
-    throw err
-  }
-
-  const contentType = res.headers.get("content-type") ?? ""
-  const isJson = validateJsonFormat(contentType)
-  if (!isJson) {
+  const contentType = response.headers["content-type"] || ""
+  if (!validateJsonFormat(contentType)) {
     throw new Error(
-      `Expected JSON response but got content-type: ${contentType || "none"}`
+      `Invalid content type: expected JSON but received "${contentType}"`
     )
   }
 
-  return res.json() as Promise<T>
+  return response.data
 }
 
 export default fetcher
