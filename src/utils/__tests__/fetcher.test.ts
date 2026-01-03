@@ -1,5 +1,5 @@
-import { describe, test, expect, vi, beforeEach } from "vitest"
 import axios from "axios"
+import { describe, test, expect, vi, beforeEach } from "vitest"
 
 import fetcher from "../fetcher"
 
@@ -179,9 +179,7 @@ describe("fetcher", () => {
         headers: { "content-type": "text/html" },
       })
 
-      await expect(
-        fetcher("https://api.example.com/data")
-      ).rejects.toThrow(
+      await expect(fetcher("https://api.example.com/data")).rejects.toThrow(
         'Invalid content type: expected JSON but received "text/html"'
       )
     })
@@ -192,9 +190,9 @@ describe("fetcher", () => {
         headers: {},
       })
 
-      await expect(
-        fetcher("https://api.example.com/data")
-      ).rejects.toThrow('Invalid content type: expected JSON but received ""')
+      await expect(fetcher("https://api.example.com/data")).rejects.toThrow(
+        'Invalid content type: expected JSON but received ""'
+      )
     })
 
     test("throws error when content-type is XML", async () => {
@@ -203,9 +201,7 @@ describe("fetcher", () => {
         headers: { "content-type": "application/xml" },
       })
 
-      await expect(
-        fetcher("https://api.example.com/data")
-      ).rejects.toThrow(
+      await expect(fetcher("https://api.example.com/data")).rejects.toThrow(
         'Invalid content type: expected JSON but received "application/xml"'
       )
     })
@@ -214,9 +210,9 @@ describe("fetcher", () => {
       const error = new Error("Network error")
       vi.mocked(axios.request).mockRejectedValue(error)
 
-      await expect(
-        fetcher("https://api.example.com/data")
-      ).rejects.toThrow("Network error")
+      await expect(fetcher("https://api.example.com/data")).rejects.toThrow(
+        "Network error"
+      )
     })
   })
 
