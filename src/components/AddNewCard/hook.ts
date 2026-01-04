@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 
 import { nanoid } from "nanoid"
-import useSWR from "swr"
+import useSWR, { mutate } from "swr"
 
 import { Endpoints } from "@/constants/endpoints"
 import CategoriesRepository from "@/services/CategoriesRepository"
@@ -39,9 +39,14 @@ const useContainer = ({
   const handleCategoryInput = (e: React.ChangeEvent<HTMLInputElement>) =>
     setNewCategory(e.target.value)
 
-  const handleAddingCategory = () => {
-    CategoriesRepository.addCategory(newCategory)
-    setNewCategory("")
+  const handleAddingCategory = async () => {
+    try {
+      await CategoriesRepository.addCategory(newCategory)
+      mutate(Endpoints.Categories)
+      setNewCategory("")
+    } catch (error) {
+      console.error("Error adding category:", error)
+    }
   }
 
   const hadleAddingTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
