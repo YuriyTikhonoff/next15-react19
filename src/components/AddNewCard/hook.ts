@@ -22,8 +22,7 @@ const useContainer = ({
   const [newCard, setNewCard] = useState<MemoCard>(initialCardValues)
   const [newCategory, setNewCategory] = useState<string>("")
 
-  const { data, error, isLoading } = useSWR(Endpoints.Categories, fetcher)
-  console.log("SWR data:", data, "error:", error, "isLoading:", isLoading)
+  const { data } = useSWR(Endpoints.Categories, fetcher)
 
   const categoriesList: Category[] = (data as Category[] | undefined) ?? []
 
