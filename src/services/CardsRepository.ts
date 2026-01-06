@@ -71,9 +71,6 @@ class CardsRepository {
   }
 
   public getCards(): MemoCard[] {
-    // const cards = localStorage
-    //   ? localStorage.getItem(LocalStorageFields.Cards)
-    //   : null
     const cards = null
     this.cards = cards ? JSON.parse(cards) : []
     return this.cards
