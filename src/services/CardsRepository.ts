@@ -1,4 +1,5 @@
 import { MemoCard } from "@/types/app"
+import axios from "axios"
 
 class CardsRepository {
   private static instance: CardsRepository
@@ -76,9 +77,14 @@ class CardsRepository {
     return this.cards
   }
 
-  public removeCard(cardId: string): void {
-    this.cards = this.cards.filter(card => card.id !== cardId)
-    this.saveCardsPersistently(this.cards)
+  public async removeCard(cardId: MemoCard["id"]): Promise<void> {
+    try {
+      await axios.delete(`/api/memo-cards/${cardId}`)
+      this.cards = this.cards.filter(card => card.id !== cardId)
+      this.saveCardsPersistently(this.cards)
+    } catch (error) {
+      console.error("Error removing card from backend:", error)
+    }
   }
 }
 
