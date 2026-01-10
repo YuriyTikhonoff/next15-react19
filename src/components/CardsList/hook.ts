@@ -3,6 +3,8 @@ import { useCallback, useEffect, useState } from "react"
 import { spanishCards } from "@/cards/spanish"
 import CardsRepository from "@/services/CardsRepository"
 import { MemoCard } from "@/types/app"
+import { mutate } from "swr"
+import { Endpoints } from "@/constants/endpoints"
 
 const useContainer = (fetchedCards: MemoCard[]) => {
   const [cards, setCards] = useState<MemoCard[]>(
@@ -66,9 +68,10 @@ const useContainer = (fetchedCards: MemoCard[]) => {
     []
   )
 
-  const handleDeleteCard = useCallback((cardId: MemoCard["id"]) => {
+  const handleDeleteCard = useCallback(async (cardId: MemoCard["id"]) => {
     setCards(prev => prev.filter(card => card.id !== cardId))
-    CardsRepository.removeCard(cardId)
+    await CardsRepository.removeCard(cardId)
+    mutate(Endpoints.Cards)
   }, [])
 
   const handleSetActiveCardGroup = setActiveCardGroup
