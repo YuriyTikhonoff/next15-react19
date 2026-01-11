@@ -10,10 +10,6 @@ class CardsRepository {
 
   private constructor() {}
 
-  public saveCardsPersistently(cards: MemoCard[]): void {
-    console.log("Saving cards persistently:", cards)
-  }
-
   public static getInstance(): CardsRepository {
     if (!this.instance) {
       this.instance = new CardsRepository()
@@ -40,8 +36,6 @@ class CardsRepository {
       if (!response.ok) {
         throw new Error(`Failed to add card: ${response.status}`)
       }
-      this.cards.push(card)
-      this.saveCardsPersistently(this.cards)
       mutate(Endpoints.Cards)
     } catch (error) {
       console.error("Error adding card to backend:", error)
@@ -66,14 +60,10 @@ class CardsRepository {
       if (!response.ok) {
         throw new Error(`Failed to update card: ${response.status}`)
       }
+      mutate(Endpoints.Cards)
     } catch (error) {
       console.error("Error updating card to backend:", error)
     }
-    const updatedCards = this.cards.map(currentCard =>
-      currentCard.id === card.id ? card : currentCard
-    )
-    this.cards = updatedCards
-    this.saveCardsPersistently(this.cards)
   }
 
   public getCards(): MemoCard[] {
@@ -85,8 +75,6 @@ class CardsRepository {
   public async removeCard(cardId: MemoCard["id"]): Promise<void> {
     try {
       await axios.delete(`/api/memo-cards/${cardId}`)
-      // this.cards = this.cards.filter(card => card.id !== cardId)
-      // this.saveCardsPersistently(this.cards)
       mutate(Endpoints.Cards)
     } catch (error) {
       console.error("Error removing card from backend:", error)
