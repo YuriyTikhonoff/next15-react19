@@ -1,15 +1,13 @@
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useState } from "react"
 
-import { spanishCards } from "@/cards/spanish"
+import useSWR from "swr"
+
+import { Endpoints } from "@/constants/endpoints"
 import CardsRepository from "@/services/CardsRepository"
 import { MemoCard } from "@/types/app"
-import { mutate } from "swr"
-import { Endpoints } from "@/constants/endpoints"
 
 const useContainer = (fetchedCards: MemoCard[]) => {
-  const [cards, setCards] = useState<MemoCard[]>(
-    fetchedCards.length > 0 ? fetchedCards : CardsRepository.getCards()
-  )
+  const { data: cards } = useSWR(Endpoints.Cards)
   const [activeCardGroup, setActiveCardGroup] = useState<MemoCard[]>([])
   const [activeCardIndex, setActiveCardIndex] = useState<number | null>(null)
 
@@ -31,15 +29,11 @@ const useContainer = (fetchedCards: MemoCard[]) => {
   const activeCard = activeCardGroup[activeCardIndex ?? 0]
 
   const handleAddNewCard = useCallback((newCard: MemoCard) => {
-    setCards(prev => [...prev, newCard])
     CardsRepository.addCard(newCard)
   }, [])
 
   const handleUpdateCard = useCallback((updatedCard: MemoCard) => {
     console.log("handleUpdateCard called with:", updatedCard)
-    setCards(prev =>
-      prev.map(card => (card.id === updatedCard.id ? updatedCard : card))
-    )
     CardsRepository.updateCard(updatedCard)
   }, [])
 
@@ -49,9 +43,9 @@ const useContainer = (fetchedCards: MemoCard[]) => {
 
   const handleMoveToNextCard = useCallback(() => {
     setActiveCardIndex(prevIndex =>
-      prevIndex !== null
-        ? calculateNextCardIndex(prevIndex, activeCardGroup)
-        : null
+      prevIndex === null
+        ? null
+        : calculateNextCardIndex(prevIndex, activeCardGroup)
     )
   }, [activeCardGroup])
 
@@ -68,22 +62,16 @@ const useContainer = (fetchedCards: MemoCard[]) => {
     []
   )
 
-  const handleDeleteCard = useCallback(async (cardId: MemoCard["id"]) => {
-    try {
-      await CardsRepository.removeCard(cardId)
-      setCards(prev => prev.filter(card => card.id !== cardId))
-      mutate(Endpoints.Cards)
-    } catch (error) {
-      console.error("Error deleting card from backend:", error)
-    }
+  const handleDeleteCard = useCallback((cardId: MemoCard["id"]) => {
+    CardsRepository.removeCard(cardId)
   }, [])
 
   const handleSetActiveCardGroup = setActiveCardGroup
 
-  useEffect(() => {
-    CardsRepository.saveCardsPersistently(spanishCards)
-    setCards(spanishCards)
-  }, [])
+  //TODO: migrate to backend storage
+  // useEffect(() => {
+  //   CardsRepository.saveCardsPersistently(spanishCards)
+  // }, [])
 
   return {
     activeCard,

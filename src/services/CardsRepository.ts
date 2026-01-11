@@ -40,12 +40,12 @@ class CardsRepository {
       if (!response.ok) {
         throw new Error(`Failed to add card: ${response.status}`)
       }
+      this.cards.push(card)
+      this.saveCardsPersistently(this.cards)
+      mutate(Endpoints.Cards)
     } catch (error) {
       console.error("Error adding card to backend:", error)
     }
-    this.cards.push(card)
-    this.saveCardsPersistently(this.cards)
-    mutate(Endpoints.Cards)
   }
 
   public async updateCard(card: MemoCard): Promise<void> {
@@ -85,9 +85,9 @@ class CardsRepository {
   public async removeCard(cardId: MemoCard["id"]): Promise<void> {
     try {
       await axios.delete(`/api/memo-cards/${cardId}`)
-      this.cards = this.cards.filter(card => card.id !== cardId)
-      this.saveCardsPersistently(this.cards)
-      return
+      // this.cards = this.cards.filter(card => card.id !== cardId)
+      // this.saveCardsPersistently(this.cards)
+      mutate(Endpoints.Cards)
     } catch (error) {
       console.error("Error removing card from backend:", error)
     }
