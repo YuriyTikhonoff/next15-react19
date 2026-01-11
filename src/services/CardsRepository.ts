@@ -1,5 +1,8 @@
-import { MemoCard } from "@/types/app"
 import axios from "axios"
+import { mutate } from "swr"
+
+import { Endpoints } from "@/constants/endpoints"
+import { MemoCard } from "@/types/app"
 
 class CardsRepository {
   private static instance: CardsRepository
@@ -23,8 +26,9 @@ class CardsRepository {
       title: card.title,
       front: card.front,
       back: card.back,
-      categoryId: card.category,
+      categoryId: card.category?.id,
     }
+    console.log("Adding card to backend:", cardPayload)
     try {
       const response = await fetch(`/api/memo-cards`, {
         method: "POST",
@@ -41,6 +45,7 @@ class CardsRepository {
     }
     this.cards.push(card)
     this.saveCardsPersistently(this.cards)
+    mutate(Endpoints.Cards)
   }
 
   public async updateCard(card: MemoCard): Promise<void> {
@@ -82,6 +87,7 @@ class CardsRepository {
       await axios.delete(`/api/memo-cards/${cardId}`)
       this.cards = this.cards.filter(card => card.id !== cardId)
       this.saveCardsPersistently(this.cards)
+      return
     } catch (error) {
       console.error("Error removing card from backend:", error)
     }
