@@ -69,9 +69,13 @@ const useContainer = (fetchedCards: MemoCard[]) => {
   )
 
   const handleDeleteCard = useCallback(async (cardId: MemoCard["id"]) => {
-    setCards(prev => prev.filter(card => card.id !== cardId))
-    await CardsRepository.removeCard(cardId)
-    mutate(Endpoints.Cards)
+    try {
+      await CardsRepository.removeCard(cardId)
+      setCards(prev => prev.filter(card => card.id !== cardId))
+      mutate(Endpoints.Cards)
+    } catch (error) {
+      console.error("Error deleting card from backend:", error)
+    }
   }, [])
 
   const handleSetActiveCardGroup = setActiveCardGroup
