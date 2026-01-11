@@ -1,15 +1,14 @@
-import { MemoCard } from "@/types/app"
 import axios from "axios"
+import { mutate } from "swr"
+
+import { Endpoints } from "@/constants/endpoints"
+import { MemoCard } from "@/types/app"
 
 class CardsRepository {
   private static instance: CardsRepository
   private cards: MemoCard[] = []
 
   private constructor() {}
-
-  public saveCardsPersistently(cards: MemoCard[]): void {
-    console.log("Saving cards persistently:", cards)
-  }
 
   public static getInstance(): CardsRepository {
     if (!this.instance) {
@@ -23,8 +22,9 @@ class CardsRepository {
       title: card.title,
       front: card.front,
       back: card.back,
-      categoryId: card.category,
+      categoryId: card.category?.id,
     }
+    console.log("Adding card to backend:", cardPayload)
     try {
       const response = await fetch(`/api/memo-cards`, {
         method: "POST",
@@ -36,11 +36,10 @@ class CardsRepository {
       if (!response.ok) {
         throw new Error(`Failed to add card: ${response.status}`)
       }
+      mutate(Endpoints.Cards)
     } catch (error) {
       console.error("Error adding card to backend:", error)
     }
-    this.cards.push(card)
-    this.saveCardsPersistently(this.cards)
   }
 
   public async updateCard(card: MemoCard): Promise<void> {
@@ -61,14 +60,10 @@ class CardsRepository {
       if (!response.ok) {
         throw new Error(`Failed to update card: ${response.status}`)
       }
+      mutate(Endpoints.Cards)
     } catch (error) {
       console.error("Error updating card to backend:", error)
     }
-    const updatedCards = this.cards.map(currentCard =>
-      currentCard.id === card.id ? card : currentCard
-    )
-    this.cards = updatedCards
-    this.saveCardsPersistently(this.cards)
   }
 
   public getCards(): MemoCard[] {
@@ -80,8 +75,7 @@ class CardsRepository {
   public async removeCard(cardId: MemoCard["id"]): Promise<void> {
     try {
       await axios.delete(`/api/memo-cards/${cardId}`)
-      this.cards = this.cards.filter(card => card.id !== cardId)
-      this.saveCardsPersistently(this.cards)
+      mutate(Endpoints.Cards)
     } catch (error) {
       console.error("Error removing card from backend:", error)
     }
