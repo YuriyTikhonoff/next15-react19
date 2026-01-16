@@ -4,6 +4,7 @@ export enum ROUTE_KEYS {
   HOME = "HOME",
   PROJECTS = "PROJECTS",
   MEMO_CARDS = "MEMO_CARDS",
+  CATEGORIES = "CATEGORIES",
   NOT_FOUND = "NOT_FOUND",
   SEND_MESSAGE = "SEND_MESSAGE",
 }
@@ -28,6 +29,11 @@ export const ROUTES_MAP: Record<ROUTE_KEYS, IRoute> = {
   [ROUTE_KEYS.MEMO_CARDS]: {
     path: "/memo-cards",
     title: "Memo Cards",
+    showInNavigation: true,
+  },
+  [ROUTE_KEYS.CATEGORIES]: {
+    path: "/categories",
+    title: "Categories",
     showInNavigation: true,
   },
   [ROUTE_KEYS.CONTACTS]: {
