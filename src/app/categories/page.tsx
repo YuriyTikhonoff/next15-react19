@@ -1,6 +1,6 @@
 import { apiBaseUrl } from "@/constants/app"
 
-const categoriesPage = async () => {
+const CategoriesPage = async () => {
   const data = await fetch(`${apiBaseUrl}/categories`, { cache: "no-store" })
   const categories = await data.json()
   return (
@@ -11,4 +11,4 @@ const categoriesPage = async () => {
   )
 }
 
-export default categoriesPage
+export default CategoriesPage
