@@ -53,12 +53,6 @@ const ProjectsPage: React.FC = () => {
             <Link href={`/projects/${slug}`}>{title}</Link>
           </li>
         ))}
-        {/* <li>
-          <Link href="/projects/demo">Demo</Link>
-        </li>
-        <li>
-          <Link href="/projects/cms">CMS</Link>
-        </li> */}
       </ul>
     </div>
   )
