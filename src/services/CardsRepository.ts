@@ -17,7 +17,7 @@ class CardsRepository {
     return this.instance
   }
 
-  public async addCard(card: MemoCard): Promise<void> {
+  public async addCard(card: MemoCard): Promise<boolean> {
     const cardPayload = {
       title: card.title,
       front: card.front,
@@ -37,12 +37,14 @@ class CardsRepository {
         throw new Error(`Failed to add card: ${response.status}`)
       }
       mutate(Endpoints.Cards)
+      return true
     } catch (error) {
       console.error("Error adding card to backend:", error)
+      return false
     }
   }
 
-  public async updateCard(card: MemoCard): Promise<void> {
+  public async updateCard(card: MemoCard): Promise<boolean> {
     const cardPayload = {
       title: card.title,
       front: card.front,
@@ -61,8 +63,10 @@ class CardsRepository {
         throw new Error(`Failed to update card: ${response.status}`)
       }
       mutate(Endpoints.Cards)
+      return true
     } catch (error) {
       console.error("Error updating card to backend:", error)
+      return false
     }
   }
 
@@ -72,12 +76,14 @@ class CardsRepository {
     return this.cards
   }
 
-  public async removeCard(cardId: MemoCard["id"]): Promise<void> {
+  public async removeCard(cardId: MemoCard["id"]): Promise<boolean> {
     try {
       await axios.delete(`/api/memo-cards/${cardId}`)
       mutate(Endpoints.Cards)
+      return true
     } catch (error) {
       console.error("Error removing card from backend:", error)
+      return false
     }
   }
 }
