@@ -1,5 +1,7 @@
 import { useCallback, useState } from "react"
 
+import { useRouter } from "next/navigation"
+
 import useSWR from "swr"
 
 import { Endpoints } from "@/constants/endpoints"
@@ -8,16 +10,20 @@ import { MemoCard } from "@/types/app"
 
 const useContainer = (fetchedCards: MemoCard[]) => {
   const { data: cards } = useSWR(Endpoints.Cards)
+  const router = useRouter()
   const [activeCardGroup, setActiveCardGroup] = useState<MemoCard[]>([])
   const [activeCardIndex, setActiveCardIndex] = useState<number | null>(null)
 
-  const grouppedCards = fetchedCards.reduce((acc, card) => {
-    const categoryName = card.category?.name || "Uncategorized"
-    acc[categoryName] = acc[categoryName]
-      ? [...acc[categoryName], card]
-      : [card]
-    return acc
-  }, {} as Record<string, MemoCard[]>)
+  const grouppedCards = fetchedCards.reduce(
+    (acc, card) => {
+      const categoryName = card.category?.name || "Uncategorized"
+      acc[categoryName] = acc[categoryName]
+        ? [...acc[categoryName], card]
+        : [card]
+      return acc
+    },
+    {} as Record<string, MemoCard[]>
+  )
 
   const isPracticeCardsModeActive = activeCardIndex !== null
 
@@ -28,14 +34,26 @@ const useContainer = (fetchedCards: MemoCard[]) => {
 
   const activeCard = activeCardGroup[activeCardIndex ?? 0]
 
-  const handleAddNewCard = useCallback((newCard: MemoCard) => {
-    CardsRepository.addCard(newCard)
-  }, [])
+  const handleAddNewCard = useCallback(
+    async (newCard: MemoCard) => {
+      const isAddedSuccessful = await CardsRepository.addCard(newCard)
+      if (isAddedSuccessful) {
+        router.refresh()
+      }
+    },
+    [router]
+  )
 
-  const handleUpdateCard = useCallback((updatedCard: MemoCard) => {
-    console.log("handleUpdateCard called with:", updatedCard)
-    CardsRepository.updateCard(updatedCard)
-  }, [])
+  const handleUpdateCard = useCallback(
+    async (updatedCard: MemoCard) => {
+      console.log("handleUpdateCard called with:", updatedCard)
+      const isUpdatedSuccessful = await CardsRepository.updateCard(updatedCard)
+      if (isUpdatedSuccessful) {
+        router.refresh()
+      }
+    },
+    [router]
+  )
 
   const handleCloseCardPractice = useCallback(() => {
     setActiveCardIndex(null)
@@ -62,9 +80,15 @@ const useContainer = (fetchedCards: MemoCard[]) => {
     []
   )
 
-  const handleDeleteCard = useCallback((cardId: MemoCard["id"]) => {
-    CardsRepository.removeCard(cardId)
-  }, [])
+  const handleDeleteCard = useCallback(
+    async (cardId: MemoCard["id"]) => {
+      const isRemovedSuccessful = await CardsRepository.removeCard(cardId)
+      if (isRemovedSuccessful) {
+        router.refresh()
+      }
+    },
+    [router]
+  )
 
   const handleSetActiveCardGroup = setActiveCardGroup
 
