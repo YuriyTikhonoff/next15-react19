@@ -41,7 +41,7 @@ const CardView: React.FC<CardViewProps> = ({
     isFlipped,
     handleFlipCard,
     handleDeleteCard,
-    handleIncreseCardLevel,
+    handleIncreaseCardLevel,
     handleMoveToNextCard,
   } = useContainer({
     card,
@@ -62,7 +62,7 @@ const CardView: React.FC<CardViewProps> = ({
       <CardMenu
         card={card}
         onDeleteCard={handleDeleteCard}
-        onIncreaseCardLevel={handleIncreseCardLevel}
+        onIncreaseCardLevel={handleIncreaseCardLevel}
         onUpdateCard={onUpdateCard}
       />
       <div className={styles["card__level"]}>
