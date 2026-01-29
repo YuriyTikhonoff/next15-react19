@@ -17,7 +17,7 @@ const useContainer = ({
 }: UseContainerParams) => {
   const [isFlipped, setIsFlipped] = useState(isPrimarySideFront)
 
-  const handleIncreseCardLevel = () => {
+  const handleIncreaseCardLevel = () => {
     const updatedCard: MemoCard = {
       ...card,
       level: card.level + 1,
@@ -54,7 +54,7 @@ const useContainer = ({
     isFlipped,
     handleFlipCard,
     handleDeleteCard,
-    handleIncreseCardLevel,
+    handleIncreaseCardLevel,
     handleMoveToNextCard,
   }
 }
