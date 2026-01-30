@@ -26,6 +26,7 @@ export interface CardViewProps {
   onNextCard: VoidFunction
   onSetActiveCardGroup: Dispatch<SetStateAction<MemoCard[]>>
   onUpdateCard: (updatedCard: MemoCard) => void
+  loading: boolean
 }
 
 const CardView: React.FC<CardViewProps> = ({
@@ -36,6 +37,7 @@ const CardView: React.FC<CardViewProps> = ({
   onNextCard,
   onSetActiveCardGroup,
   onUpdateCard,
+  loading,
 }) => {
   const {
     isFlipped,
@@ -51,6 +53,7 @@ const CardView: React.FC<CardViewProps> = ({
     onNextCard,
     onSetActiveCardGroup,
     onUpdateCard,
+    loading,
   })
 
   dayjs.extend(relativeTime)
@@ -64,6 +67,7 @@ const CardView: React.FC<CardViewProps> = ({
         onDeleteCard={handleDeleteCard}
         onIncreaseCardLevel={handleIncreaseCardLevel}
         onUpdateCard={onUpdateCard}
+        loading={loading}
       />
       <div className={styles["card__level"]}>
         {cardLevelsMap.get(card.level)?.text}

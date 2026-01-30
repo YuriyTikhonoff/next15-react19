@@ -11,12 +11,14 @@ interface AddNewCardProps {
   onAddNewCard: (newCard: MemoCard) => void
   onClose: VoidFunction
   initialCardValues: MemoCard
+  loading?: boolean
 }
 
 const AddNewCard: React.FC<AddNewCardProps> = ({
   onAddNewCard,
   onClose,
   initialCardValues,
+  loading,
 }) => {
   const {
     categoriesList,
@@ -108,7 +110,9 @@ const AddNewCard: React.FC<AddNewCardProps> = ({
           <Button
             onClick={onAddCard}
             className={styles["add-new-card__form__controls__btn"]}
-            variant="outlined">
+            variant="outlined"
+            disabled={loading}
+            loading={Boolean(loading)}>
             Save
           </Button>
         </div>

@@ -13,6 +13,7 @@ const useContainer = (fetchedCards: MemoCard[]) => {
   const router = useRouter()
   const [activeCardGroup, setActiveCardGroup] = useState<MemoCard[]>([])
   const [activeCardIndex, setActiveCardIndex] = useState<number | null>(null)
+  const [loading, setLoading] = useState<boolean>(false)
 
   const grouppedCards = fetchedCards.reduce(
     (acc, card) => {
@@ -36,10 +37,12 @@ const useContainer = (fetchedCards: MemoCard[]) => {
 
   const handleAddNewCard = useCallback(
     async (newCard: MemoCard) => {
+      setLoading(true)
       const isAddedSuccessful = await CardsRepository.addCard(newCard)
       if (isAddedSuccessful) {
         router.refresh()
       }
+      setLoading(false)
     },
     [router]
   )
@@ -47,10 +50,12 @@ const useContainer = (fetchedCards: MemoCard[]) => {
   const handleUpdateCard = useCallback(
     async (updatedCard: MemoCard) => {
       console.log("handleUpdateCard called with:", updatedCard)
+      setLoading(true)
       const isUpdatedSuccessful = await CardsRepository.updateCard(updatedCard)
       if (isUpdatedSuccessful) {
         router.refresh()
       }
+      setLoading(false)
     },
     [router]
   )
@@ -82,20 +87,17 @@ const useContainer = (fetchedCards: MemoCard[]) => {
 
   const handleDeleteCard = useCallback(
     async (cardId: MemoCard["id"]) => {
+      setLoading(true)
       const isRemovedSuccessful = await CardsRepository.removeCard(cardId)
       if (isRemovedSuccessful) {
         router.refresh()
       }
+      setLoading(false)
     },
     [router]
   )
 
   const handleSetActiveCardGroup = setActiveCardGroup
-
-  //TODO: migrate to backend storage
-  // useEffect(() => {
-  //   CardsRepository.saveCardsPersistently(spanishCards)
-  // }, [])
 
   return {
     activeCard,
@@ -109,6 +111,7 @@ const useContainer = (fetchedCards: MemoCard[]) => {
     handleUpdateCard,
     isPracticeCardsModeActive,
     handleSetActiveCardGroup,
+    loadingAction: loading,
   }
 }
 
