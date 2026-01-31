@@ -9,13 +9,15 @@ import type { MemoCard } from "@/types/app"
 import AddNewCard from "../../AddNewCard"
 import ModalComponent from "../ModalComponent"
 
-
-
 interface AddNewCardModalProps {
   onAddNewCard: (newCard: MemoCard) => void
+  loading?: boolean
 }
 
-const AddNewCardModal: React.FC<AddNewCardModalProps> = ({ onAddNewCard }) => {
+const AddNewCardModal: React.FC<AddNewCardModalProps> = ({
+  onAddNewCard,
+  loading,
+}) => {
   return (
     <ModalComponent
       title={<h3>Add New Card Component</h3>}
@@ -29,6 +31,7 @@ const AddNewCardModal: React.FC<AddNewCardModalProps> = ({ onAddNewCard }) => {
           onAddNewCard={onAddNewCard}
           onClose={onCloseModal}
           initialCardValues={INITIAL_NEW_CARD}
+          loading={loading}
         />
       )}
     />

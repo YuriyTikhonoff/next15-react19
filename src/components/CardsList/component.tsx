@@ -30,13 +30,17 @@ const CardsList: React.FC<CardsListProps> = ({ cards }) => {
     handleUpdateCard,
     isPracticeCardsModeActive,
     handleSetActiveCardGroup,
+    loadingAction,
   } = useContainer(cards)
 
   return (
     <div className={styles["cards-list"]}>
       <div className={styles["cards-list__controls"]}>
         <Button onClick={handlePracticeAllCards}>Practice All Cards</Button>
-        <AddNewCardModal onAddNewCard={handleAddNewCard} />
+        <AddNewCardModal
+          onAddNewCard={handleAddNewCard}
+          loading={loadingAction}
+        />
       </div>
       <ul>
         {Object.entries(grouppedCards).map(([category, cards]) => (
@@ -58,6 +62,7 @@ const CardsList: React.FC<CardsListProps> = ({ cards }) => {
             onClose={handleCloseCardPractice}
             onDeleteCard={handleDeleteCard}
             onUpdateCard={handleUpdateCard}
+            loading={loadingAction}
             onNextCard={handleMoveToNextCard}
             onSetActiveCardGroup={handleSetActiveCardGroup}
           />

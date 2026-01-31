@@ -19,6 +19,7 @@ interface CardMenuProps {
   onDeleteCard: VoidFunction
   onIncreaseCardLevel: VoidFunction
   onUpdateCard: (updatedCard: MemoCard) => void
+  loading: boolean
 }
 
 const CardMenu: React.FC<CardMenuProps> = ({
@@ -26,6 +27,7 @@ const CardMenu: React.FC<CardMenuProps> = ({
   onIncreaseCardLevel,
   onUpdateCard,
   card,
+  loading,
 }) => {
   const {
     isOpen,
@@ -45,7 +47,8 @@ const CardMenu: React.FC<CardMenuProps> = ({
         aria-controls={isOpen ? "basic-menu" : undefined}
         aria-haspopup="true"
         aria-expanded={isOpen ? "true" : undefined}
-        onClick={handleOpenMenu}>
+        onClick={handleOpenMenu}
+        loading={loading}>
         <MenuIcon />
       </IconButton>
       <Menu
