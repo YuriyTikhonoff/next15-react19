@@ -47,8 +47,8 @@ const CardMenu: React.FC<CardMenuProps> = ({
         aria-controls={isOpen ? "basic-menu" : undefined}
         aria-haspopup="true"
         aria-expanded={isOpen ? "true" : undefined}
-        onClick={handleOpenMenu}>
-        loading={loading}
+        onClick={handleOpenMenu}
+        loading={loading}>
         <MenuIcon />
       </IconButton>
       <Menu
