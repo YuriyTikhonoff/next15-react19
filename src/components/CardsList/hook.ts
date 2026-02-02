@@ -15,7 +15,7 @@ const useContainer = (fetchedCards: MemoCard[]) => {
   const [activeCardIndex, setActiveCardIndex] = useState<number | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
 
-  const grouppedCards = fetchedCards.reduce(
+  const grouppedCards = fetchedCards?.reduce(
     (acc, card) => {
       const categoryName = card.category?.name || "Uncategorized"
       acc[categoryName] = acc[categoryName]
