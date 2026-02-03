@@ -1,3 +1,4 @@
+import CategoriesList from "@/components/Categories/CategoriesList/CategoriesList"
 import { apiBaseUrl } from "@/constants/app"
 
 const CategoriesPage = async () => {
@@ -17,7 +18,7 @@ const CategoriesPage = async () => {
   return (
     <div>
       <h2>Categories Page</h2>
-      <pre>{JSON.stringify(categories, null, 2)}</pre>
+      <CategoriesList categories={categories} />
     </div>
   )
 }
