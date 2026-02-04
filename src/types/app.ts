@@ -10,6 +10,8 @@ export interface Post {
 export interface Category {
   id: string
   name: string
+  createdAt?: string
+  parentCategoryId?: string | null
 }
 
 export interface MemoCard {
