@@ -6,7 +6,7 @@ interface CategoriesListProps {
 
 const CategoriesList = ({ categories }: CategoriesListProps) => {
   return (
-    <div>
+    <div style={{ display: "grid", gap: "1rem" }}>
       {categories.map(category => (
         <div key={category.id}>{category.name}</div>
       ))}
