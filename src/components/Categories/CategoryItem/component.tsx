@@ -1,3 +1,5 @@
+import cn from "classnames"
+
 import { Category } from "@/types/app"
 
 import styles from "./styles.module.scss"
@@ -8,10 +10,11 @@ interface CategoryItemProps {
 }
 
 const CategoryItem = ({ category, onClick }: CategoryItemProps) => {
-  const className = `${styles.root} ${onClick ? styles.clickable : ""}`.trim()
-
   return (
-    <button onClick={onClick} className={className} type="button">
+    <button
+      onClick={onClick}
+      className={cn(styles.root, { [styles.clickable]: onClick })}
+      type="button">
       {category.name}
     </button>
   )
