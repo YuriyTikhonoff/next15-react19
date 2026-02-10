@@ -78,7 +78,6 @@ const EditCategoryModal: React.FC<EditCategoryModalProps> = ({
             handleSubmit(onCloseModal)
           }}>
           <TextField
-            autoFocus
             error={Boolean(error)}
             helperText={error ?? " "}
             label="Category name"

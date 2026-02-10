@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import cn from "classnames"
 
+import DeleteCategoryModal from "@/components/modals/DeleteCategoryModal"
+import EditCategoryModal from "@/components/modals/EditCategoryModal/component"
 import { Category } from "@/types/app"
 
 import styles from "./styles.module.scss"
-import EditCategoryModal from "@/components/modals/EditCategoryModal/component"
-import DeleteCategoryModal from "@/components/modals/DeleteCategoryModal"
 
 interface CategoryItemProps {
   category: Category
