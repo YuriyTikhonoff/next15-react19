@@ -1,4 +1,4 @@
-import CategoriesList from "@/components/categories/CategoriesList"
+import CategoriesList from "@/components/categories1/CategoriesList"
 import { apiBaseUrl } from "@/constants/app"
 
 const CategoriesPage = async () => {
