@@ -10,7 +10,7 @@ import cardLevelsMap from "@/constants/cards"
 import { MemoCard } from "@/types/app"
 import { getTimeAgoValue } from "@/utils/getTimeAgoValue"
 
-import DeleteCardModal from "../modals/DeleteCardModal"
+import DeleteCardModal from "../modals/DeleteCardModal1"
 import EditCardModal from "../modals/EditCardModal"
 
 import useContainer from "./hook"
