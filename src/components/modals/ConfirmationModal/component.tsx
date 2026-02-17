@@ -16,6 +16,7 @@ interface ConfirmationModalProps {
   iconClassName?: string
   isWording?: boolean
   btnClassName?: string
+  icon?: React.ReactElement
 }
 
 const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
@@ -26,6 +27,7 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
   isWording,
   actionWording,
   btnClassName = "",
+  icon,
 }) => {
   return (
     <ModalComponent
@@ -43,7 +45,7 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
               [iconClassName ?? ""]: Boolean(iconClassName),
             })}
             onClick={onOpenModal}>
-            <DeleteOutlineIcon />
+            {icon ?? <DeleteOutlineIcon />}
           </IconButton>
         )
       }
